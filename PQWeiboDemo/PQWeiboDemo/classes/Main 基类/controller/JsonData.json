@@ -1,0 +1,27 @@
+[
+ {
+    "controller":"PQIndexTableVC",
+    "imageNamed":"tabbar_home",
+    "title":"首页"
+ },
+ {
+ "controller":"PQMessageTableVC",
+ "imageNamed":"tabbar_message_center",
+ "title":"消息"
+ },
+ {
+ "controller":"PQNullTableVC",
+ "imageNamed":"",
+ "title":""
+ },
+ {
+ "controller":"PQDiscoverTableVC",
+ "imageNamed":"tabbar_discover",
+ "title":"发现"
+ },
+ {
+ "controller":"PQMeTableVC",
+ "imageNamed":"tabbar_profile",
+ "title":"我"
+ }
+]
