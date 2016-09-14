@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810043881D8940CA00908230 /* PQNotLoginView.swift */; };
+		8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100438A1D89439300908230 /* UIView+AutoLayout.swift */; };
 		81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6E131D8684880028F927 /* AppDelegate.swift */; };
 		81FC6E1B1D8684880028F927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FC6E1A1D8684880028F927 /* Assets.xcassets */; };
 		81FC6E291D8684890028F927 /* PQWeiboDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6E281D8684890028F927 /* PQWeiboDemoTests.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		810043881D8940CA00908230 /* PQNotLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNotLoginView.swift; sourceTree = "<group>"; };
+		8100438A1D89439300908230 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		81FC6E101D8684880028F927 /* PQWeiboDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PQWeiboDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FC6E131D8684880028F927 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FC6E1A1D8684880028F927 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 		81FC6E501D8685CB0028F927 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				810043881D8940CA00908230 /* PQNotLoginView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 		81FC6E591D8685CB0028F927 /* Tools 工具 */ = {
 			isa = PBXGroup;
 			children = (
+				8100438A1D89439300908230 /* UIView+AutoLayout.swift */,
 			);
 			path = "Tools 工具";
 			sourceTree = "<group>";
@@ -516,9 +522,11 @@
 				81FC6E671D86919E0028F927 /* PQBaseTableVC.swift in Sources */,
 				81FC6E6C1D86969C0028F927 /* PQNullTableVC.swift in Sources */,
 				81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */,
+				8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */,
 				81FC6E5B1D868B0F0028F927 /* PQTabBarController.swift in Sources */,
 				81FC6E651D8690FE0028F927 /* PQMeTableVC.swift in Sources */,
 				81FC6E631D8690F10028F927 /* PQDiscoverTableVC.swift in Sources */,
+				810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +740,7 @@
 				81FC6E3A1D8684890028F927 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81FC6E3B1D8684890028F927 /* Build configuration list for PBXNativeTarget "PQWeiboDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -740,6 +749,7 @@
 				81FC6E3D1D8684890028F927 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81FC6E3E1D8684890028F927 /* Build configuration list for PBXNativeTarget "PQWeiboDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -748,6 +758,7 @@
 				81FC6E401D8684890028F927 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
