@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iJl-9R-HL6">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Popver View Controller-->
+        <scene sceneID="X0L-PY-Ih1">
+            <objects>
+                <viewController id="iJl-9R-HL6" customClass="PQPopverViewController" customModule="PQWeiboDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j00-De-esV"/>
+                        <viewControllerLayoutGuide type="bottom" id="wMe-FP-XKc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Grm-2A-Wn2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popover_background" translatesAutoresizingMaskIntoConstraints="NO" id="NlX-CZ-cVm">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Ro-eo-oBB">
+                                <rect key="frame" x="20" y="15" width="560" height="570"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NlX-CZ-cVm" firstAttribute="leading" secondItem="Grm-2A-Wn2" secondAttribute="leadingMargin" constant="-20" id="8UP-r8-0hR"/>
+                            <constraint firstItem="NlX-CZ-cVm" firstAttribute="top" secondItem="j00-De-esV" secondAttribute="bottom" id="8t3-ji-uwO"/>
+                            <constraint firstItem="9Ro-eo-oBB" firstAttribute="trailing" secondItem="Grm-2A-Wn2" secondAttribute="trailingMargin" id="DPB-lw-ZnQ"/>
+                            <constraint firstItem="9Ro-eo-oBB" firstAttribute="leading" secondItem="Grm-2A-Wn2" secondAttribute="leadingMargin" id="K5K-zR-kVL"/>
+                            <constraint firstItem="9Ro-eo-oBB" firstAttribute="top" secondItem="j00-De-esV" secondAttribute="bottom" constant="15" id="bCK-65-1Ij"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NlX-CZ-cVm" secondAttribute="trailing" constant="-20" id="hoV-pJ-2dr"/>
+                            <constraint firstItem="wMe-FP-XKc" firstAttribute="top" secondItem="NlX-CZ-cVm" secondAttribute="bottom" id="xHs-uG-5cB"/>
+                            <constraint firstItem="wMe-FP-XKc" firstAttribute="top" secondItem="9Ro-eo-oBB" secondAttribute="bottom" constant="15" id="yvu-23-H2q"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="On7-5N-xpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="253" y="275"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="popover_background" width="217" height="49"/>
+    </resources>
+</document>

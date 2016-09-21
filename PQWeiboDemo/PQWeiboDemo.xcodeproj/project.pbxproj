@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810043881D8940CA00908230 /* PQNotLoginView.swift */; };
 		8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100438A1D89439300908230 /* UIView+AutoLayout.swift */; };
+		816752D51D925E92009A54F0 /* QRCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816752D41D925E92009A54F0 /* QRCode.storyboard */; };
+		816752D71D925EFC009A54F0 /* PQQRcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816752D61D925EFC009A54F0 /* PQQRcodeViewController.swift */; };
+		816752D91D928A3B009A54F0 /* PQMyQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816752D81D928A3B009A54F0 /* PQMyQRCodeViewController.swift */; };
+		818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818882081D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift */; };
+		8188820B1D8E90BB00EF3FB1 /* PQLIRTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8188820A1D8E90BB00EF3FB1 /* PQLIRTButton.swift */; };
+		81B91CE91D8FC076001CBA60 /* pop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81B91CE81D8FC076001CBA60 /* pop.storyboard */; };
+		81B91CEB1D8FC240001CBA60 /* PQPopverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B91CEA1D8FC240001CBA60 /* PQPopverViewController.swift */; };
+		81B91CED1D8FC329001CBA60 /* PQPopverAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B91CEC1D8FC329001CBA60 /* PQPopverAnimation.swift */; };
+		81B91CEF1D8FC39B001CBA60 /* PQPopverPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B91CEE1D8FC39B001CBA60 /* PQPopverPresentationController.swift */; };
 		81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6E131D8684880028F927 /* AppDelegate.swift */; };
 		81FC6E1B1D8684880028F927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FC6E1A1D8684880028F927 /* Assets.xcassets */; };
 		81FC6E291D8684890028F927 /* PQWeiboDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6E281D8684890028F927 /* PQWeiboDemoTests.swift */; };
@@ -43,6 +52,15 @@
 /* Begin PBXFileReference section */
 		810043881D8940CA00908230 /* PQNotLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNotLoginView.swift; sourceTree = "<group>"; };
 		8100438A1D89439300908230 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		816752D41D925E92009A54F0 /* QRCode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCode.storyboard; sourceTree = "<group>"; };
+		816752D61D925EFC009A54F0 /* PQQRcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQQRcodeViewController.swift; sourceTree = "<group>"; };
+		816752D81D928A3B009A54F0 /* PQMyQRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQMyQRCodeViewController.swift; sourceTree = "<group>"; };
+		818882081D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtomItem+Category.swift"; sourceTree = "<group>"; };
+		8188820A1D8E90BB00EF3FB1 /* PQLIRTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQLIRTButton.swift; sourceTree = "<group>"; };
+		81B91CE81D8FC076001CBA60 /* pop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = pop.storyboard; sourceTree = "<group>"; };
+		81B91CEA1D8FC240001CBA60 /* PQPopverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQPopverViewController.swift; sourceTree = "<group>"; };
+		81B91CEC1D8FC329001CBA60 /* PQPopverAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQPopverAnimation.swift; sourceTree = "<group>"; };
+		81B91CEE1D8FC39B001CBA60 /* PQPopverPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQPopverPresentationController.swift; sourceTree = "<group>"; };
 		81FC6E101D8684880028F927 /* PQWeiboDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PQWeiboDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FC6E131D8684880028F927 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FC6E1A1D8684880028F927 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +106,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		816752D21D925E74009A54F0 /* QRcode 二维码 */ = {
+			isa = PBXGroup;
+			children = (
+				816752D41D925E92009A54F0 /* QRCode.storyboard */,
+				816752D61D925EFC009A54F0 /* PQQRcodeViewController.swift */,
+				816752D81D928A3B009A54F0 /* PQMyQRCodeViewController.swift */,
+			);
+			path = "QRcode 二维码";
+			sourceTree = "<group>";
+		};
+		81B91CE71D8FC076001CBA60 /* popver */ = {
+			isa = PBXGroup;
+			children = (
+				81B91CE81D8FC076001CBA60 /* pop.storyboard */,
+				81B91CEA1D8FC240001CBA60 /* PQPopverViewController.swift */,
+				81B91CEC1D8FC329001CBA60 /* PQPopverAnimation.swift */,
+				81B91CEE1D8FC39B001CBA60 /* PQPopverPresentationController.swift */,
+			);
+			path = popver;
+			sourceTree = "<group>";
+		};
 		81FC6E071D8684880028F927 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +205,8 @@
 		81FC6E431D8685CB0028F927 /* Command 自定义View */ = {
 			isa = PBXGroup;
 			children = (
+				818882081D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift */,
+				8188820A1D8E90BB00EF3FB1 /* PQLIRTButton.swift */,
 			);
 			path = "Command 自定义View";
 			sourceTree = "<group>";
@@ -212,6 +253,8 @@
 		81FC6E491D8685CB0028F927 /* Index 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				816752D21D925E74009A54F0 /* QRcode 二维码 */,
+				81B91CE71D8FC076001CBA60 /* popver */,
 				81FC6E4A1D8685CB0028F927 /* controller */,
 				81FC6E4B1D8685CB0028F927 /* model */,
 				81FC6E4C1D8685CB0028F927 /* view */,
@@ -493,6 +536,8 @@
 			files = (
 				81FC6E1B1D8684880028F927 /* Assets.xcassets in Resources */,
 				81FC6E6E1D86978B0028F927 /* JsonData.json in Resources */,
+				816752D51D925E92009A54F0 /* QRCode.storyboard in Resources */,
+				81B91CE91D8FC076001CBA60 /* pop.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,15 +563,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				81FC6E611D8690E10028F927 /* PQMessageTableVC.swift in Sources */,
+				81B91CED1D8FC329001CBA60 /* PQPopverAnimation.swift in Sources */,
 				81FC6E5F1D8690D20028F927 /* PQIndexTableVC.swift in Sources */,
 				81FC6E671D86919E0028F927 /* PQBaseTableVC.swift in Sources */,
 				81FC6E6C1D86969C0028F927 /* PQNullTableVC.swift in Sources */,
+				816752D71D925EFC009A54F0 /* PQQRcodeViewController.swift in Sources */,
 				81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */,
+				8188820B1D8E90BB00EF3FB1 /* PQLIRTButton.swift in Sources */,
 				8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */,
 				81FC6E5B1D868B0F0028F927 /* PQTabBarController.swift in Sources */,
+				81B91CEF1D8FC39B001CBA60 /* PQPopverPresentationController.swift in Sources */,
 				81FC6E651D8690FE0028F927 /* PQMeTableVC.swift in Sources */,
 				81FC6E631D8690F10028F927 /* PQDiscoverTableVC.swift in Sources */,
+				81B91CEB1D8FC240001CBA60 /* PQPopverViewController.swift in Sources */,
+				818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */,
 				810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */,
+				816752D91D928A3B009A54F0 /* PQMyQRCodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

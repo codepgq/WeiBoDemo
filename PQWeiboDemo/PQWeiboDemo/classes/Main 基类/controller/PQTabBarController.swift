@@ -12,13 +12,10 @@ class PQTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.tintColor = UIColor.orangeColor()
-        
-        
+        //在appdelegate中设置了全局外观，所以这里可以不用设置了
+//        tabBar.tintColor = UIColor.orangeColor()
         //添加controller
         addController()
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {

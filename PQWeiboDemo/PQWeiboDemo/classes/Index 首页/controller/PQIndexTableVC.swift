@@ -8,88 +8,103 @@
 
 import UIKit
 
-class PQIndexTableVC: PQBaseTableVC {
+class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
 
+    private lazy var navigatorCenter : PQLIRTButton = {
+        let center : PQLIRTButton = PQLIRTButton()
+        center.setTitle("纸巾艺术", forState: .Normal)
+        center.setImage(UIImage(named: "navigationbar_arrow_down"), forState: .Normal)
+        center.setImage(UIImage(named: "navigationbar_arrow_up"), forState: .Selected)
+        center.sizeToFit()
+        center.addTarget(self, action: #selector(PQIndexTableVC.centerBtnClick), forControlEvents: .TouchUpInside)
+        return center
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PQIndexTableVC.popMenuNotifaction), name: popoverViewWillShow, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PQIndexTableVC.popMenuNotifaction), name: popoverViewWillClose, object: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //通过通知来改变按钮图片
+    @objc private func popMenuNotifaction(){
+        navigatorCenter.selected = !navigatorCenter.selected
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    deinit{
+        //移除通知
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setVisitorIsIndex(true, imageNamed: "visitordiscover_feed_image_house")
+        
+        //登录了才显示
+        if isLogin {
+            //创建左右中间按钮
+            navigationItem.leftBarButtonItem = UIBarButtonItem.createSelecedtButton("navigationbar_friendattention", target: self, action: #selector(PQIndexTableVC.leftBtnClick))
+            navigationItem.rightBarButtonItem = UIBarButtonItem.createSelecedtButton("navigationbar_pop", target: self, action: #selector(PQIndexTableVC.rightBtnClick))
+            navigationItem.titleView =  navigatorCenter
+        }
+        else{
+            //创建左右中间按钮
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PQIndexTableVC.leftBtnClick))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PQIndexTableVC.rightBtnClick))
+        }
+        
+        
+        
     }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    /**
+     左按钮点击事件
+     */
+    @objc private func leftBtnClick(){
+        if isLogin {
+            print("我")
+        }
+        else{
+            print("注册")
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    /**
+     右按钮点击事件
+     */
+    @objc private func rightBtnClick(){
+        if isLogin {
+            print("二维码")
+            let vc = UIStoryboard(name: "QRCode", bundle: nil).instantiateInitialViewController()
+            navigationController?.pushViewController(vc!, animated: true)
+        }
+        else{
+            print("登录")
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    /**
+     中间按钮点击事件
+     */
+    @objc private func centerBtnClick(){
+        // 1获取vc
+        let vc = UIStoryboard(name: "pop", bundle: nil).instantiateInitialViewController()
+        // 2.1 设置代理
+        vc?.transitioningDelegate = popoverAnimator
+        // 2.2设置转场的样式
+        vc?.modalPresentationStyle = UIModalPresentationStyle.Custom
+        presentViewController(vc!, animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    private lazy var popoverAnimator :PQPopverAnimation = {
+        let pop = PQPopverAnimation()
+        let width = UIScreen.mainScreen().bounds.width
+        pop.presentFrame = CGRect(x: (width - width * 0.5) / 2.0, y: 56, width: width * 0.5, height: width * 0.6)
+        pop.animaDuration = 0.4
+        return pop
+    }()
 }
+
+
+
