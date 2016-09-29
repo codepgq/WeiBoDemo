@@ -8,6 +8,9 @@
 
 import UIKit
 
+//更换rootViewController通知
+let PQChangeRootViewControllerKey = "PQChangeRootViewControllerKey"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,15 +26,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.orangeColor()
         
         
+        //添加通知
+        // 谁来监听 监听到调用的方法 监听啥名字的 谁发送的
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.changeRootController(_:)), name: PQChangeRootViewControllerKey, object: nil)
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         window?.backgroundColor = UIColor.whiteColor()
         
-        window?.rootViewController = PQTabBarController()
+        window?.rootViewController = showController()
         
         window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    //移除监听
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    //返回对应的Controller
+    private func showController() -> UIViewController{
+        //如果用户没有登录就返回未登录界面
+        if !PQOauthInfo.userLogin() {
+            return PQTabBarController()
+        }
+        else{
+            // 判断时候有新版本，如果有返回新特性界面
+            if isHasNewFeature() {
+                return PQNewFeatureCollectionViewController()
+            }
+            // 如果没有返回欢迎界面
+            return PQWelComeViewController()
+        }
+    }
+    
+    //判断有没有新版本
+    private let appVersion = "CFBundleShortVersionString"
+    private func isHasNewFeature() -> Bool{
+        // 1、获取当前的版本
+        let currentVersion = NSBundle.mainBundle().infoDictionary![appVersion]! as! String
+        
+        // 2、从本地加载版本信息
+        var localVersion = NSUserDefaults.standardUserDefaults().valueForKey(appVersion) as? String
+        if localVersion == nil {
+            localVersion = ""
+        }
+        
+        // 3、比较版本信息
+        // 1.1.1  1.1.0 降序
+        if currentVersion.compare(localVersion!) == NSComparisonResult.OrderedDescending {
+            // 4、更新版本
+            NSUserDefaults.standardUserDefaults().setValue(currentVersion, forKey: appVersion)
+            //发现新版本了 需要更新
+            return true
+        }
+        //没有新版本
+        return false
+    }
+    
+    //根据通知消息判断，如果是true则显示主页，否则就显示欢迎回来界面
+    @objc private func changeRootController(noti : NSNotification){
+        if (noti.object as! Bool) == true {
+            window?.rootViewController = PQTabBarController()
+        }
+        else{
+            window?.rootViewController = PQWelComeViewController()
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

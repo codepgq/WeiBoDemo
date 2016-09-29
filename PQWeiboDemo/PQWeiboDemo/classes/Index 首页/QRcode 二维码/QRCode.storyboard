@@ -61,7 +61,7 @@
                                     <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="OdB-ua-szf" kind="modal" id="sug-t7-BbC"/>
+                                    <segue destination="OdB-ua-szf" kind="presentation" id="sug-t7-BbC"/>
                                 </connections>
                             </button>
                         </subviews>

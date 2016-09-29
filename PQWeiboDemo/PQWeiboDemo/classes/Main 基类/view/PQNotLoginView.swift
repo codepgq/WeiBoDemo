@@ -18,7 +18,10 @@ class PQNotLoginView: UIView {
     
     weak var delegate : PQNotLoginViewDelegate?
     
-    func setBackgroundImageWithIsIndex(isIndex : Bool,imageNamed : String){
+    func setBackgroundImageWithIsIndex(isIndex : Bool,imageNamed : String,hiddenAll:Bool){
+        //设置当前是否隐藏
+        self.hidden = hiddenAll
+        
         //根据bool值设置显示内容
         login.hidden = isIndex
         registerBtn.hidden = isIndex
@@ -61,13 +64,13 @@ class PQNotLoginView: UIView {
         addConstraint(widthCons)
         
         //关注按钮约束
-        concern.pq_AlignVertical(type: .BottomCenter, referView: messageLabel, size: CGSizeMake(100, 35))
+        concern.pq_AlignVertical(type: .BottomCenter, referView: messageLabel, size: CGSizeMake(100, 35),offset: CGPoint(x: 0, y: 10))
         
         //登录按钮
-        login.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: messageLabel, size: CGSizeMake(100, 35))
+        login.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: messageLabel, size: CGSizeMake(100, 35),offset: CGPoint(x: 0, y: 10))
         
         //注册按钮
-        registerBtn.pq_AlignVertical(type: pq_AlignType.BottomRight, referView: messageLabel, size: CGSizeMake(100, 35))
+        registerBtn.pq_AlignVertical(type: pq_AlignType.BottomRight, referView: messageLabel, size: CGSizeMake(100, 35),offset: CGPoint(x: 0, y: 10))
         
         //设置蒙版
         smalliconMask.pq_fill(self)

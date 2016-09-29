@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810043881D8940CA00908230 /* PQNotLoginView.swift */; };
 		8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100438A1D89439300908230 /* UIView+AutoLayout.swift */; };
+		81332F751D98FE1900D37AE5 /* PQOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332F741D98FE1900D37AE5 /* PQOAuthViewController.swift */; };
+		81332F771D9900BC00D37AE5 /* PQOauthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332F761D9900BC00D37AE5 /* PQOauthInfo.swift */; };
+		81332F7B1D990AB200D37AE5 /* String-DirCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332F7A1D990AB200D37AE5 /* String-DirCategory.swift */; };
+		81332F7D1D991D4000D37AE5 /* PQNetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332F7C1D991D4000D37AE5 /* PQNetWorkManager.swift */; };
 		816752D51D925E92009A54F0 /* QRCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816752D41D925E92009A54F0 /* QRCode.storyboard */; };
 		816752D71D925EFC009A54F0 /* PQQRcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816752D61D925EFC009A54F0 /* PQQRcodeViewController.swift */; };
 		816752D91D928A3B009A54F0 /* PQMyQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816752D81D928A3B009A54F0 /* PQMyQRCodeViewController.swift */; };
@@ -18,6 +22,8 @@
 		81B91CEB1D8FC240001CBA60 /* PQPopverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B91CEA1D8FC240001CBA60 /* PQPopverViewController.swift */; };
 		81B91CED1D8FC329001CBA60 /* PQPopverAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B91CEC1D8FC329001CBA60 /* PQPopverAnimation.swift */; };
 		81B91CEF1D8FC39B001CBA60 /* PQPopverPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B91CEE1D8FC39B001CBA60 /* PQPopverPresentationController.swift */; };
+		81F6956F1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6956E1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift */; };
+		81F695761D9CBA7C003E267E /* PQWelComeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F695751D9CBA7C003E267E /* PQWelComeViewController.swift */; };
 		81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6E131D8684880028F927 /* AppDelegate.swift */; };
 		81FC6E1B1D8684880028F927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FC6E1A1D8684880028F927 /* Assets.xcassets */; };
 		81FC6E291D8684890028F927 /* PQWeiboDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6E281D8684890028F927 /* PQWeiboDemoTests.swift */; };
@@ -30,6 +36,7 @@
 		81FC6E671D86919E0028F927 /* PQBaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6E661D86919E0028F927 /* PQBaseTableVC.swift */; };
 		81FC6E6C1D86969C0028F927 /* PQNullTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6E6B1D86969C0028F927 /* PQNullTableVC.swift */; };
 		81FC6E6E1D86978B0028F927 /* JsonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 81FC6E6D1D86978B0028F927 /* JsonData.json */; };
+		B5940BF50AE09AFF0C96D942 /* Pods_PQWeiboDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF51A959E8CFFA4FFE0CD17A /* Pods_PQWeiboDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +59,10 @@
 /* Begin PBXFileReference section */
 		810043881D8940CA00908230 /* PQNotLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNotLoginView.swift; sourceTree = "<group>"; };
 		8100438A1D89439300908230 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		81332F741D98FE1900D37AE5 /* PQOAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQOAuthViewController.swift; sourceTree = "<group>"; };
+		81332F761D9900BC00D37AE5 /* PQOauthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQOauthInfo.swift; sourceTree = "<group>"; };
+		81332F7A1D990AB200D37AE5 /* String-DirCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String-DirCategory.swift"; sourceTree = "<group>"; };
+		81332F7C1D991D4000D37AE5 /* PQNetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNetWorkManager.swift; sourceTree = "<group>"; };
 		816752D41D925E92009A54F0 /* QRCode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCode.storyboard; sourceTree = "<group>"; };
 		816752D61D925EFC009A54F0 /* PQQRcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQQRcodeViewController.swift; sourceTree = "<group>"; };
 		816752D81D928A3B009A54F0 /* PQMyQRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQMyQRCodeViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +72,8 @@
 		81B91CEA1D8FC240001CBA60 /* PQPopverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQPopverViewController.swift; sourceTree = "<group>"; };
 		81B91CEC1D8FC329001CBA60 /* PQPopverAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQPopverAnimation.swift; sourceTree = "<group>"; };
 		81B91CEE1D8FC39B001CBA60 /* PQPopverPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQPopverPresentationController.swift; sourceTree = "<group>"; };
+		81F6956E1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNewFeatureCollectionViewController.swift; sourceTree = "<group>"; };
+		81F695751D9CBA7C003E267E /* PQWelComeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQWelComeViewController.swift; sourceTree = "<group>"; };
 		81FC6E101D8684880028F927 /* PQWeiboDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PQWeiboDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FC6E131D8684880028F927 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FC6E1A1D8684880028F927 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +92,9 @@
 		81FC6E661D86919E0028F927 /* PQBaseTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQBaseTableVC.swift; sourceTree = "<group>"; };
 		81FC6E6B1D86969C0028F927 /* PQNullTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNullTableVC.swift; sourceTree = "<group>"; };
 		81FC6E6D1D86978B0028F927 /* JsonData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JsonData.json; sourceTree = "<group>"; };
+		C1C36F613AC3BA0C0A5026DC /* Pods-PQWeiboDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PQWeiboDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PQWeiboDemo/Pods-PQWeiboDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		CF51A959E8CFFA4FFE0CD17A /* Pods_PQWeiboDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PQWeiboDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E40BD9341B392CCD3E7C451E /* Pods-PQWeiboDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PQWeiboDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PQWeiboDemo/Pods-PQWeiboDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5940BF50AE09AFF0C96D942 /* Pods_PQWeiboDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +123,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65FEF6ABF4325562BBD1AC5C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C1C36F613AC3BA0C0A5026DC /* Pods-PQWeiboDemo.debug.xcconfig */,
+				E40BD9341B392CCD3E7C451E /* Pods-PQWeiboDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		81332F731D98FE0800D37AE5 /* Oauth */ = {
+			isa = PBXGroup;
+			children = (
+				81332F741D98FE1900D37AE5 /* PQOAuthViewController.swift */,
+				81332F761D9900BC00D37AE5 /* PQOauthInfo.swift */,
+			);
+			path = Oauth;
+			sourceTree = "<group>";
+		};
 		816752D21D925E74009A54F0 /* QRcode 二维码 */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +162,22 @@
 			path = popver;
 			sourceTree = "<group>";
 		};
+		81F6956C1D9CAD13003E267E /* NewFeature 新特性 */ = {
+			isa = PBXGroup;
+			children = (
+				81F6956E1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift */,
+			);
+			path = "NewFeature 新特性";
+			sourceTree = "<group>";
+		};
+		81F6956D1D9CAD13003E267E /* Welcome 欢迎回来 */ = {
+			isa = PBXGroup;
+			children = (
+				81F695751D9CBA7C003E267E /* PQWelComeViewController.swift */,
+			);
+			path = "Welcome 欢迎回来";
+			sourceTree = "<group>";
+		};
 		81FC6E071D8684880028F927 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +185,8 @@
 				81FC6E271D8684890028F927 /* PQWeiboDemoTests */,
 				81FC6E321D8684890028F927 /* PQWeiboDemoUITests */,
 				81FC6E111D8684880028F927 /* Products */,
+				65FEF6ABF4325562BBD1AC5C /* Pods */,
+				AF295537D1EDCC7BFCE9DA72 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +232,9 @@
 		81FC6E411D8685CB0028F927 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				81F6956C1D9CAD13003E267E /* NewFeature 新特性 */,
+				81F6956D1D9CAD13003E267E /* Welcome 欢迎回来 */,
+				81332F731D98FE0800D37AE5 /* Oauth */,
 				81FC6E491D8685CB0028F927 /* Index 首页 */,
 				81FC6E551D8685CB0028F927 /* Message 消息 */,
 				81FC6E421D8685CB0028F927 /* CenterAdd 添加 */,
@@ -386,6 +442,8 @@
 			isa = PBXGroup;
 			children = (
 				8100438A1D89439300908230 /* UIView+AutoLayout.swift */,
+				81332F7A1D990AB200D37AE5 /* String-DirCategory.swift */,
+				81332F7C1D991D4000D37AE5 /* PQNetWorkManager.swift */,
 			);
 			path = "Tools 工具";
 			sourceTree = "<group>";
@@ -429,6 +487,14 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		AF295537D1EDCC7BFCE9DA72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF51A959E8CFFA4FFE0CD17A /* Pods_PQWeiboDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -436,9 +502,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81FC6E381D8684890028F927 /* Build configuration list for PBXNativeTarget "PQWeiboDemo" */;
 			buildPhases = (
+				9719F4F1E7CD56CD1CEDF011 /* 📦 Check Pods Manifest.lock */,
 				81FC6E0C1D8684880028F927 /* Sources */,
 				81FC6E0D1D8684880028F927 /* Frameworks */,
 				81FC6E0E1D8684880028F927 /* Resources */,
+				1B5CF5B47EE17A8FFB556DCB /* 📦 Embed Pods Frameworks */,
+				0332F6A994157BAC4DA577A7 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -557,28 +626,82 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0332F6A994157BAC4DA577A7 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PQWeiboDemo/Pods-PQWeiboDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B5CF5B47EE17A8FFB556DCB /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PQWeiboDemo/Pods-PQWeiboDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9719F4F1E7CD56CD1CEDF011 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		81FC6E0C1D8684880028F927 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				81FC6E611D8690E10028F927 /* PQMessageTableVC.swift in Sources */,
+				81332F751D98FE1900D37AE5 /* PQOAuthViewController.swift in Sources */,
 				81B91CED1D8FC329001CBA60 /* PQPopverAnimation.swift in Sources */,
 				81FC6E5F1D8690D20028F927 /* PQIndexTableVC.swift in Sources */,
 				81FC6E671D86919E0028F927 /* PQBaseTableVC.swift in Sources */,
 				81FC6E6C1D86969C0028F927 /* PQNullTableVC.swift in Sources */,
 				816752D71D925EFC009A54F0 /* PQQRcodeViewController.swift in Sources */,
+				81F6956F1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift in Sources */,
 				81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */,
 				8188820B1D8E90BB00EF3FB1 /* PQLIRTButton.swift in Sources */,
 				8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */,
+				81F695761D9CBA7C003E267E /* PQWelComeViewController.swift in Sources */,
 				81FC6E5B1D868B0F0028F927 /* PQTabBarController.swift in Sources */,
 				81B91CEF1D8FC39B001CBA60 /* PQPopverPresentationController.swift in Sources */,
 				81FC6E651D8690FE0028F927 /* PQMeTableVC.swift in Sources */,
 				81FC6E631D8690F10028F927 /* PQDiscoverTableVC.swift in Sources */,
 				81B91CEB1D8FC240001CBA60 /* PQPopverViewController.swift in Sources */,
 				818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */,
+				81332F7B1D990AB200D37AE5 /* String-DirCategory.swift in Sources */,
+				81332F771D9900BC00D37AE5 /* PQOauthInfo.swift in Sources */,
 				810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */,
 				816752D91D928A3B009A54F0 /* PQMyQRCodeViewController.swift in Sources */,
+				81332F7D1D991D4000D37AE5 /* PQNetWorkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +824,7 @@
 		};
 		81FC6E391D8684890028F927 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1C36F613AC3BA0C0A5026DC /* Pods-PQWeiboDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -715,6 +839,7 @@
 		};
 		81FC6E3A1D8684890028F927 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E40BD9341B392CCD3E7C451E /* Pods-PQWeiboDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

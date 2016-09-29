@@ -9,7 +9,7 @@
 import UIKit
 
 class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
-
+    
     private lazy var navigatorCenter : PQLIRTButton = {
         let center : PQLIRTButton = PQLIRTButton()
         center.setTitle("纸巾艺术", forState: .Normal)
@@ -40,7 +40,7 @@ class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setVisitorIsIndex(true, imageNamed: "visitordiscover_feed_image_house")
+        setVisitorIsIndex(true, imageNamed: "visitordiscover_feed_image_house",hiddenAll:false)
         
         //登录了才显示
         if isLogin {
@@ -49,14 +49,6 @@ class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
             navigationItem.rightBarButtonItem = UIBarButtonItem.createSelecedtButton("navigationbar_pop", target: self, action: #selector(PQIndexTableVC.rightBtnClick))
             navigationItem.titleView =  navigatorCenter
         }
-        else{
-            //创建左右中间按钮
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PQIndexTableVC.leftBtnClick))
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PQIndexTableVC.rightBtnClick))
-        }
-        
-        
-        
     }
     /**
      左按钮点击事件
@@ -74,14 +66,9 @@ class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
      右按钮点击事件
      */
     @objc private func rightBtnClick(){
-        if isLogin {
-            print("二维码")
-            let vc = UIStoryboard(name: "QRCode", bundle: nil).instantiateInitialViewController()
-            navigationController?.pushViewController(vc!, animated: true)
-        }
-        else{
-            print("登录")
-        }
+        let vc = UIStoryboard(name: "QRCode", bundle: nil).instantiateInitialViewController()
+        navigationController?.pushViewController(vc!, animated: true)
+        
     }
     
     /**

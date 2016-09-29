@@ -17,7 +17,12 @@ class PQMessageTableVC: PQBaseTableVC {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setVisitorIsIndex(false, imageNamed: "visitordiscover_image_message")
+        //只有没有登录的情况下才需要设置
+        if !isLogin {
+            setVisitorIsIndex(false, imageNamed: "visitordiscover_image_message",hiddenAll:false)
+            navigationItem.leftBarButtonItem = nil
+            navigationItem.rightBarButtonItem = nil
+        }
     }
     
     override func didReceiveMemoryWarning() {

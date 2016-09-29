@@ -17,6 +17,16 @@ class PQMeTableVC: PQBaseTableVC {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        //只有未登录情况下才显示，才做的操作
+        if !isLogin {
+            setVisitorIsIndex(false, imageNamed: "null", hiddenAll: true)
+            navigationItem.leftBarButtonItem = nil
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
 
     // MARK: - Table view data source
 

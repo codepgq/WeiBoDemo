@@ -17,7 +17,7 @@ class PQBaseTableVC: UITableViewController ,PQNotLoginViewDelegate{
         return visitor
     }()
     
-    var isLogin :Bool = true
+    var isLogin :Bool = PQOauthInfo.userLogin()
     
     
     override func viewDidLoad() {
@@ -25,20 +25,27 @@ class PQBaseTableVC: UITableViewController ,PQNotLoginViewDelegate{
         if !isLogin {
             view.addSubview(visitor)
             visitor.delegate = self
+            
+            //创建左右中间按钮
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PQBaseTableVC.registerButtonDidClick))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PQBaseTableVC.loginButtonDidClick))
         }
+        tableView.separatorStyle = .None
     }
     
     
 
     //用于设置是否是主页
-    func setVisitorIsIndex(isIndex : Bool,imageNamed : String){
-        visitor .setBackgroundImageWithIsIndex(isIndex, imageNamed: imageNamed)
+    func setVisitorIsIndex(isIndex : Bool,imageNamed : String , hiddenAll : Bool){
+        visitor .setBackgroundImageWithIsIndex(isIndex, imageNamed: imageNamed,hiddenAll:hiddenAll)
     }
     
     //MARK - Visitor delegate
     //登录代理
     func loginButtonDidClick(){
-        
+        let vc = PQOAuthViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        presentViewController(nav, animated: true, completion: nil)
     }
     //注册代理
     func registerButtonDidClick(){
