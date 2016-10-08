@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = showController()
         
         window?.makeKeyAndVisible()
-        
+
         return true
     }
     

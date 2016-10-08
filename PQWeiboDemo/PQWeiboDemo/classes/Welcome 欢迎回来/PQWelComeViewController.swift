@@ -42,11 +42,11 @@ class PQWelComeViewController: UIViewController {
         super.viewDidAppear(animated)
         
         bottomCons?.constant = -UIScreen.mainScreen().bounds.height -  bottomCons!.constant
-        print(-UIScreen.mainScreen().bounds.height)
-        print(bottomCons!.constant)
-        // -736.0 + 586.0 = -150.0
-        print(-UIScreen.mainScreen().bounds.height -  bottomCons!.constant)
-        
+//        print(-UIScreen.mainScreen().bounds.height)
+//        print(bottomCons!.constant)
+//        // -736.0 + 586.0 = -150.0
+//        print(-UIScreen.mainScreen().bounds.height -  bottomCons!.constant)
+//        
         // 3.执行动画
         UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
             // 头像动画
@@ -54,7 +54,7 @@ class PQWelComeViewController: UIViewController {
         }) { (_) -> Void in
             
             // 文本动画
-            UIView.animateWithDuration( 2.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+            UIView.animateWithDuration( 1.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
                 self.messageLabel.alpha = 1.0
                 }, completion: { (_) -> Void in
                     // 去主页
