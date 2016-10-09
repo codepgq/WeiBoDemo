@@ -36,11 +36,11 @@ extension NSDate{
             let second = Int(NSDate().timeIntervalSinceDate(self))
             // 1.2 判断是否是一分钟以内
             if second < 60 {
-                return "刚刚"
+                return "\(second)秒以前"
             }
             // 1.3 判断是不是一小时以内
             if second < (60*60) {
-                return "\(second / 60)分钟"
+                return "\(second / 60)分钟前"
             }
             // 1.4 不是一个小时以内就显示x个小时以前
             return "\(second / (60 * 60))小时前"

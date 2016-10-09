@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810043881D8940CA00908230 /* PQNotLoginView.swift */; };
 		8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100438A1D89439300908230 /* UIView+AutoLayout.swift */; };
+		810112841DA9EA7D00A1108F /* PQDIYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810112831DA9EA7D00A1108F /* PQDIYButton.swift */; };
 		81332F751D98FE1900D37AE5 /* PQOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332F741D98FE1900D37AE5 /* PQOAuthViewController.swift */; };
 		81332F771D9900BC00D37AE5 /* PQOauthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332F761D9900BC00D37AE5 /* PQOauthInfo.swift */; };
 		81332F7B1D990AB200D37AE5 /* String-DirCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332F7A1D990AB200D37AE5 /* String-DirCategory.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		810043881D8940CA00908230 /* PQNotLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNotLoginView.swift; sourceTree = "<group>"; };
 		8100438A1D89439300908230 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		810112831DA9EA7D00A1108F /* PQDIYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQDIYButton.swift; sourceTree = "<group>"; };
 		81332F741D98FE1900D37AE5 /* PQOAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQOAuthViewController.swift; sourceTree = "<group>"; };
 		81332F761D9900BC00D37AE5 /* PQOauthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQOauthInfo.swift; sourceTree = "<group>"; };
 		81332F7A1D990AB200D37AE5 /* String-DirCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String-DirCategory.swift"; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				8188820A1D8E90BB00EF3FB1 /* PQLIRTButton.swift */,
 				815971121DA88D4400D8C381 /* UIButton+Category.swift */,
 				8159711B1DA8BFD700D8C381 /* UILabel+Category.swift */,
+				810112831DA9EA7D00A1108F /* PQDIYButton.swift */,
 			);
 			path = "Command 自定义View";
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				815971201DA8D44700D8C381 /* PQStatusesModel.swift in Sources */,
 				818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */,
 				81332F7B1D990AB200D37AE5 /* String-DirCategory.swift in Sources */,
+				810112841DA9EA7D00A1108F /* PQDIYButton.swift in Sources */,
 				815971241DA8E68A00D8C381 /* NSDate+Category.swift in Sources */,
 				81332F771D9900BC00D37AE5 /* PQOauthInfo.swift in Sources */,
 				8159711E1DA8C55B00D8C381 /* PQIndexCellBottomView.swift in Sources */,

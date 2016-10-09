@@ -14,13 +14,6 @@ class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
     
     var statuses : [PQStatusesModel]?{
         didSet{
-            //下载成功了
-            self.dataSource = TBDataSource.cellIdentifierWith(self.cellIdentifier, data: statuses!, style: TBSectionStyle.Section_Single, cell: { (cell, item) in
-                let newCell = cell as! PQIndexTableViewCell
-                newCell.oauthInfo = item as? PQStatusesModel
-                newCell.selectionStyle = .None
-            })
-            tableView.dataSource = dataSource
             tableView.reloadData()
         }
     }
@@ -33,7 +26,7 @@ class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
         
         // 2、提前注册cell
         tableView.registerClass(PQIndexTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        tableView.rowHeight = 200
+//        tableView.rowHeight = 200
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -94,12 +87,6 @@ class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
      左按钮点击事件
      */
     @objc private func leftBtnClick(){
-        if isLogin {
-            print("我")
-        }
-        else{
-            print("注册")
-        }
     }
     
     /**
@@ -134,20 +121,24 @@ class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
     }()
     
     //中间导航栏按钮
-    private lazy var navigatorCenter : PQLIRTButton = {
-        let center : PQLIRTButton = PQLIRTButton()
-        center.setTitle(PQOauthInfo.loadAccoutInfo()?.name, forState: .Normal)
-        center.setImage(UIImage(named: "navigationbar_arrow_down"), forState: .Normal)
-        center.setImage(UIImage(named: "navigationbar_arrow_up"), forState: .Selected)
-        center.sizeToFit()
-        center.addTarget(self, action: #selector(PQIndexTableVC.centerBtnClick), forControlEvents: .TouchUpInside)
-        return center
-    }()
+    private lazy var navigatorCenter : PQDIYButton = PQDIYButton.createButton(["title":PQOauthInfo.loadAccoutInfo()!.name!,
+        "image":"navigationbar_arrow_down","selected":"navigationbar_arrow_up","textColor":UIColor.lightGrayColor()], type: PQButtonLayoutType.LeftTextRightImage, target: self, selector: #selector(PQIndexTableVC.centerBtnClick))
+    
 }
 
 extension PQIndexTableVC{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return statuses?.count ?? 0
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! PQIndexTableViewCell
+        cell.oauthInfo = statuses![indexPath.row]
+        return cell
     }
 }
 

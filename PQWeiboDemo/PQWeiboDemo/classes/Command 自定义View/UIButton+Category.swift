@@ -8,7 +8,11 @@
 
 import UIKit
 
+
+
 extension UIButton{
+
+   
     /**
      快速创建一个按钮
      
@@ -23,6 +27,9 @@ extension UIButton{
         button.setImage(UIImage(named : imageNamed), forState: .Normal)
         button.setTitle(title, forState: .Normal)
         button.addTarget(target, action: selector, forControlEvents: .TouchUpInside)
+        button.titleLabel?.font = UIFont.systemFontOfSize(13)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+        button.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         return button
     }
 }

@@ -46,6 +46,19 @@ class PQUserInfoModel: NSObject {
     /// 认证头像
     var verified_image : UIImage?
     
+    /// 有没有钻石💎
+    var followers_count : Int = 0{
+        didSet{
+            if followers_count >= 1000000{
+                isHiddenDiamond = false
+            }
+        }
+    }
+    
+    
+    
+    var isHiddenDiamond :Bool = true
+    
     var mbrank : Int = 0{
         didSet{
             if mbrank > 0 && mbrank < 7 {
