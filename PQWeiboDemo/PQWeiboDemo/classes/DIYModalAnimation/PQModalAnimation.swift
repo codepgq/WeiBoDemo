@@ -17,25 +17,14 @@ class PQModalAnimation: NSObject, UIViewControllerTransitioningDelegate,UIViewCo
     /// 记录当前是否展开
     var isPresent: Bool = false
     /// 显示视图的大小
-    var presentFrame = CGRectZero{
-        didSet{
-            if presentFrame != CGRectZero {
-                preSentWidth = presentFrame.width
-                preSentHeight = presentFrame.height
-            }
-        }
-    }
+    var presentFrame = CGRectZero
+    
     /// 动画时长
     var animaDuration : NSTimeInterval = 0.5
     /// 动画方向
     var modalDirectionType : PQAnimationDirection = PQAnimationDirection.top
-//    
-//    private var animations : PQAnimation?
     
-    private var preSentHeight : CGFloat = UIScreen.mainScreen().bounds.height
-    
-    private var preSentWidth  : CGFloat = UIScreen.mainScreen().bounds.width
-    
+    /// 展示视图
     private var presented : UIViewController?
     
     private lazy var backView : UIView = {
@@ -107,9 +96,6 @@ extension PQModalAnimation{
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval{
         return animaDuration
     }
-    
-    
-    
     
     /**
      告诉系统如何动画，消失、出现都会调用这个方法
