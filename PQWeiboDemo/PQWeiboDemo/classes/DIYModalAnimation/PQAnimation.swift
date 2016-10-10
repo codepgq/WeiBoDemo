@@ -21,18 +21,18 @@ class PQAnimation: NSObject {
     var fromView : UIView = UIView()
     var toView : UIView = UIView()
     var isShow : Bool = true
-    var height : CGFloat = 0
-    class func createAnimation(isShow : Bool , direction : PQAnimationDirection , fromView : UIView ,toView : UIView,height : CGFloat) -> PQAnimation {
+    var viewFrame : CGRect = CGRectZero
+    class func createAnimation(isShow : Bool , direction : PQAnimationDirection , fromView : UIView ,toView : UIView,frame : CGRect) -> PQAnimation {
         
         switch direction {
         case .left:
-            return PQFromLeftAnimation(isShow: isShow,fromView:  fromView, toView: toView,height : height)
+            return PQFromLeftAnimation(isShow: isShow,fromView:  fromView, toView: toView,frame : height)
         case .right:
-            return PQFromRightAnimation(isShow: isShow,fromView:  fromView, toView: toView,height : height)
+            return PQFromRightAnimation(isShow: isShow,fromView:  fromView, toView: toView,frame : height)
         case .top:
-            return PQFromTopAnimation(isShow: isShow,fromView:  fromView, toView: toView,height : height)
+            return PQFromTopAnimation(isShow: isShow,fromView:  fromView, toView: toView,frame : height)
         default:
-            return PQFromBottomAnimation(isShow: isShow,fromView:  fromView, toView: toView,height : height)
+            return PQFromBottomAnimation(isShow: isShow,fromView:  fromView, toView: toView,frame : height)
         }
     }
 }

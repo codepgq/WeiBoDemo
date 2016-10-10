@@ -125,7 +125,7 @@ class PQIndexTableVC: PQBaseTableVC {
     
     private lazy var modalAnimation : PQModalAnimation = {
         let modal = PQModalAnimation(direction: PQAnimationDirection.bottom)
-        modal.preSentHeight = 305
+        modal.presentFrame.size.height = 305
         return modal
     }()
     

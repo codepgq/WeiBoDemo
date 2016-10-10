@@ -8,24 +8,47 @@
 
 import UIKit
 /// 页面将要出现
-public let PQModalAnimationWillShowKey = "popoverViewWillShowKey"
+public let PQModalAnimationWillShowKey = "PQModalAnimationWillShowKey"
 /// 页面将要消失
-public let PQModalAnimationWillCloseKey = "popoverViewWillCloseKey"
+public let PQModalAnimationWillCloseKey = "PQModalAnimationWillCloseKey"
 
 class PQModalAnimation: NSObject, UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning {
     
     /// 记录当前是否展开
     var isPresent: Bool = false
     /// 显示视图的大小
-    var presentFrame = CGRectZero
-    
+    var presentFrame = CGRectZero{
+        didSet{
+            if presentFrame != CGRectZero {
+                preSentWidth = presentFrame.width
+                preSentHeight = presentFrame.height
+            }
+        }
+    }
+    /// 动画时长
     var animaDuration : NSTimeInterval = 0.5
-    
+    /// 动画方向
     var modalDirectionType : PQAnimationDirection = PQAnimationDirection.top
+//    
+//    private var animations : PQAnimation?
     
-    var animations : PQAnimation?
+    private var preSentHeight : CGFloat = UIScreen.mainScreen().bounds.height
     
-    var preSentHeight : CGFloat = UIScreen.mainScreen().bounds.height
+    private var preSentWidth  : CGFloat = UIScreen.mainScreen().bounds.width
+    
+    private var presented : UIViewController?
+    
+    private lazy var backView : UIView = {
+     let back = UIView(frame: UIScreen.mainScreen().bounds)
+        back.backgroundColor = UIColor(white: 0, alpha: 0.2)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PQModalAnimation.dismiss))
+        back.addGestureRecognizer(tap)
+        return back
+    }()
+    
+    @objc private func dismiss(){
+        presented?.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override init() {
         super.init()
@@ -37,21 +60,6 @@ class PQModalAnimation: NSObject, UIViewControllerTransitioningDelegate,UIViewCo
     }
     
     /**
-     实现代理方法，告诉系统谁来负责转场动画
-     
-     - parameter presented:  被展现的视图
-     - parameter presenting: 发起的视图
-     - parameter source:     源
-     
-     - returns:
-     */
-//    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController?{
-//        let pc = PQModalShowSizeController(presentedViewController: presented, presentingViewController: presenting)
-//        pc.presentFrame = presentFrame
-//        return pc
-//    }
-    
-    /**
      告诉系统谁来负责modal动画
      
      - parameter presented:  被展现的视图
@@ -61,7 +69,7 @@ class PQModalAnimation: NSObject, UIViewControllerTransitioningDelegate,UIViewCo
      - returns: 谁来负责
      */
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?{
-        
+        self.presented = presented
         isPresent = true
         //发送将要显示通知
         NSNotificationCenter.defaultCenter().postNotificationName(PQModalAnimationWillShowKey, object: nil)
@@ -77,7 +85,6 @@ class PQModalAnimation: NSObject, UIViewControllerTransitioningDelegate,UIViewCo
      - returns: 谁来负责
      */
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?{
-        
         isPresent = false
         //发送将要消失通知
         NSNotificationCenter.defaultCenter().postNotificationName(PQModalAnimationWillCloseKey, object: nil)
@@ -110,53 +117,33 @@ extension PQModalAnimation{
      - parameter transitionContext: 上下文，保存了动画需要的所有参数
      */
     func animateTransition(transitionContext: UIViewControllerContextTransitioning){
-//        if isPresent {
-//            let toView = transitionContext.viewForKey(UITransitionContextToViewKey)
-////            toView?.bounds.size.height = 316
-//            toView?.frame.origin.y = UIScreen.mainScreen().bounds.height
-//            transitionContext.containerView()?.addSubview(toView!)
-//            UIView.animateWithDuration(transitionDuration(transitionContext), animations: { 
-//                toView?.frame.origin.y = 400
-//                }, completion: { (_) in
-//                    transitionContext.completeTransition(true)
-//            })
-//        }
-//        else{
-//            let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)
-//            UIView.animateWithDuration(transitionDuration(transitionContext), animations: { 
-//                fromView?.transform = CGAffineTransformMakeTranslation(0, UIScreen.mainScreen().bounds.height)
-//                }, completion: { (_) in
-//                    transitionContext.completeTransition(true)
-//            })
-//        }
-        
-        testAnimate(transitionContext)
-    }
-    
-    private func testAnimate(transitionContext : UIViewControllerContextTransitioning){
         // 1、获取到要展现的视图
         let toView = transitionContext.viewForKey(UITransitionContextToViewKey) ?? transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)?.view
+        
+        let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey) ?? transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)?.view
+        
         // 2、把视图添加到容器上
-        
-        let fromView = (transitionContext.viewForKey(UITransitionContextFromViewKey) ?? transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)?.view)?.snapshotViewAfterScreenUpdates(true)
-        
-//        transitionContext.containerView()?.addSubview(fromView!)
         if isPresent {
-            transitionContext.containerView()?.addSubview(toView!)            
+            transitionContext.containerView()?.addSubview(backView)
+            transitionContext.containerView()?.addSubview(toView!)
         }
-
         
-        animations = PQAnimation.createAnimation(isPresent, direction: modalDirectionType, fromView: fromView!, toView: toView!, height : preSentHeight)
+        // 3、获取动画
+        let animations = PQAnimation.createAnimation(isPresent, direction: modalDirectionType, fromView: fromView!, toView: toView!, frame : presentFrame)
         
         // 4、执行动画
-        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveLinear, animations:animations!.startAnimation!
-            
-            , completion: { (_) in
+        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveLinear, animations:animations.startAnimation!,
+            completion: { (_) in
                 // 6、动画执行完成后一定要记得通知系统
-                
                 transitionContext.completeTransition(true)
-                
-                
         })
+        
+        // 消失
+        if self.isPresent == false {
+            UIView.animateWithDuration(transitionDuration(transitionContext)) {
+                self.backView.removeFromSuperview()
+            }
+        }
     }
+    
 }
