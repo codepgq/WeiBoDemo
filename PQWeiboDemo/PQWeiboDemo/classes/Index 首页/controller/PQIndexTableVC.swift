@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
+class PQIndexTableVC: PQBaseTableVC {
     
     let cellIdentifier = "IndexTableVCCellKey"
     
@@ -121,8 +121,13 @@ class PQIndexTableVC: PQBaseTableVC,UIViewControllerTransitioningDelegate {
     }()
     
     //中间导航栏按钮
-    private lazy var navigatorCenter : PQDIYButton = PQDIYButton.createButton(["title":PQOauthInfo.loadAccoutInfo()!.name!,
-        "image":"navigationbar_arrow_down","selected":"navigationbar_arrow_up","textColor":UIColor.lightGrayColor()], type: PQButtonLayoutType.LeftTextRightImage, target: self, selector: #selector(PQIndexTableVC.centerBtnClick))
+    private lazy var navigatorCenter : PQDIYButton = PQDIYButton.createButton(["title":PQOauthInfo.loadAccoutInfo()!.name!,"image":"navigationbar_arrow_down","selected":"navigationbar_arrow_up","textColor":UIColor.lightGrayColor()], type: PQButtonLayoutType.LeftTextRightImage, target: self, selector: #selector(PQIndexTableVC.centerBtnClick))
+    
+    private lazy var modalAnimation : PQModalAnimation = {
+        let modal = PQModalAnimation(direction: PQAnimationDirection.bottom)
+        modal.preSentHeight = 305
+        return modal
+    }()
     
 }
 
@@ -138,8 +143,17 @@ extension PQIndexTableVC{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! PQIndexTableViewCell
         cell.oauthInfo = statuses![indexPath.row]
+        cell.showMenu = { (cell : PQIndexTableViewCell) -> Void in
+            
+            let vc = PQActionSheetVC.loadForStoryboard()
+            vc.transitioningDelegate = self.modalAnimation
+            vc.modalPresentationStyle = UIModalPresentationStyle.Custom
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
         return cell
     }
+    
+    
 }
 
 

@@ -109,6 +109,8 @@ class PQIndexTableViewCell: UITableViewCell {
         }
     }
     
+    var showMenu : ((cell : PQIndexTableViewCell)->())?
+    
     // 背景
     private lazy var backgroundImage :UIImageView = UIImageView(image: UIImage(named: "timeline_card_bottom_background"));
     
@@ -138,6 +140,10 @@ class PQIndexTableViewCell: UITableViewCell {
     @objc private func downMenuBtnClick(){
         print("show action sheet")
         
+        guard let block = showMenu else {
+            return
+        }
+        block(cell: self)
     }
     
     // vip

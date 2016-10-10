@@ -32,6 +32,14 @@
 		81B91CEB1D8FC240001CBA60 /* PQPopverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B91CEA1D8FC240001CBA60 /* PQPopverViewController.swift */; };
 		81B91CED1D8FC329001CBA60 /* PQPopverAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B91CEC1D8FC329001CBA60 /* PQPopverAnimation.swift */; };
 		81B91CEF1D8FC39B001CBA60 /* PQPopverPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B91CEE1D8FC39B001CBA60 /* PQPopverPresentationController.swift */; };
+		81F451091DAA544A007EF6F6 /* ActionSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81F451081DAA544A007EF6F6 /* ActionSheet.storyboard */; };
+		81F4510E1DAA5DC4007EF6F6 /* PQModalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F4510D1DAA5DC4007EF6F6 /* PQModalAnimation.swift */; };
+		81F451101DAA5E09007EF6F6 /* PQModalShowSizeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F4510F1DAA5E09007EF6F6 /* PQModalShowSizeController.swift */; };
+		81F451121DAA604D007EF6F6 /* PQAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F451111DAA604D007EF6F6 /* PQAnimation.swift */; };
+		81F451141DAA61B2007EF6F6 /* PQFromLeftAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F451131DAA61B2007EF6F6 /* PQFromLeftAnimation.swift */; };
+		81F451161DAA622D007EF6F6 /* PQFromRightAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F451151DAA622D007EF6F6 /* PQFromRightAnimation.swift */; };
+		81F451181DAA6239007EF6F6 /* PQFromTopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F451171DAA6239007EF6F6 /* PQFromTopAnimation.swift */; };
+		81F4511A1DAA6245007EF6F6 /* PQFromBottomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F451191DAA6245007EF6F6 /* PQFromBottomAnimation.swift */; };
 		81F6956F1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6956E1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift */; };
 		81F695761D9CBA7C003E267E /* PQWelComeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F695751D9CBA7C003E267E /* PQWelComeViewController.swift */; };
 		81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC6E131D8684880028F927 /* AppDelegate.swift */; };
@@ -92,6 +100,14 @@
 		81B91CEA1D8FC240001CBA60 /* PQPopverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQPopverViewController.swift; sourceTree = "<group>"; };
 		81B91CEC1D8FC329001CBA60 /* PQPopverAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQPopverAnimation.swift; sourceTree = "<group>"; };
 		81B91CEE1D8FC39B001CBA60 /* PQPopverPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQPopverPresentationController.swift; sourceTree = "<group>"; };
+		81F451081DAA544A007EF6F6 /* ActionSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActionSheet.storyboard; sourceTree = "<group>"; };
+		81F4510D1DAA5DC4007EF6F6 /* PQModalAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQModalAnimation.swift; sourceTree = "<group>"; };
+		81F4510F1DAA5E09007EF6F6 /* PQModalShowSizeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQModalShowSizeController.swift; sourceTree = "<group>"; };
+		81F451111DAA604D007EF6F6 /* PQAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQAnimation.swift; sourceTree = "<group>"; };
+		81F451131DAA61B2007EF6F6 /* PQFromLeftAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQFromLeftAnimation.swift; sourceTree = "<group>"; };
+		81F451151DAA622D007EF6F6 /* PQFromRightAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQFromRightAnimation.swift; sourceTree = "<group>"; };
+		81F451171DAA6239007EF6F6 /* PQFromTopAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQFromTopAnimation.swift; sourceTree = "<group>"; };
+		81F451191DAA6245007EF6F6 /* PQFromBottomAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQFromBottomAnimation.swift; sourceTree = "<group>"; };
 		81F6956E1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNewFeatureCollectionViewController.swift; sourceTree = "<group>"; };
 		81F695751D9CBA7C003E267E /* PQWelComeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQWelComeViewController.swift; sourceTree = "<group>"; };
 		81FC6E101D8684880028F927 /* PQWeiboDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PQWeiboDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				815971191DA8A40200D8C381 /* PQActionSheetVC.swift */,
+				81F451081DAA544A007EF6F6 /* ActionSheet.storyboard */,
 			);
 			path = actionSheet;
 			sourceTree = "<group>";
@@ -188,6 +205,20 @@
 				81B91CEE1D8FC39B001CBA60 /* PQPopverPresentationController.swift */,
 			);
 			path = popver;
+			sourceTree = "<group>";
+		};
+		81F4510C1DAA5DA1007EF6F6 /* DIYModalAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				81F4510D1DAA5DC4007EF6F6 /* PQModalAnimation.swift */,
+				81F4510F1DAA5E09007EF6F6 /* PQModalShowSizeController.swift */,
+				81F451111DAA604D007EF6F6 /* PQAnimation.swift */,
+				81F451131DAA61B2007EF6F6 /* PQFromLeftAnimation.swift */,
+				81F451151DAA622D007EF6F6 /* PQFromRightAnimation.swift */,
+				81F451171DAA6239007EF6F6 /* PQFromTopAnimation.swift */,
+				81F451191DAA6245007EF6F6 /* PQFromBottomAnimation.swift */,
+			);
+			path = DIYModalAnimation;
 			sourceTree = "<group>";
 		};
 		81F6956C1D9CAD13003E267E /* NewFeature 新特性 */ = {
@@ -269,6 +300,7 @@
 				81FC6E441D8685CB0028F927 /* Discover 发现 */,
 				81FC6E511D8685CB0028F927 /* Me 我 */,
 				81FC6E4D1D8685CB0028F927 /* Main 基类 */,
+				81F4510C1DAA5DA1007EF6F6 /* DIYModalAnimation */,
 				81FC6E591D8685CB0028F927 /* Tools 工具 */,
 				81FC6E431D8685CB0028F927 /* Command 自定义View */,
 				81FC6E481D8685CB0028F927 /* FrameWork 框架 */,
@@ -644,6 +676,7 @@
 				81FC6E1B1D8684880028F927 /* Assets.xcassets in Resources */,
 				81FC6E6E1D86978B0028F927 /* JsonData.json in Resources */,
 				816752D51D925E92009A54F0 /* QRCode.storyboard in Resources */,
+				81F451091DAA544A007EF6F6 /* ActionSheet.storyboard in Resources */,
 				81B91CE91D8FC076001CBA60 /* pop.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -719,12 +752,14 @@
 			files = (
 				81FC6E611D8690E10028F927 /* PQMessageTableVC.swift in Sources */,
 				81332F751D98FE1900D37AE5 /* PQOAuthViewController.swift in Sources */,
+				81F451181DAA6239007EF6F6 /* PQFromTopAnimation.swift in Sources */,
 				8159711A1DA8A40200D8C381 /* PQActionSheetVC.swift in Sources */,
 				81B91CED1D8FC329001CBA60 /* PQPopverAnimation.swift in Sources */,
 				81FC6E5F1D8690D20028F927 /* PQIndexTableVC.swift in Sources */,
 				81FC6E671D86919E0028F927 /* PQBaseTableVC.swift in Sources */,
 				81FC6E6C1D86969C0028F927 /* PQNullTableVC.swift in Sources */,
 				816752D71D925EFC009A54F0 /* PQQRcodeViewController.swift in Sources */,
+				81F451101DAA5E09007EF6F6 /* PQModalShowSizeController.swift in Sources */,
 				81F6956F1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift in Sources */,
 				815971151DA891B400D8C381 /* TBDataSource.swift in Sources */,
 				81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */,
@@ -733,14 +768,18 @@
 				81F695761D9CBA7C003E267E /* PQWelComeViewController.swift in Sources */,
 				81FC6E5B1D868B0F0028F927 /* PQTabBarController.swift in Sources */,
 				81B91CEF1D8FC39B001CBA60 /* PQPopverPresentationController.swift in Sources */,
+				81F451121DAA604D007EF6F6 /* PQAnimation.swift in Sources */,
 				81FC6E651D8690FE0028F927 /* PQMeTableVC.swift in Sources */,
 				81FC6E631D8690F10028F927 /* PQDiscoverTableVC.swift in Sources */,
 				81B91CEB1D8FC240001CBA60 /* PQPopverViewController.swift in Sources */,
 				815971221DA8D46600D8C381 /* PQUserInfoModel.swift in Sources */,
+				81F451161DAA622D007EF6F6 /* PQFromRightAnimation.swift in Sources */,
+				81F4511A1DAA6245007EF6F6 /* PQFromBottomAnimation.swift in Sources */,
 				815971111DA8861100D8C381 /* PQIndexTableViewCell.swift in Sources */,
 				815971201DA8D44700D8C381 /* PQStatusesModel.swift in Sources */,
 				818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */,
 				81332F7B1D990AB200D37AE5 /* String-DirCategory.swift in Sources */,
+				81F451141DAA61B2007EF6F6 /* PQFromLeftAnimation.swift in Sources */,
 				810112841DA9EA7D00A1108F /* PQDIYButton.swift in Sources */,
 				815971241DA8E68A00D8C381 /* NSDate+Category.swift in Sources */,
 				81332F771D9900BC00D37AE5 /* PQOauthInfo.swift in Sources */,
@@ -748,6 +787,7 @@
 				815971131DA88D4400D8C381 /* UIButton+Category.swift in Sources */,
 				8159711C1DA8BFD700D8C381 /* UILabel+Category.swift in Sources */,
 				810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */,
+				81F4510E1DAA5DC4007EF6F6 /* PQModalAnimation.swift in Sources */,
 				816752D91D928A3B009A54F0 /* PQMyQRCodeViewController.swift in Sources */,
 				81332F7D1D991D4000D37AE5 /* PQNetWorkManager.swift in Sources */,
 			);
