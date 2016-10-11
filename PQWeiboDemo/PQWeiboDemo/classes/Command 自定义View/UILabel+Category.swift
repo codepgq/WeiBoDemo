@@ -2,7 +2,7 @@
 //  UILabel+Category.swift
 //  PQWeiboDemo
 //
-//  Created by ios on 16/10/8.
+//  Created by Mac on 16/10/11.
 //  Copyright © 2016年 ios. All rights reserved.
 //
 

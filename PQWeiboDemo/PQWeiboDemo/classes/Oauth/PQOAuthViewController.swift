@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 import SVProgressHUD
 
 class PQOAuthViewController: UIViewController,UIWebViewDelegate {
@@ -15,6 +16,13 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
         let web = UIWebView(frame: UIScreen.main.bounds)
         return web
     }()
+    
+//    private lazy var webView : WKWebView = {
+//        let web = WKWebView(frame: UIScreen.main.bounds)
+//        web.uiDelegate = self
+//        return web
+//    }()
+    
     /// app key
     let WB_App_ID = "822933555"
     let WB_App_Secret = "46e328943e0daab0fb7c458482d18f38"
@@ -22,6 +30,7 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
     
     // 1、把当前的View替换成为webView
     override func loadView() {
+        webView.delegate = self
         view = webView
     }
     
@@ -49,7 +58,7 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
     }
     
     private func setUpWebView(){
-        webView.delegate = self
+//        webView.delegate = self
         let url = NSURL.init(string: "https://api.weibo.com/oauth2/authorize?client_id=\(WB_App_ID)&redirect_uri=\(WB_redirect_uri)")
         let request = NSURLRequest(url: url! as URL)
         webView.loadRequest(request as URLRequest)
@@ -58,6 +67,11 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
     
     @objc func close(){
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    deinit {
+        print("退出了当前页面")
     }
 }
 
@@ -78,7 +92,7 @@ extension PQOAuthViewController {
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         // 这里做跳转处理
-//        print(request.URL?.absoluteString)
+        print(request.url?.absoluteString)
         
         let absoluteString = request.url!.absoluteString
         //如果是回调页 并且授权成功就继续

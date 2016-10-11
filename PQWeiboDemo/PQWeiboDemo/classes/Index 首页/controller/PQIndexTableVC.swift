@@ -68,9 +68,11 @@ class PQIndexTableVC: PQBaseTableVC {
      */
     private func downloadData(){
         
-        PQStatusesModel.loadData { (models, error) in
-            if models != nil{
-                self.statuses = models
+        if isLogin  {
+            PQStatusesModel.loadData { (models, error) in
+                if models != nil{
+                    self.statuses = models
+                }
             }
         }
         
