@@ -22,11 +22,11 @@ class PQWelComeViewController: UIViewController {
         view.addSubview(messageLabel)
         
         // 2.布局子控件
-        bgIV.pq_fill(view)
+        bgIV.pq_fill(referView: view)
         
         let cons = iconView.pq_AlignInner(type: pq_AlignType.BottomCenter, referView: view, size: CGSize(width: 100, height: 100), offset: CGPoint(x: 0, y: -150))
         // 拿到头像的底部约束
-        bottomCons = iconView.pq_Constraint(cons, attribute: NSLayoutAttribute.Bottom)
+        bottomCons = iconView.pq_Constraint(constraintsList: cons, attribute: NSLayoutAttribute.bottom)
         
         messageLabel.pq_AlignVertical(type: pq_AlignType.BottomCenter, referView: iconView, size: nil, offset: CGPoint(x: 0, y: 20))
         
@@ -34,31 +34,31 @@ class PQWelComeViewController: UIViewController {
         if let iconUrl = PQOauthInfo.loadAccoutInfo()?.avatar_large
         {
             let url = NSURL(string: iconUrl)!
-            iconView.sd_setImageWithURL(url)
+            iconView.sd_setImage(with: url as URL!)
         }
     }
     //
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        bottomCons?.constant = -UIScreen.mainScreen().bounds.height -  bottomCons!.constant
+        bottomCons?.constant = -UIScreen.main.bounds.height -  bottomCons!.constant
 //        print(-UIScreen.mainScreen().bounds.height)
 //        print(bottomCons!.constant)
 //        // -736.0 + 586.0 = -150.0
 //        print(-UIScreen.mainScreen().bounds.height -  bottomCons!.constant)
 //        
         // 3.执行动画
-        UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+        UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
             // 头像动画
             self.view.layoutIfNeeded()
         }) { (_) -> Void in
             
             // 文本动画
-            UIView.animateWithDuration( 1.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+            UIView.animate( withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
                 self.messageLabel.alpha = 1.0
                 }, completion: { (_) -> Void in
                     // 去主页
-                    NSNotificationCenter.defaultCenter().postNotificationName(PQChangeRootViewControllerKey, object: true)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: PQChangeRootViewControllerKey), object: true)
             })
         }
         

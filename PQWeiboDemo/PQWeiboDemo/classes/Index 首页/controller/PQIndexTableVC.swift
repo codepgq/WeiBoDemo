@@ -1,3 +1,4 @@
+
 //
 //  PQIndexTableVC.swift
 //  PQWeiboDemo
@@ -25,7 +26,7 @@ class PQIndexTableVC: PQBaseTableVC {
         listenNoti()
         
         // 2、提前注册cell
-        tableView.registerClass(PQIndexTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.register(PQIndexTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
 //        tableView.rowHeight = 200
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -38,23 +39,23 @@ class PQIndexTableVC: PQBaseTableVC {
     
     //通过通知来改变按钮图片
     @objc private func popMenuNotifaction(){
-        navigatorCenter.selected = !navigatorCenter.selected
+        navigatorCenter.isSelected = !navigatorCenter.isSelected
     }
     
     deinit{
         //移除通知
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setVisitorIsIndex(true, imageNamed: "visitordiscover_feed_image_house",hiddenAll:false)
+        setVisitorIsIndex(isIndex: true, imageNamed: "visitordiscover_feed_image_house",hiddenAll:false)
         
         //登录了才显示
         if isLogin {
             //创建左右中间按钮
-            navigationItem.leftBarButtonItem = UIBarButtonItem.createSelecedtButton("navigationbar_friendattention", target: self, action: #selector(PQIndexTableVC.leftBtnClick))
-            navigationItem.rightBarButtonItem = UIBarButtonItem.createSelecedtButton("navigationbar_pop", target: self, action: #selector(PQIndexTableVC.rightBtnClick))
+            navigationItem.leftBarButtonItem = UIBarButtonItem.createSelecedtButton(image: "navigationbar_friendattention", target: self, action: #selector(PQIndexTableVC.leftBtnClick))
+            navigationItem.rightBarButtonItem = UIBarButtonItem.createSelecedtButton(image: "navigationbar_pop", target: self, action: #selector(PQIndexTableVC.rightBtnClick))
             navigationItem.titleView =  navigatorCenter
         }
     }
@@ -79,8 +80,8 @@ class PQIndexTableVC: PQBaseTableVC {
      监听通知
      */
     private func listenNoti(){
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PQIndexTableVC.popMenuNotifaction), name: popoverViewWillShow, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PQIndexTableVC.popMenuNotifaction), name: popoverViewWillClose, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PQIndexTableVC.popMenuNotifaction), name: NSNotification.Name(rawValue: popoverViewWillShow), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PQIndexTableVC.popMenuNotifaction), name: NSNotification.Name(rawValue: popoverViewWillClose), object: nil)
     }
     
     /**
@@ -107,24 +108,25 @@ class PQIndexTableVC: PQBaseTableVC {
         // 2.1 设置代理
         vc?.transitioningDelegate = popoverAnimator
         // 2.2设置转场的样式
-        vc?.modalPresentationStyle = UIModalPresentationStyle.Custom
-        presentViewController(vc!, animated: true, completion: nil)
+        vc?.modalPresentationStyle = UIModalPresentationStyle.custom
+        present(vc!, animated: true, completion: nil)
     }
     
     //弹出视图
     private lazy var popoverAnimator :PQPopverAnimation = {
         let pop = PQPopverAnimation()
-        let width = UIScreen.mainScreen().bounds.width
+        let width = UIScreen.main
+            .bounds.width
         pop.presentFrame = CGRect(x: (width - width * 0.5) / 2.0, y: 56, width: width * 0.5, height: width * 0.6)
         pop.animaDuration = 0.4
         return pop
     }()
     
     //中间导航栏按钮
-    private lazy var navigatorCenter : PQDIYButton = PQDIYButton.createButton(["title":PQOauthInfo.loadAccoutInfo()!.name!,"image":"navigationbar_arrow_down","selected":"navigationbar_arrow_up","textColor":UIColor.lightGrayColor()], type: PQButtonLayoutType.LeftTextRightImage, target: self, selector: #selector(PQIndexTableVC.centerBtnClick))
+    private lazy var navigatorCenter : PQDIYButton = PQDIYButton.createButton(dict: ["title":PQOauthInfo.loadAccoutInfo()!.name! as AnyObject,"image":"navigationbar_arrow_down" as AnyObject,"selected":"navigationbar_arrow_up" as AnyObject,"textColor":UIColor.lightGray], type: PQButtonLayoutType.LeftTextRightImage, target: self, selector: #selector(PQIndexTableVC.centerBtnClick))
     
-    private lazy var modalAnimation : PQModalAnimation = {
-        let modal = PQModalAnimation(direction: PQAnimationDirection.bottom)
+    lazy var modalAnimation : PQModalAnimation = {
+        let modal = PQModalAnimation(direction: PQAnimationDirection.left)
         modal.presentFrame.size.height = 305
         return modal
     }()
@@ -132,23 +134,23 @@ class PQIndexTableVC: PQBaseTableVC {
 }
 
 extension PQIndexTableVC{
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        presentViewController(ac, animated: true, completion: nil)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return statuses?.count ?? 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! PQIndexTableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath) as! PQIndexTableViewCell
         cell.oauthInfo = statuses![indexPath.row]
         cell.showMenu = { (cell : PQIndexTableViewCell) -> Void in
             
             let vc = PQActionSheetVC.loadForStoryboard()
             vc.transitioningDelegate = self.modalAnimation
-            vc.modalPresentationStyle = UIModalPresentationStyle.Custom
-            self.presentViewController(vc, animated: true, completion: nil)
+            vc.modalPresentationStyle = UIModalPresentationStyle.custom
+            self.present(vc, animated: true, completion: nil)
         }
         return cell
     }

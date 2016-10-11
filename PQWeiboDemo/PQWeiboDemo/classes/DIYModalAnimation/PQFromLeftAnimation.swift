@@ -19,18 +19,18 @@ class PQFromLeftAnimation: PQAnimation {
         
         // 默认是present
         if isShow {
-            toView.transform = CGAffineTransformMakeTranslation(-UIScreen.mainScreen().bounds.width, 0)
+            toView.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0)
         }
         
         startAnimation = {
             
             if self.isShow {
-                self.toView.transform = CGAffineTransformMakeTranslation(-(UIScreen.mainScreen().bounds.width - self.viewFrame.width), 0)
+                self.toView.transform = CGAffineTransform(translationX: -(UIScreen.main.bounds.width - self.viewFrame.width), y: 0)
                 
-                self.fromView.transform = CGAffineTransformMakeScale(0.95, 0.95)
+                self.fromView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
                 self.fromView.layer.transform = CATransform3DMakeTranslation(0, 0, -10)
             }else{
-                self.fromView.transform = CGAffineTransformMakeTranslation(-UIScreen.mainScreen().bounds.width, 0)
+                self.fromView.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0)
             }
         }
         

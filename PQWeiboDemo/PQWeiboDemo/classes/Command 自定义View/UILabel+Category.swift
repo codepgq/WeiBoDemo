@@ -19,7 +19,7 @@ extension UILabel{
      */
     class func createLabelWithFontSize(fontSize : CGFloat, textColor : UIColor) -> UILabel{
         let label = UILabel()
-        label.font = UIFont.systemFontOfSize(fontSize)
+        label.font = UIFont.systemFont(ofSize: fontSize)
         label.textColor = textColor
         return label
     }

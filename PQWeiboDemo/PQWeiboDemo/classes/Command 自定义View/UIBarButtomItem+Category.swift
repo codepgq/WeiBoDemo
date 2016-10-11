@@ -22,10 +22,10 @@ extension UIBarButtonItem{
         //创建一个按钮
         let button = UIButton()
         //设置点击和默认图片
-        button.setImage(UIImage(named: image!), forState: .Normal)
-        button.setImage(UIImage(named: String(image + "_highlighted")), forState: .Highlighted)
+        button.setImage(UIImage(named: image!), for: .normal)
+        button.setImage(UIImage(named: String(image + "_highlighted")), for: .highlighted)
         //设置点击事件
-        button.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        button.addTarget(target, action: action, for: .touchUpInside)
         button.sizeToFit()
         //返回barbutton
         return UIBarButtonItem(customView: button)

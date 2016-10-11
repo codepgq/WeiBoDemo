@@ -8,7 +8,8 @@
 
 import UIKit
 
-class PQOauthInfo: NSObject ,NSCoding {
+// 这里删除了NSCoding swift-3.0
+class PQOauthInfo: NSObject  {
     /// string 	用户授权的唯一票据，用于调用微博的开放接口，同时也是第三方应用验证微博用户登录的唯一票据，第三方应用应该用该票据和自己应用内的用户建立唯一影射关系，来识别登录状态，不能使用本返回值里的UID字段来做登录识别。
     var access_token :  String?
     
@@ -40,26 +41,27 @@ class PQOauthInfo: NSObject ,NSCoding {
      */
     init(dict : NSDictionary) {
         super.init()
-        setValuesForKeysWithDictionary(dict as! [String : AnyObject])
+        setValuesForKeys(dict as! [String : AnyObject])
     }
     
     /**
      防止未找到对应的属性出错
      */
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
+    func setValue(value: AnyObject?, forUndefinedKey key: String) {}
     
     
-    func loadUserInfo(finished : (account: PQOauthInfo? , error : NSError?) -> Void){
+    func loadUserInfo(finished : @escaping (_ account: PQOauthInfo? , _ error : NSError?) -> Void){
         let url = "users/show.json"
         let params = ["access_token":access_token!,"uid":uid!]
         
-        PQNetWorkManager.shareNetWorkManager().GET(url, parameters: params, success: { (_, JSON) in
-            self.avatar_large = JSON!["avatar_large"] as? String
-            self.name = JSON!["name"] as? String
-            finished(account: self, error: nil)
+        PQNetWorkManager.shareNetWorkManager().get(url, parameters: params, success: { (_, JSON) in
+            let rResult = JSON as! [String : Any]
+            self.avatar_large = rResult["avatar_large"] as? String
+            self.name = rResult["name"] as? String;
+            finished(self, nil)
             }) { (_, error) in
                 print(error)
-                finished(account: nil, error: error)
+                finished(nil, error as NSError?)
         }
     }
     
@@ -86,10 +88,10 @@ class PQOauthInfo: NSObject ,NSCoding {
         }
         
         // 解归档
-        account = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? PQOauthInfo
+        account = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? PQOauthInfo
         
         // 判断是否过期
-        if account?.expires_date?.compare(NSDate()) == NSComparisonResult.OrderedAscending { //如果得到的是升序 表示已经过期
+        if account?.expires_date?.compare(NSDate() as Date) == ComparisonResult.orderedAscending { //如果得到的是升序 表示已经过期
             // 2022-05-06 08：34：20  <  2022-05-07 12：11：30
             return nil
         }
@@ -102,27 +104,27 @@ class PQOauthInfo: NSObject ,NSCoding {
      */
      ///归档
     func encodeWithCoder(aCoder: NSCoder){
-        aCoder.encodeObject(access_token, forKey: "access_token")
-        aCoder.encodeObject(expires_in, forKey: "expires_in")
-        aCoder.encodeObject(uid, forKey: "uid")
-        aCoder.encodeObject(expires_date, forKey: "expires_date")
-        aCoder.encodeObject(avatar_large, forKey: "avatar_large")
-        aCoder.encodeObject(name , forKey: "name")
+        aCoder.encode(access_token, forKey: "access_token")
+        aCoder.encode(expires_in, forKey: "expires_in")
+        aCoder.encode(uid, forKey: "uid")
+        aCoder.encode(expires_date, forKey: "expires_date")
+        aCoder.encode(avatar_large, forKey: "avatar_large")
+        aCoder.encode(name , forKey: "name")
     }
      ///解归档
     required init?(coder aDecoder: NSCoder){
-        access_token = aDecoder.decodeObjectForKey("access_token") as? String
-        expires_in = aDecoder.decodeObjectForKey("expires_in") as? NSNumber
-        expires_date = aDecoder.decodeObjectForKey("expires_date") as? NSDate
-        uid = aDecoder.decodeObjectForKey("uid") as? String
-        name = aDecoder.decodeObjectForKey("name") as? String
-        avatar_large = aDecoder.decodeObjectForKey("avatar_large") as? String
+        access_token = aDecoder.decodeObject(forKey: "access_token") as? String
+        expires_in = aDecoder.decodeObject(forKey: "expires_in") as? NSNumber
+        expires_date = aDecoder.decodeObject(forKey: "expires_date") as? NSDate
+        uid = aDecoder.decodeObject(forKey: "uid") as? String
+        name = aDecoder.decodeObject(forKey: "name") as? String
+        avatar_large = aDecoder.decodeObject(forKey: "avatar_large") as? String
     }
 
     //打印对象
     override var description: String{
         let properties = ["access_token","expires_in","expires_date","uid","name","avatar_large"]
-        let dict = self.dictionaryWithValuesForKeys(properties)
+        let dict = self.dictionaryWithValues(forKeys: properties)
         return "\(dict)"
     }
 }

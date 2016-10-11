@@ -18,22 +18,22 @@ extension NSDate{
      - returns: 日期
      */
     class func stringToDateWithString(string : String,formatter : String) -> NSDate{
-        let format = NSDateFormatter()
+        let format = DateFormatter()
         format.dateFormat = formatter
         // 必须真机设置，夫走可能不能转换成功
-        format.locale = NSLocale(localeIdentifier: "en")
-        return format.dateFromString(string)!
+        format.locale = NSLocale(localeIdentifier: "en") as Locale!
+        return format.date(from: string)! as NSDate
     }
     
     
     /// 把日期转化
     var descDate : String{
         //得到当前时间
-        let calender = NSCalendar.currentCalendar()
+        let calender = NSCalendar.current
         // 1、判断是否是今天
-        if calender.isDateInToday(self){
+        if calender.isDateInToday(self as Date){
             // 1.1 得到秒数 
-            let second = Int(NSDate().timeIntervalSinceDate(self))
+            let second = Int(NSDate().timeIntervalSince(self as Date))
             // 1.2 判断是否是一分钟以内
             if second < 60 {
                 return "\(second)秒以前"
@@ -48,7 +48,7 @@ extension NSDate{
         
         // 2、判断是不是昨天
         var formatter = "HH:mm"
-        if calender.isDateInYesterday(self) {
+        if calender.isDateInYesterday(self as Date) {
             formatter = "昨天:" + formatter
         }
         else{
@@ -56,17 +56,18 @@ extension NSDate{
             formatter = "MM-dd" + formatter
             
             // 4、一年前的事情了
-            let comps = calender.components(NSCalendarUnit.Year, fromDate: self, toDate: NSDate() , options:NSCalendarOptions(rawValue: 0))
-            if comps.year >= 1 {
-                formatter = "yyyy-" + formatter
+            let nowYear = calender.component(Calendar.Component.year, from: Date())
+            let oldYear = calender.component(.year, from: Date())
+            if nowYear - oldYear >= 1 {
+                 formatter = "yyyy-" + formatter
             }
         }
         
         // 5、根据formatter创建时间
-        let format = NSDateFormatter()
+        let format = DateFormatter()
         format.dateFormat = formatter
-        format.locale = NSLocale(localeIdentifier: "en")
-        return format.stringFromDate(self)
+        format.locale = NSLocale(localeIdentifier: "en") as Locale!
+        return format.string(from: self as Date)
         
     }
 }

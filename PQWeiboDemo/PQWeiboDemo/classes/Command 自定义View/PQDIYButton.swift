@@ -36,25 +36,25 @@ class PQDIYButton: UIButton {
         button.layoutType = type
         
         if dict["title"] != nil{
-            button.setTitle(dict["title"] as? String, forState: .Normal)
+            button.setTitle(dict["title"] as? String, for: .normal)
         }
         
         if dict["image"] != nil{
-            button.setImage(UIImage(named: (dict["image"] as? String)!), forState: .Normal)
+            button.setImage(UIImage(named: (dict["image"] as? String)!), for: .normal)
         }
         
         if dict["selected"] != nil{
-            button.setImage(UIImage(named: (dict["selected"] as? String)!), forState: .Selected)
+            button.setImage(UIImage(named: (dict["selected"] as? String)!), for: .selected)
         }
         
         if dict["highlighted"] != nil{
-            button.setImage(UIImage(named: (dict["highlighted"] as? String)!), forState: .Highlighted)
+            button.setImage(UIImage(named: (dict["highlighted"] as? String)!), for: .highlighted)
         }
         
-        button.addTarget(target, action: selector, forControlEvents: .TouchUpInside)
+        button.addTarget(target, action: selector, for: .touchUpInside)
         
         if dict["textColor"] != nil {
-            button.setTitleColor(dict["textColor"] as? UIColor, forState: .Normal)
+            button.setTitleColor(dict["textColor"] as? UIColor, for: .normal)
         }
         
         

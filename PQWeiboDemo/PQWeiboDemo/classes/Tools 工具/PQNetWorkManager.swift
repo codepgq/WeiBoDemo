@@ -13,7 +13,7 @@ class PQNetWorkManager: AFHTTPSessionManager {
     
     static let tools : PQNetWorkManager = {
         let url = NSURL(string: "https://api.weibo.com/")
-        let t = PQNetWorkManager(baseURL:url)
+        let t = PQNetWorkManager(baseURL:url as URL?)
         
         // 设置数据能访问的类型
         t.responseSerializer.acceptableContentTypes = NSSet(objects: "application/json", "text/json", "text/javascript", "text/plain","text/html") as? Set<String>

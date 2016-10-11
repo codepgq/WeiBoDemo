@@ -1,3 +1,4 @@
+
 //
 //  UIButton+Category.swift
 //  PQWeiboDemo
@@ -24,12 +25,12 @@ extension UIButton{
      */
     class func createBtnWithTitle(title : String? , imageNamed : String,selector : Selector,target :AnyObject ) -> UIButton{
         let button = UIButton();
-        button.setImage(UIImage(named : imageNamed), forState: .Normal)
-        button.setTitle(title, forState: .Normal)
-        button.addTarget(target, action: selector, forControlEvents: .TouchUpInside)
-        button.titleLabel?.font = UIFont.systemFontOfSize(13)
+        button.setImage(UIImage(named : imageNamed), for: .normal)
+        button.setTitle(title, for: .normal)
+        button.addTarget(target, action: selector, for: .touchUpInside)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
-        button.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
         return button
     }
 }

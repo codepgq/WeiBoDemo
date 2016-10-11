@@ -16,14 +16,14 @@ class PQActionSheetVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.contentOffset = CGPoint(x: 0, y: UIScreen.mainScreen().bounds.height - 316)
+        tableView.contentOffset = CGPoint(x: 0, y: UIScreen.main.bounds.height - 316)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        dismiss(animated: true, completion: nil)
     }
 }

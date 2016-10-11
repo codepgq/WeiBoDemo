@@ -12,7 +12,7 @@ import SVProgressHUD
 class PQOAuthViewController: UIViewController,UIWebViewDelegate {
     
     private var webView : UIWebView = {
-        let web = UIWebView(frame: UIScreen.mainScreen().bounds)
+        let web = UIWebView(frame: UIScreen.main.bounds)
         return web
     }()
     /// app key
@@ -32,7 +32,7 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
         setUpWebView()
         
         // 2、添加一个关闭按钮
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: #selector(PQOAuthViewController.close))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector(PQOAuthViewController.close))
         
         // 3、设置标题
         navigationItem.title = "使用微博登录"
@@ -43,7 +43,7 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
     }
     
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         SVProgressHUD.dismiss()
     }
@@ -51,20 +51,20 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
     private func setUpWebView(){
         webView.delegate = self
         let url = NSURL.init(string: "https://api.weibo.com/oauth2/authorize?client_id=\(WB_App_ID)&redirect_uri=\(WB_redirect_uri)")
-        let request = NSURLRequest(URL: url!)
-        webView.loadRequest(request)
+        let request = NSURLRequest(url: url! as URL)
+        webView.loadRequest(request as URLRequest)
     }
     
     
-    @objc private func close(){
-        dismissViewControllerAnimated(true, completion: nil)
+    @objc func close(){
+        dismiss(animated: true, completion: nil)
     }
 }
 
 extension PQOAuthViewController {
     
     func webViewDidStartLoad(webView: UIWebView) {
-        SVProgressHUD.showWithStatus("正在加载……")
+        SVProgressHUD.show(withStatus: "正在加载……")
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -80,7 +80,7 @@ extension PQOAuthViewController {
         // 这里做跳转处理
 //        print(request.URL?.absoluteString)
         
-        let absoluteString = request.URL!.absoluteString
+        let absoluteString = request.url!.absoluteString
         //如果是回调页 并且授权成功就继续
         if !absoluteString.hasPrefix(WB_redirect_uri) {
             // 不是回调页就继续
@@ -89,12 +89,12 @@ extension PQOAuthViewController {
         
         //如果成功了表示点击了授权
         let codeStr = "code="
-        if request.URL!.query!.hasPrefix(codeStr) {
+        if request.url!.query!.hasPrefix(codeStr) {
             //这句就是先比较code=，然后从最后一个取出Qequest_Token
-            let code = request.URL!.query?.substringFromIndex(codeStr.endIndex)
+            let code = request.url!.query?.substring(to: codeStr.endIndex)
             
             //利用以及授权的RequestToken 换区 AccessToken
-            loadAccessToken(code!)
+            loadAccessToken(code: code!)
         }
         else{//点击取消授权了
             close()
@@ -112,20 +112,20 @@ extension PQOAuthViewController {
         let parames = ["client_id":WB_App_ID,"client_secret":WB_App_Secret,"grant_type":"authorization_code","code":code,"redirect_uri":WB_redirect_uri]
 
         // 3、发送请求
-        PQNetWorkManager.shareNetWorkManager().POST(url, parameters: parames, success: { (_, JSON) in
+        PQNetWorkManager.shareNetWorkManager().post(url, parameters: parames, success: { (_, JSON) in
             print(JSON)
             
-            let account = PQOauthInfo(dict: JSON as! [String:AnyObject])
+            let account = PQOauthInfo(dict: JSON as! [String:AnyObject] as NSDictionary)
             print(account)
             // 通过accessToken、uid去获取个人信息
-            account.loadUserInfo({ (account, error) in
+            account.loadUserInfo(finished: { (account, error) in
                 if error == nil{
                     //把信息归档保存
                     account?.saveAccountInfo()
-                    SVProgressHUD.showSuccessWithStatus("授权成功")
+                    SVProgressHUD.showSuccess(withStatus: "授权成功")
                     
                     // 去欢迎回来页面
-                    NSNotificationCenter.defaultCenter().postNotificationName(PQChangeRootViewControllerKey, object: false)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: PQChangeRootViewControllerKey), object: false)
                 }
             })
             

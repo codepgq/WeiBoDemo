@@ -17,9 +17,9 @@ class PQPopverAnimation: NSObject ,UIViewControllerTransitioningDelegate,UIViewC
     /// 记录当前是否展开
     var isPresent: Bool = false
     /// 定义属性保存菜单大小
-    var presentFrame = CGRectZero
+    var presentFrame = CGRect.zero
     
-    var animaDuration : NSTimeInterval = 0.5
+    var animaDuration : TimeInterval = 0.5
     
     /**
      实现代理方法，告诉系统谁来负责转场动画
@@ -31,7 +31,7 @@ class PQPopverAnimation: NSObject ,UIViewControllerTransitioningDelegate,UIViewC
      - returns:
      */
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController?{
-        let pc = PQPopverPresentationController(presentedViewController: presented, presentingViewController: presenting)
+        let pc = PQPopverPresentationController(presentedViewController: presented, presenting: presenting)
         pc.presentFrame = presentFrame
         return pc
     }
@@ -49,7 +49,7 @@ class PQPopverAnimation: NSObject ,UIViewControllerTransitioningDelegate,UIViewC
         
         isPresent = true
         //发送将要显示通知
-        NSNotificationCenter.defaultCenter().postNotificationName(popoverViewWillShow, object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: popoverViewWillShow), object: nil)
         
         return self
     }
@@ -65,7 +65,7 @@ class PQPopverAnimation: NSObject ,UIViewControllerTransitioningDelegate,UIViewC
         
         isPresent = false
         //发送将要消失通知
-        NSNotificationCenter.defaultCenter().postNotificationName(popoverViewWillShow, object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: popoverViewWillShow), object: nil)
         return self
     }
     
@@ -82,7 +82,7 @@ extension PQPopverAnimation{
      
      - returns: 动画时长
      */
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval{
+    @objc(transitionDuration:) func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval{
         return animaDuration
     }
     
@@ -94,22 +94,22 @@ extension PQPopverAnimation{
      
      - parameter transitionContext: 上下文，保存了动画需要的所有参数
      */
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning){
+    @objc(animateTransition:) func animateTransition(using transitionContext: UIViewControllerContextTransitioning){
         if isPresent {
             // 1、获取到要展现的视图
-            let toView = transitionContext.viewForKey(UITransitionContextToViewKey)
-            toView?.transform = CGAffineTransformMakeScale(1.0, 0)
+            let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)
+            toView?.transform = CGAffineTransform(scaleX: 1.0, y: 0)
             
             // 2、把视图添加到容器上
-            transitionContext.containerView()?.addSubview(toView!)
+            transitionContext.containerView.addSubview(toView!)
             
             // 3、设置锚点
             toView?.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
             
             // 4、执行动画
-            UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveLinear, animations: {
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveLinear, animations: {
                 // 5、设置动画
-                toView?.transform = CGAffineTransformIdentity
+                toView?.transform = CGAffineTransform.identity
                 }, completion: { (_) in
                     // 6、动画执行完成后一定要记得通知系统
                     
@@ -119,10 +119,10 @@ extension PQPopverAnimation{
         }
         else{
             
-            let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)
+            let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)
             
-            UIView.animateWithDuration(transitionDuration(transitionContext),  delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveLinear, animations: {
-                fromView?.transform = CGAffineTransformMakeScale(1.0, 0.000001)
+            UIView.animate(withDuration: transitionDuration(using: transitionContext),  delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveLinear, animations: {
+                fromView?.transform = CGAffineTransform(scaleX: 1.0, y: 0.000001)
                 }, completion: { (_) in
                     transitionContext.completeTransition(true)
             })

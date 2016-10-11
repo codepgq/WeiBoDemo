@@ -14,7 +14,7 @@ class PQStatusesModel: NSObject {
     var created_at :String?{
         didSet{
             if created_at != nil {
-                let date = NSDate.stringToDateWithString(created_at!, formatter: "EEE MMM d HH:mm:ss Z yyyy")
+                let date = NSDate.stringToDateWithString(string: created_at!, formatter: "EEE MMM d HH:mm:ss Z yyyy")
                 created_at = date.descDate
             }
             else{
@@ -29,10 +29,12 @@ class PQStatusesModel: NSObject {
     var source : String?
     {
         didSet{
-            if let mStr = source where source != "" {
-                let location = (mStr as NSString).rangeOfString(">").location + 1
-                let length = (mStr as NSString).rangeOfString("<", options: NSStringCompareOptions.BackwardsSearch).location - location
-                source = "来自:" + (mStr as NSString).substringWithRange(NSMakeRange(location, length))
+            //range(of searchString: String, options mask: NSString.CompareOptions = []
+            //NSString.range(option)
+            if let mStr = source , source != "" {
+                let location = (mStr as NSString).range(of: ">").location + 1
+                let length = (mStr as NSString).range(of : "<", options: .backwards).location - location
+                source = "来自:" + (mStr as NSString).substring(with: NSMakeRange(location, length))
             }
         }
     }
@@ -107,37 +109,37 @@ class PQStatusesModel: NSObject {
     
     var isHiddenBalloon : Bool = true
     
-    class func loadData(finished : (models : [PQStatusesModel]? , error : NSError?) -> Void){
+    class func loadData(finished : @escaping (_ models : [PQStatusesModel]? , _ error : NSError?) -> Void){
         let url = "2/statuses/home_timeline.json"
-        let params = ["access_token":PQOauthInfo.loadAccoutInfo()!.access_token!]
-        PQNetWorkManager.shareNetWorkManager().GET(url, parameters: params, progress: nil, success: { (_, JSON) in
+        let params = ["access_token":PQOauthInfo.loadAccoutInfo()!.access_token!]        
+        PQNetWorkManager.shareNetWorkManager().get(url, parameters: params, progress: nil, success: { (_, JSON) in
             print(JSON)
             
             // 取出statuses 对应的数组
             // 遍历数组，将字典转模型
-            let list = JSON!["statuses"] as! [[String: AnyObject]]
+            let list = (JSON as! [String : Any] ) ["statuses"] as! [[String: AnyObject]]
             var models = [PQStatusesModel]()
             for dict in list{
                 models.append(PQStatusesModel(dict: dict))
             }
             
             //缓存所有配图
-            loadAllImageCaches(models, finished: finished)
+            loadAllImageCaches(list: models, finished: finished)
             
-//            finished(models: models, error: nil)
+            //            finished(models: models, error: nil)
+            }, failure: { (_, error) in
             
-            }) { (_, error) in
-                finished(models: nil, error: error)
-        }
+        })
     }
     
     
-    class func loadAllImageCaches(list:[PQStatusesModel],finished : (models : [PQStatusesModel]? , error : NSError?) -> Void){
+    class func loadAllImageCaches(list:[PQStatusesModel],finished : @escaping (_
+        models : [PQStatusesModel]? , _ error : NSError?) -> Void){
         
         print("我要看地址".cacheDir())
         
         //创建一个组用于保证所有的图片下载完成之后通知界面
-        let group = dispatch_group_create()
+        let group = DispatchGroup()
         
         // 1、缓存图片
         for statuses in list{
@@ -149,18 +151,17 @@ class PQStatusesModel: NSObject {
             // 2、缓存图片
             for url in urls {
                 // 2.1 把任务加入线程组中
-                dispatch_group_enter(group)
+                group.enter()
                 // 2.2 开始下载
-                SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue:0), progress: nil, completed: { (_, _, _, _, _) in
+                SDWebImageManager.shared().downloadImage(with: url as URL!, options: SDWebImageOptions(rawValue:0), progress: nil, completed: { (_, _, _, _, _) in
                     // 2.3 下载完成后离开组
-                    dispatch_group_leave(group)
+                    group.leave()
                 })
             }
         }
-        
         // 3、当组内所有图片缓存完成就会通知
-        dispatch_group_notify(group, dispatch_get_main_queue()) { 
-            finished(models: list, error: nil)
+       group.notify(queue: DispatchQueue.main) { 
+            finished(list,nil)
         }
         
     }
@@ -168,10 +169,10 @@ class PQStatusesModel: NSObject {
     init(dict : [String : AnyObject]) {
         super.init()
         
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
-    override func setValue(value: AnyObject?, forKey key: String) {
+    func setValue(value: AnyObject?, forKey key: String) {
         // 1、判断当前是否是在为user赋值
         if "user" == key {
             //解析用户信息
@@ -188,7 +189,7 @@ class PQStatusesModel: NSObject {
         super.setValue(value, forKey: key)
     }
     
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    func setValue(value: AnyObject?, forUndefinedKey key: String) {
     }
     
 }

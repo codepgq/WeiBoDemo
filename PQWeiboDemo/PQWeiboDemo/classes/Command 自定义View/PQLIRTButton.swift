@@ -18,8 +18,8 @@ class PQLIRTButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setImage(UIImage(named: "navigationbar_arrow_down"), forState: .Normal)
-        setImage(UIImage(named: "navigationbar_arrow_up"), forState: .Selected)
+        setImage(UIImage(named: "navigationbar_arrow_down"), for: .normal)
+        setImage(UIImage(named: "navigationbar_arrow_up"), for: .selected)
         sizeToFit()
         
         

@@ -18,19 +18,19 @@ class PQTabBarController: UITabBarController {
         addController()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //创建一个button，并设置到中间的位置
         setUpButton()
     }
     
     lazy var addBtn :UIButton = {
-        let button = UIButton(type: UIButtonType.Custom)
+        let button = UIButton(type: UIButtonType.custom)
         
-        button.setImage(UIImage(named:"tabbar_compose_background_icon_add"), forState: UIControlState.Normal)
-        button.setBackgroundImage(UIImage(named:"tabbar_compose_button"), forState: .Normal)
+        button.setImage(UIImage(named:"tabbar_compose_background_icon_add"), for: UIControlState.normal)
+        button.setBackgroundImage(UIImage(named:"tabbar_compose_button"), for: .normal)
         
-        button.addTarget(self, action: #selector(PQTabBarController.addBtnClick(_:)), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(PQTabBarController.addBtnClick(btn:)), for: .touchUpInside)
         
         return button
     }()
@@ -41,16 +41,16 @@ class PQTabBarController: UITabBarController {
     
     //添加加号按钮
     private func setUpButton(){
-        let width : CGFloat = UIScreen.mainScreen().bounds.width / CGFloat(viewControllers!.count)
+        let width : CGFloat = UIScreen.main.bounds.width / CGFloat(viewControllers!.count)
         addBtn.frame = CGRect(x: 0, y: 0, width: width, height: 49)
-        addBtn.frame = CGRectOffset(addBtn.frame, 2 * width , 0)
+        addBtn.frame = addBtn.frame.offsetBy(dx: 2 * width , dy: 0)
         tabBar.addSubview(addBtn)
     }
     
     //添加controller
     private func addController(){
         //得到json数据地址
-        let path :String = NSBundle.mainBundle().pathForResource("JsonData.json", ofType: nil)!
+        let path :String = Bundle.main.path(forResource: "JsonData.json", ofType: nil)!
         
         //判断地址存不存在
         if let jsonPath :String = path
@@ -59,16 +59,16 @@ class PQTabBarController: UITabBarController {
             let data = NSData(contentsOfFile: jsonPath)
             do {
                 //转化为Json数据
-                let dictArray = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                let dictArray = try JSONSerialization.jsonObject(with: data! as Data, options: .mutableContainers)
                 //获取命名空间
                 let namespace : String = getNamespace()
                 
                 //遍历数组，动态创建类 这里要指定类型 as! [[String:String]]
                 for dict in dictArray as! [[String:String]] {
                     //创建controller
-                    let controller = stringToController(dict["controller"]!,nameSpace:namespace)
+                    let controller = stringToController(controller: dict["controller"]!,nameSpace:namespace)
                     //添加controller
-                    addViewControllerToTabBar(controller,imageNamed: dict["imageNamed"]!,title: dict["title"]!)
+                    addViewControllerToTabBar(vc: controller,imageNamed: dict["imageNamed"]!,title: dict["title"]!)
                 }
                 print("create for Network")
             }
@@ -91,7 +91,7 @@ class PQTabBarController: UITabBarController {
          */
         
         //获取namespace info.plist中获取
-        let infoPath : String = NSBundle.mainBundle().pathForResource("Info.plist", ofType: nil)!
+        let infoPath : String = Bundle.main.path(forResource: "Info.plist", ofType: nil)!
         //得到
         let infoDict : NSDictionary = NSDictionary(contentsOfFile: infoPath)!
         
@@ -101,11 +101,11 @@ class PQTabBarController: UITabBarController {
     ///从本地创建controller
     private func createLocalController(){
         //从本地加载
-        addViewControllerToTabBar(PQIndexTableVC(), imageNamed: "tabbar_home", title: "首页")
-        addViewControllerToTabBar(PQMessageTableVC(), imageNamed: "tabbar_message_center", title: "消息")
-        addViewControllerToTabBar(PQNullTableVC(), imageNamed: "", title: "")
-        addViewControllerToTabBar(PQDiscoverTableVC(), imageNamed: "tabbar_discover", title: "发现")
-        addViewControllerToTabBar(PQMeTableVC(), imageNamed: "tabbar_profile", title: "我")
+        addViewControllerToTabBar(vc: PQIndexTableVC(), imageNamed: "tabbar_home", title: "首页")
+        addViewControllerToTabBar(vc: PQMessageTableVC(), imageNamed: "tabbar_message_center", title: "消息")
+        addViewControllerToTabBar(vc:PQNullTableVC(), imageNamed: "", title: "")
+        addViewControllerToTabBar(vc:PQDiscoverTableVC(), imageNamed: "tabbar_discover", title: "发现")
+        addViewControllerToTabBar(vc:PQMeTableVC(), imageNamed: "tabbar_profile", title: "我")
         
     }
     

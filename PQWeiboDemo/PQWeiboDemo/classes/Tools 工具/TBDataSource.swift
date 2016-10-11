@@ -24,7 +24,7 @@ class TBDataSource: NSObject,UITableViewDataSource {
     private var sectionStyle : TBSectionStyle = .Section_Single
     private var data : NSArray?
     private var identifier : String = "null"
-    private var cellBlock : ((cell : AnyObject, item : AnyObject) -> ())?
+    private var cellBlock : ((_ cell : AnyObject, _ item : AnyObject) -> ())?
     
     /**
      快速创建一个数据源，需要提前注册，数组和style要对应
@@ -36,7 +36,7 @@ class TBDataSource: NSObject,UITableViewDataSource {
      
      - returns: 数据源对象(dataSource)
      */
-    class func cellIdentifierWith(identifier : String , data : NSArray , style : TBSectionStyle , cell : ((cell : AnyObject, item : AnyObject) -> Void)) -> TBDataSource {
+    class func cellIdentifierWith(identifier : String , data : NSArray , style : TBSectionStyle , cell : @escaping ((_ cell : AnyObject, _ item : AnyObject) -> Void)) -> TBDataSource {
         let source = TBDataSource()
         
         source.sectionStyle = style
@@ -56,10 +56,10 @@ class TBDataSource: NSObject,UITableViewDataSource {
      */
     private func itemWithIndexPath(indexPath : NSIndexPath) -> AnyObject{
         if sectionStyle == .Section_Single {
-            return data![indexPath.row]
+            return data![indexPath.row] as AnyObject
         }
         else{
-            return data![indexPath.section][indexPath.row]
+            return (data![indexPath.section] as! Array)[indexPath.row]
         }
     }
     
@@ -70,7 +70,7 @@ class TBDataSource: NSObject,UITableViewDataSource {
      
      - returns: section
      */
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    private func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if sectionStyle == .Section_Single {
             return 1
         }
@@ -85,11 +85,11 @@ class TBDataSource: NSObject,UITableViewDataSource {
      
      - returns: rows
      */
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if sectionStyle == .Section_Single {
             return (data?.count)!
         }else{
-            return (data?[section].count)!
+            return ((data?[section] as AnyObject).count)!
         }
     }
     /**
@@ -100,10 +100,10 @@ class TBDataSource: NSObject,UITableViewDataSource {
      
      - returns: cell
      */
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let block = cellBlock {
-            block(cell: cell, item: itemWithIndexPath(indexPath))
+            block(cell, itemWithIndexPath(indexPath: indexPath as NSIndexPath))
         }
         return cell
     }

@@ -20,20 +20,20 @@ class PQNotLoginView: UIView {
     
     func setBackgroundImageWithIsIndex(isIndex : Bool,imageNamed : String,hiddenAll:Bool){
         //设置当前是否隐藏
-        self.hidden = hiddenAll
+        self.isHidden = hiddenAll
         
         //根据bool值设置显示内容
-        login.hidden = isIndex
-        registerBtn.hidden = isIndex
-        concern.hidden = !isIndex
-        smallicon.hidden = !isIndex
+        login.isHidden = isIndex
+        registerBtn.isHidden = isIndex
+        concern.isHidden = !isIndex
+        smallicon.isHidden = !isIndex
         //设置图片
         house.image = UIImage(named: imageNamed)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         
         //添加转盘
         addSubview(smallicon)
@@ -60,28 +60,28 @@ class PQNotLoginView: UIView {
         messageLabel.pq_AlignVertical(type: pq_AlignType.BottomCenter, referView: smallicon, size:nil)
         
         //“哪个控件” 的 “什么属性” “等于” “哪个控件” 的 “什么属性” 乘以“多少” 加上“多少”
-        let widthCons = NSLayoutConstraint(item: messageLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 224)
+        let widthCons = NSLayoutConstraint(item: messageLabel, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 224)
         addConstraint(widthCons)
         
         //关注按钮约束
-        concern.pq_AlignVertical(type: .BottomCenter, referView: messageLabel, size: CGSizeMake(100, 35),offset: CGPoint(x: 0, y: 10))
+        concern.pq_AlignVertical(type: .BottomCenter, referView: messageLabel, size: CGSize(width: 100, height : 35),offset: CGPoint(x: 0, y: 10))
         
         //登录按钮
-        login.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: messageLabel, size: CGSizeMake(100, 35),offset: CGPoint(x: 0, y: 10))
+        login.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: messageLabel, size: CGSize(width : 100, height : 35),offset: CGPoint(x: 0, y: 10))
         
         //注册按钮
-        registerBtn.pq_AlignVertical(type: pq_AlignType.BottomRight, referView: messageLabel, size: CGSizeMake(100, 35),offset: CGPoint(x: 0, y: 10))
+        registerBtn.pq_AlignVertical(type: pq_AlignType.BottomRight, referView: messageLabel, size: CGSize(width : 100, height : 35),offset: CGPoint(x: 0, y: 10))
         
         //设置蒙版
-        smalliconMask.pq_fill(self)
+        smalliconMask.pq_fill(referView: self)
         
         //开始动画
         startAnimation()
         
         
-        login.hidden = true
-        registerBtn.hidden = true
-        concern.hidden = true
+        login.isHidden = true
+        registerBtn.isHidden = true
+        concern.isHidden = true
     }
     
     
@@ -95,9 +95,9 @@ class PQNotLoginView: UIView {
         baseAnimation.toValue = M_PI * 2
         baseAnimation.repeatCount = MAXFLOAT
         baseAnimation.duration = 20
-        baseAnimation.removedOnCompletion = false
+        baseAnimation.isRemovedOnCompletion = false
         
-        smallicon.layer .addAnimation(baseAnimation, forKey: nil)
+        smallicon.layer.add(baseAnimation, forKey: nil)
     }
     
     func  setUpVisitor(){
@@ -138,9 +138,9 @@ class PQNotLoginView: UIView {
     lazy var messageLabel :UILabel = {
         let label = UILabel()
         label.numberOfLines = 0;
-        label.textColor = UIColor.darkGrayColor()
+        label.textColor = UIColor.darkGray
         label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.text = "关注一些人，回来看看这里有换什么惊喜"
         return label
     }()
@@ -149,10 +149,10 @@ class PQNotLoginView: UIView {
     lazy var concern : UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         
-        button.setBackgroundImage(UIImage(named:"common_button_white_disable"), forState: .Normal)
-        button.addTarget(self, action: #selector(PQNotLoginView.corcernBtnClick), forControlEvents: .TouchUpInside)
-        button.setTitleColor(UIColor.orangeColor(), forState: .Normal)
-        button.setTitle("去关注", forState: .Normal)
+        button.setBackgroundImage(UIImage(named:"common_button_white_disable"), for: .normal)
+        button.addTarget(self, action: #selector(PQNotLoginView.corcernBtnClick), for: .touchUpInside)
+        button.setTitleColor(UIColor.orange, for: .normal)
+        button.setTitle("去关注", for: .normal)
         return button
     }()
     //点击关注
@@ -163,10 +163,10 @@ class PQNotLoginView: UIView {
     //登录
     lazy var login : UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        button.setBackgroundImage(UIImage(named:"common_button_white_disable"), forState: .Normal)
-        button.addTarget(self, action: #selector(PQNotLoginView.loginBtnClick), forControlEvents: .TouchUpInside)
-        button.setTitle("登录", forState: .Normal)
-        button.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        button.setBackgroundImage(UIImage(named:"common_button_white_disable"), for: .normal)
+        button.addTarget(self, action: #selector(PQNotLoginView.loginBtnClick), for: .touchUpInside)
+        button.setTitle("登录", for: .normal)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
         return button
     }()
     
@@ -178,10 +178,10 @@ class PQNotLoginView: UIView {
     //注册
     lazy var registerBtn : UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        button.setBackgroundImage(UIImage(named:"common_button_white_disable"), forState: .Normal)
-        button.addTarget(self, action: #selector(PQNotLoginView.registerBtnClick), forControlEvents: .TouchUpInside)
-        button.setTitle("注册", forState: .Normal)
-        button.setTitleColor(UIColor.orangeColor(), forState: .Normal)
+        button.setBackgroundImage(UIImage(named:"common_button_white_disable"), for: .normal)
+        button.addTarget(self, action: #selector(PQNotLoginView.registerBtnClick), for: .touchUpInside)
+        button.setTitle("注册", for: .normal)
+        button.setTitleColor(UIColor.orange, for: .normal)
         return button
     }()
     //点击注册

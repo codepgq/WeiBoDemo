@@ -15,7 +15,7 @@ class PQIndexTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -48,7 +48,7 @@ class PQIndexTableViewCell: UITableViewCell {
         contentView.addSubview(bottomView)
         
         //背景
-        backgroundImage.pq_fill(self)
+        backgroundImage.pq_fill(referView: self)
         
         //头像约束
         iconView.pq_AlignInner(type: pq_AlignType.TopLeft, referView: contentView, size: CGSize(width: 50, height: 50), offset: CGPoint(x: 10, y: 10))
@@ -75,7 +75,7 @@ class PQIndexTableViewCell: UITableViewCell {
         contentLabel.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: iconView, size: nil, offset: CGPoint(x: 0, y: 10))
         
 //        //底部按钮
-        bottomView.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: contentLabel, size: CGSize(width: UIScreen.mainScreen().bounds.width, height: 44), offset: CGPoint(x: -10, y: 10))
+        bottomView.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: contentLabel, size: CGSize(width: UIScreen.main.bounds.width, height: 44), offset: CGPoint(x: -10, y: 10))
         
         bottomView.pq_AlignInner(type: pq_AlignType.BottomRight, referView: contentView, size: nil, offset: CGPoint(x: -10, y: -10))
         
@@ -88,8 +88,8 @@ class PQIndexTableViewCell: UITableViewCell {
             // 是不是Vip
             vipView.image = oauthInfo?.user?.mbrankImage
             
-            balloonView.hidden = (oauthInfo?.user?.isHiddenDiamond)!
-            diamondView.hidden = oauthInfo!.isHiddenBalloon
+            balloonView.isHidden = (oauthInfo?.user?.isHiddenDiamond)!
+            diamondView.isHidden = oauthInfo!.isHiddenBalloon
             
             //时间
             timeLabel.text = oauthInfo?.created_at
@@ -100,16 +100,16 @@ class PQIndexTableViewCell: UITableViewCell {
             //用户微博信息
             contentLabel.text = oauthInfo?.text
             //用户头像
-            iconView.sd_setImageWithURL(oauthInfo?.user?.imageURL)
+            iconView.sd_setImage(with: oauthInfo?.user?.imageURL as URL!)
             //用户认证图片
             iconTypeView.image = oauthInfo?.user?.verified_image
             
             // 更新👍 转发
-            bottomView.updateTitle(oauthInfo?.repostsString, comment: oauthInfo?.commentsString, zan: oauthInfo?.attitudesString)
+            bottomView.updateTitle(forward: oauthInfo?.repostsString, comment: oauthInfo?.commentsString, zan: oauthInfo?.attitudesString)
         }
     }
     
-    var showMenu : ((cell : PQIndexTableViewCell)->())?
+    var showMenu : ((_ cell : PQIndexTableViewCell)->())?
     
     // 背景
     private lazy var backgroundImage :UIImageView = UIImageView(image: UIImage(named: "timeline_card_bottom_background"));
@@ -125,15 +125,16 @@ class PQIndexTableViewCell: UITableViewCell {
     private lazy var iconTypeView : UIImageView = UIImageView(image: UIImage(named: "avatar_enterprise_vip"))
     
     // 昵称
-    private lazy var nameLabel : UILabel = UILabel.createLabelWithFontSize(14, textColor: UIColor.darkGrayColor())
+    private lazy var nameLabel : UILabel = UILabel.createLabelWithFontSize(fontSize: 14, textColor: UIColor.darkGray)
     
     // 下拉菜单 actionSheet
     private lazy var downMenuView : UIButton = {
         let button = UIButton();
-        button.setImage(UIImage(named : "navigationbar_arrow_down"), forState: .Normal)
-        button.addTarget(self, action: #selector(PQIndexTableViewCell.downMenuBtnClick), forControlEvents: .TouchUpInside)
+        button.setImage(UIImage(named : "navigationbar_arrow_down"), for: .normal)
+        button.addTarget(self, action: #selector(PQIndexTableViewCell.downMenuBtnClick), for: .touchUpInside)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        button.backgroundColor = UIColor.whiteColor()
+        button.backgroundColor = UIColor.white
+        
         return button
     }()
     
@@ -143,7 +144,7 @@ class PQIndexTableViewCell: UITableViewCell {
         guard let block = showMenu else {
             return
         }
-        block(cell: self)
+        block(self)
     }
     
     // vip
@@ -154,25 +155,27 @@ class PQIndexTableViewCell: UITableViewCell {
     
     // 钻石
     private lazy var diamondView : UILabel = {
-        let label = UILabel.createLabelWithFontSize(13, textColor: UIColor.lightGrayColor())
+        let label = UILabel.createLabelWithFontSize(fontSize: 13, textColor: UIColor.lightGray)
         label.text = "💍"
         return label
     }()
     
     // 时间
-    private lazy var timeLabel :UILabel = UILabel.createLabelWithFontSize(12, textColor: UIColor.lightGrayColor())
+    private lazy var timeLabel :UILabel = UILabel.createLabelWithFontSize(fontSize: 12, textColor: UIColor.lightGray)
     
     // 来源
-    private lazy var sourceLabel :UILabel = UILabel.createLabelWithFontSize(12, textColor: UIColor.lightGrayColor())
+    private lazy var sourceLabel :UILabel = UILabel.createLabelWithFontSize(fontSize:
+        12, textColor: UIColor.lightGray
+    )
     
     // 图片，是否有图片
     private lazy var haveImageView : UIImageView = UIImageView()
     
     // 正文
     private lazy var contentLabel : UILabel = {
-       let label = UILabel.createLabelWithFontSize(14, textColor: UIColor.darkGrayColor())
+       let label = UILabel.createLabelWithFontSize(fontSize: 14, textColor: UIColor.darkGray)
         label.numberOfLines = 0
-        label.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - 20
+        label.preferredMaxLayoutWidth = UIScreen.main.bounds.width - 20
         return label
     }()
     

@@ -30,7 +30,7 @@ class PQNewFeatureCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         // Register cell classes
-        self.collectionView!.registerClass(CollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(CollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -41,12 +41,12 @@ class PQNewFeatureCollectionViewController: UICollectionViewController {
     }
 
     // MARK: UICollectionViewDataSource
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemCount
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionCell
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionCell
     
         cell.imageIndex = indexPath.item
     
@@ -54,14 +54,14 @@ class PQNewFeatureCollectionViewController: UICollectionViewController {
     }
     
     //完全显示一个Cell是调用
-    override func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         //这里需要注意的是，indexPath拿到的是上一个cell的索引
 //        print(indexPath)
         
         //在一般情况下，我们可能会看到很多个CollectionViewCell，但是这里我们把Cell大小设置成为了全屏大小，所以这里我们可以使用这个方法去获取已经在屏幕上显示的Cell的indexPath
-        let index = collectionView.indexPathsForVisibleItems().last
+        let index = collectionView.indexPathsForVisibleItems.last
         if index?.item == itemCount - 1 {
-            let cel = collectionView.cellForItemAtIndexPath(index!) as! CollectionCell
+            let cel = collectionView.cellForItem(at: index!) as! CollectionCell
             cel.startButtonAnimation()
         }
     }
@@ -72,22 +72,22 @@ class PQNewFeatureCollectionViewController: UICollectionViewController {
 private class CollectionCell: UICollectionViewCell {
     
     
-    private var imageIndex : Int?{
+    var imageIndex : Int?{
         didSet{
             imageView.image = UIImage(named: "new_feature_\(imageIndex! + 1)")
-            joinIndexBtn.hidden = true
+            joinIndexBtn.isHidden = true
         }
     }
     
     func startButtonAnimation() {
-        joinIndexBtn.hidden = true
-        joinIndexBtn.transform = CGAffineTransformMakeScale(0.0, 0.0)
-        joinIndexBtn.userInteractionEnabled = false
-        UIView.animateWithDuration(0.75, delay: 0.15, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIViewAnimationOptions.init(rawValue: 0), animations: {
-            self.joinIndexBtn.transform = CGAffineTransformIdentity
-            self.joinIndexBtn.hidden = false
+        joinIndexBtn.isHidden = true
+        joinIndexBtn.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+        joinIndexBtn.isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.75, delay: 0.15, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIViewAnimationOptions.init(rawValue: 0), animations: {
+            self.joinIndexBtn.transform = CGAffineTransform.identity
+            self.joinIndexBtn.isHidden = false
             }) { (_) in
-                self.joinIndexBtn.userInteractionEnabled = true
+                self.joinIndexBtn.isUserInteractionEnabled = true
         }
     }
     
@@ -106,7 +106,7 @@ private class CollectionCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         contentView.addSubview(joinIndexBtn)
         
-        imageView.pq_fill(contentView)
+        imageView.pq_fill(referView: contentView)
         joinIndexBtn.pq_AlignInner(type: pq_AlignType.BottomCenter, referView: contentView, size: nil, offset: CGPoint(x: 0, y: -160))
     }
     
@@ -114,35 +114,36 @@ private class CollectionCell: UICollectionViewCell {
     private lazy var joinIndexBtn :UIButton = {
         let button = UIButton()
         
-        button.setImage(UIImage(named: "new_feature_button"), forState: .Normal)
-        button.setImage(UIImage(named: "new_feature_button_highlighted"), forState: .Highlighted)
+        button.setImage(UIImage(named: "new_feature_button"), for: .normal)
+        button.setImage(UIImage(named: "new_feature_button_highlighted"), for: .highlighted)
         
-        button.addTarget(self, action: #selector(CollectionCell.joinIndexPage), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(CollectionCell.joinIndexPage), for: .touchUpInside)
         
         button.sizeToFit()
         
-        button.hidden = true
+        button.isHidden = true
         
         return button
     }()
     
     @objc private func joinIndexPage() -> Void {
         // 去主页
-        NSNotificationCenter.defaultCenter().postNotificationName(PQChangeRootViewControllerKey, object: true)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: PQChangeRootViewControllerKey), object: true)
     }
 }
 
+
 private class NewFeatureLayout : UICollectionViewFlowLayout{
-    private override func prepareLayout() {
+    private override func prepare() {
         //设置layout 大小、Item之间的间距、排列方向
-        itemSize = UIScreen.mainScreen().bounds.size
+        itemSize = UIScreen.main.bounds.size
         minimumLineSpacing = 0
         minimumInteritemSpacing = 0
-        scrollDirection = .Horizontal
+        scrollDirection = .horizontal
         
         //设置collectionView的属性
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.bounces = false
-        collectionView?.pagingEnabled = true
+        collectionView?.isPagingEnabled = true
     }
 }
