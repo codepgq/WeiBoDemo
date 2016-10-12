@@ -45,18 +45,18 @@ class PQNewFeatureCollectionViewController: UICollectionViewController {
         return itemCount
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionCell
-    
+        
         cell.imageIndex = indexPath.item
-    
+        
         return cell
     }
     
     //完全显示一个Cell是调用
-    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         //这里需要注意的是，indexPath拿到的是上一个cell的索引
-//        print(indexPath)
+        //        print(indexPath)
         
         //在一般情况下，我们可能会看到很多个CollectionViewCell，但是这里我们把Cell大小设置成为了全屏大小，所以这里我们可以使用这个方法去获取已经在屏幕上显示的Cell的indexPath
         let index = collectionView.indexPathsForVisibleItems.last
@@ -64,8 +64,11 @@ class PQNewFeatureCollectionViewController: UICollectionViewController {
             let cel = collectionView.cellForItem(at: index!) as! CollectionCell
             cel.startButtonAnimation()
         }
-    }
 
+    }
+    
+    
+   
 }
 
 /// Cell

@@ -50,10 +50,10 @@ class PQTabBarController: UITabBarController {
     //添加controller
     private func addController(){
         //得到json数据地址
-        let path :String = Bundle.main.path(forResource: "JsonData.json", ofType: nil)!
+        let path :String? = Bundle.main.path(forResource: "JsonData.json", ofType: nil)
         
         //判断地址存不存在
-        if let jsonPath :String = path
+        if let jsonPath : String = path
         {
             //得到data
             let data = NSData(contentsOfFile: jsonPath)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04692C5F1DAE2A5A009AC361 /* PQIndexCellPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */; };
+		04692C611DAE2EC9009AC361 /* PQIndexCellTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */; };
 		04FAAAE61DACE85D00843E0B /* UIButton+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */; };
 		04FAAAE81DACE8E300843E0B /* UILabel+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */; };
 		04FAAAEA1DACEFAE00843E0B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FAAAE91DACEFAE00843E0B /* WebKit.framework */; };
@@ -76,6 +78,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexCellPictureView.swift; sourceTree = "<group>"; };
+		04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexCellTopView.swift; sourceTree = "<group>"; };
 		04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Category.swift"; sourceTree = "<group>"; };
 		04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Category.swift"; sourceTree = "<group>"; };
 		04FAAAE91DACEFAE00843E0B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -407,6 +411,8 @@
 			children = (
 				815971101DA8861100D8C381 /* PQIndexTableViewCell.swift */,
 				8159711D1DA8C55B00D8C381 /* PQIndexCellBottomView.swift */,
+				04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */,
+				04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -766,6 +772,7 @@
 				81FC6E5F1D8690D20028F927 /* PQIndexTableVC.swift in Sources */,
 				81FC6E671D86919E0028F927 /* PQBaseTableVC.swift in Sources */,
 				81FC6E6C1D86969C0028F927 /* PQNullTableVC.swift in Sources */,
+				04692C611DAE2EC9009AC361 /* PQIndexCellTopView.swift in Sources */,
 				816752D71D925EFC009A54F0 /* PQQRcodeViewController.swift in Sources */,
 				81F451101DAA5E09007EF6F6 /* PQModalShowSizeController.swift in Sources */,
 				81F6956F1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift in Sources */,
@@ -789,6 +796,7 @@
 				815971201DA8D44700D8C381 /* PQStatusesModel.swift in Sources */,
 				818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */,
 				81332F7B1D990AB200D37AE5 /* String-DirCategory.swift in Sources */,
+				04692C5F1DAE2A5A009AC361 /* PQIndexCellPictureView.swift in Sources */,
 				81F451141DAA61B2007EF6F6 /* PQFromLeftAnimation.swift in Sources */,
 				810112841DA9EA7D00A1108F /* PQDIYButton.swift in Sources */,
 				815971241DA8E68A00D8C381 /* NSDate+Category.swift in Sources */,

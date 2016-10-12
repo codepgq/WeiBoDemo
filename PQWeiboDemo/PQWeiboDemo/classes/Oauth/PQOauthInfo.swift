@@ -9,7 +9,7 @@
 import UIKit
 
 // 这里删除了NSCoding swift-3.0
-class PQOauthInfo: NSObject  {
+class PQOauthInfo: NSObject ,NSCoding {
     /// string 	用户授权的唯一票据，用于调用微博的开放接口，同时也是第三方应用验证微博用户登录的唯一票据，第三方应用应该用该票据和自己应用内的用户建立唯一影射关系，来识别登录状态，不能使用本返回值里的UID字段来做登录识别。
     var access_token :  String?
     
@@ -47,14 +47,16 @@ class PQOauthInfo: NSObject  {
     /**
      防止未找到对应的属性出错
      */
-    func setValue(value: AnyObject?, forUndefinedKey key: String) {}
-    
+//    func setValue(value: AnyObject?, forUndefinedKey key: String) {}
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
     
     func loadUserInfo(finished : @escaping (_ account: PQOauthInfo? , _ error : NSError?) -> Void){
         let url = "users/show.json"
         let params = ["access_token":access_token!,"uid":uid!]
         
-        PQNetWorkManager.shareNetWorkManager().get(url, parameters: params, success: { (_, JSON) in
+
+        
+        PQNetWorkManager.shareNetWorkManager().get(url, parameters: params,progress: nil, success: { (_, JSON) in
             let rResult = JSON as! [String : Any]
             self.avatar_large = rResult["avatar_large"] as? String
             self.name = rResult["name"] as? String;
@@ -103,7 +105,9 @@ class PQOauthInfo: NSObject  {
      Mark - NSCoding
      */
      ///归档
-    func encodeWithCoder(aCoder: NSCoder){
+    
+    
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(access_token, forKey: "access_token")
         aCoder.encode(expires_in, forKey: "expires_in")
         aCoder.encode(uid, forKey: "uid")
@@ -112,7 +116,7 @@ class PQOauthInfo: NSObject  {
         aCoder.encode(name , forKey: "name")
     }
      ///解归档
-    required init?(coder aDecoder: NSCoder){
+    required init?(coder aDecoder: NSCoder) {
         access_token = aDecoder.decodeObject(forKey: "access_token") as? String
         expires_in = aDecoder.decodeObject(forKey: "expires_in") as? NSNumber
         expires_date = aDecoder.decodeObject(forKey: "expires_date") as? NSDate

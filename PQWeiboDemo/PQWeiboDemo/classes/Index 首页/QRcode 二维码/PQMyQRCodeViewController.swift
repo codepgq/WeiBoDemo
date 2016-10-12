@@ -19,7 +19,7 @@ class PQMyQRCodeViewController: UIViewController {
         myQRCode.image = createQRCode()
     }
     
-    func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -34,7 +34,7 @@ class PQMyQRCodeViewController: UIViewController {
         // 3、设置需要生成二维码的数据
         filter?.setValue("纸巾艺术".data(using: String.Encoding.utf8), forKey: "inputMessage")
         // 4、从滤镜中取出生成好的图片 到这里就能获取到生成好的二维码了，但是非常模糊，需要生成高清的
-        let bgImage = createNonInterpolatedUIImageFormCIImage(image: (filter?.outputImage)!, size: 500)
+//        let bgImage = createNonInterpolatedUIImageFormCIImage(image: (filter?.outputImage)!, size: 500)
         
         
        
@@ -55,6 +55,7 @@ class PQMyQRCodeViewController: UIViewController {
     }
     
     private func mergeImageWith(bgImage:UIImage,foreImage:UIImage) -> UIImage{
+        
         //1、开启上下文
         UIGraphicsBeginImageContext(bgImage.size)
         //2、绘制背景图
@@ -91,8 +92,8 @@ class PQMyQRCodeViewController: UIViewController {
         let cs: CGColorSpace = CGColorSpaceCreateDeviceGray()
         let bitmapRef = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: cs, bitmapInfo: 0)!
         
-        let context = CIContext(options: nil)
-        let bitmapImage: CGImage = context.createCGImage(image, from: extent)!
+//        let context = CIContext(options: nil)
+//        let bitmapImage: CGImage = context.createCGImage(image, from: extent)!
         
         bitmapRef.interpolationQuality = CGInterpolationQuality.none
         bitmapRef.scaleBy(x: scale, y: scale);

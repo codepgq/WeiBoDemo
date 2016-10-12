@@ -28,8 +28,8 @@ class PQIndexTableVC: PQBaseTableVC {
         // 2、提前注册cell
         tableView.register(PQIndexTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
 //        tableView.rowHeight = 200
-        tableView.estimatedRowHeight = 200
-        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = 200
+//        tableView.rowHeight = UITableViewAutomaticDimension
         
         // 3、下载数据
         downloadData()
@@ -128,26 +128,30 @@ class PQIndexTableVC: PQBaseTableVC {
     private lazy var navigatorCenter : PQDIYButton = PQDIYButton.createButton(dict: ["title":PQOauthInfo.loadAccoutInfo()!.name! as AnyObject,"image":"navigationbar_arrow_down" as AnyObject,"selected":"navigationbar_arrow_up" as AnyObject,"textColor":UIColor.lightGray], type: PQButtonLayoutType.LeftTextRightImage, target: self, selector: #selector(PQIndexTableVC.centerBtnClick))
     
     lazy var modalAnimation : PQModalAnimation = {
-        let modal = PQModalAnimation(direction: PQAnimationDirection.left)
+        let modal = PQModalAnimation(direction: PQAnimationDirection.bottom)
         modal.presentFrame.size.height = 305
         return modal
     }()
     
+    
+    //行高
+    var cellRowHeight : [Int : Any] = Dictionary()
 }
 
 extension PQIndexTableVC{
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return statuses?.count ?? 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath) as! PQIndexTableViewCell
-        cell.oauthInfo = statuses![indexPath.row]
-        cell.showMenu = { (cell : PQIndexTableViewCell) -> Void in
+        cell.statuses = statuses![indexPath.row]
+        cell.showMenu = { (cell : PQIndexCellTopView) -> Void in
             
             let vc = PQActionSheetVC.loadForStoryboard()
             vc.transitioningDelegate = self.modalAnimation
@@ -157,7 +161,25 @@ extension PQIndexTableVC{
         return cell
     }
     
-    
+    // 缓存行高
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let statu = statuses![indexPath.row]
+        
+        // 先从字典里面获取 获取成功就返回
+        if let rowHeight = cellRowHeight[statu.id] {
+            print("从里面拿的 - \(rowHeight)")
+            return rowHeight as! CGFloat
+        }
+        
+        // 获取失败 自己计算一次 在返回前先存入字典 在返回行高
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! PQIndexTableViewCell
+        let height = cell.rowHeight(statuses: statu)
+        cellRowHeight[statu.id] = height
+        print("自己计算的的 - \(height)")
+        return height
+        
+    }
 }
 
 

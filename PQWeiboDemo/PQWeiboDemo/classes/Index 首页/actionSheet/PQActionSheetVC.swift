@@ -22,8 +22,4 @@ class PQActionSheetVC: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        dismiss(animated: true, completion: nil)
-    }
 }

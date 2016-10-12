@@ -30,7 +30,7 @@ public enum pq_AlignType {
     case CenterRight
     case Center
     
-    func layoutAttributes(isInner: Bool, isVertical: Bool) -> PQ_LayoutAttributes {
+    @discardableResult func layoutAttributes(isInner: Bool, isVertical: Bool) -> PQ_LayoutAttributes {
         let attributes = PQ_LayoutAttributes()
         
         switch self {
@@ -111,7 +111,7 @@ extension UIView {
     
     :returns: 约束数组
     */
-    public func pq_fill(referView: UIView, insets: UIEdgeInsets = UIEdgeInsets.zero) -> [NSLayoutConstraint] {
+    @discardableResult public func pq_fill(referView: UIView, insets: UIEdgeInsets = UIEdgeInsets.zero) -> [NSLayoutConstraint] {
         translatesAutoresizingMaskIntoConstraints = false
         
         var cons = [NSLayoutConstraint]()
@@ -134,7 +134,7 @@ extension UIView {
     
     :returns: 约束数组
     */
-    public func pq_AlignInner(type: pq_AlignType, referView: UIView, size: CGSize?, offset: CGPoint = CGPoint.zero) -> [NSLayoutConstraint]  {
+    @discardableResult public func pq_AlignInner(type: pq_AlignType, referView: UIView, size: CGSize?, offset: CGPoint = CGPoint.zero) -> [NSLayoutConstraint]  {
         
         return pq_AlignLayout(referView: referView, attributes: type.layoutAttributes(isInner: true, isVertical: true), size: size, offset: offset)
     }
@@ -149,7 +149,7 @@ extension UIView {
     
     :returns: 约束数组
     */
-    public func pq_AlignVertical(type: pq_AlignType, referView: UIView, size: CGSize?, offset: CGPoint = CGPoint.zero) -> [NSLayoutConstraint] {
+    @discardableResult public func pq_AlignVertical(type: pq_AlignType, referView: UIView, size: CGSize?, offset: CGPoint = CGPoint.zero) -> [NSLayoutConstraint] {
         
         return pq_AlignLayout(referView: referView, attributes: type.layoutAttributes(isInner: false, isVertical: true), size: size, offset: offset)
     }
@@ -164,7 +164,7 @@ extension UIView {
     
     :returns: 约束数组
     */
-    public func pq_AlignHorizontal(type: pq_AlignType, referView: UIView, size: CGSize?, offset: CGPoint = CGPoint.zero) -> [NSLayoutConstraint] {
+    @discardableResult public func pq_AlignHorizontal(type: pq_AlignType, referView: UIView, size: CGSize?, offset: CGPoint = CGPoint.zero) -> [NSLayoutConstraint] {
         
         return pq_AlignLayout(referView: referView, attributes: type.layoutAttributes(isInner: false, isVertical: false), size: size, offset: offset)
     }
@@ -177,7 +177,7 @@ extension UIView {
     
     :returns: 约束数组
     */
-    public func pq_HorizontalTile(views: [UIView], insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+    @discardableResult public func pq_HorizontalTile(views: [UIView], insets: UIEdgeInsets) -> [NSLayoutConstraint] {
         
         assert(!views.isEmpty, "views should not be empty")
         
@@ -211,7 +211,7 @@ extension UIView {
     
     :returns: 约束数组
     */
-    public func pq_VerticalTile(views: [UIView], insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+    @discardableResult public func pq_VerticalTile(views: [UIView], insets: UIEdgeInsets) -> [NSLayoutConstraint] {
         
         assert(!views.isEmpty, "views should not be empty")
         
@@ -246,7 +246,7 @@ extension UIView {
     
     :returns: 对应的约束
     */
-    public func pq_Constraint(constraintsList: [NSLayoutConstraint], attribute: NSLayoutAttribute) -> NSLayoutConstraint? {
+    @discardableResult public func pq_Constraint(constraintsList: [NSLayoutConstraint], attribute: NSLayoutAttribute) -> NSLayoutConstraint? {
         for constraint in constraintsList {
             if constraint.firstItem as! NSObject == self && constraint.firstAttribute == attribute {
                 return constraint
@@ -364,14 +364,14 @@ class PQ_LayoutAttributes {
         self.referVertical = referVertical
     }
     
-    func horizontals(from: NSLayoutAttribute, to: NSLayoutAttribute) -> Self {
+    @discardableResult func horizontals(from: NSLayoutAttribute, to: NSLayoutAttribute) -> Self {
         horizontal = from
         referHorizontal = to
         
         return self
     }
     
-    func verticals(from: NSLayoutAttribute, to: NSLayoutAttribute) -> Self {
+    @discardableResult func verticals(from: NSLayoutAttribute, to: NSLayoutAttribute) -> Self {
         vertical = from
         referVertical = to
         

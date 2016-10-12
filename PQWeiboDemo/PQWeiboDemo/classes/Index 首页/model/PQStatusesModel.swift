@@ -113,7 +113,7 @@ class PQStatusesModel: NSObject {
         let url = "2/statuses/home_timeline.json"
         let params = ["access_token":PQOauthInfo.loadAccoutInfo()!.access_token!]        
         PQNetWorkManager.shareNetWorkManager().get(url, parameters: params, progress: nil, success: { (_, JSON) in
-            print(JSON)
+//            print(JSON)
             
             // 取出statuses 对应的数组
             // 遍历数组，将字典转模型
@@ -151,6 +151,7 @@ class PQStatusesModel: NSObject {
             // 2、缓存图片
             for url in urls {
                 // 2.1 把任务加入线程组中
+                print("开始换成")
                 group.enter()
                 // 2.2 开始下载
                 SDWebImageManager.shared().downloadImage(with: url as URL!, options: SDWebImageOptions(rawValue:0), progress: nil, completed: { (_, _, _, _, _) in
@@ -160,19 +161,20 @@ class PQStatusesModel: NSObject {
             }
         }
         // 3、当组内所有图片缓存完成就会通知
-       group.notify(queue: DispatchQueue.main) { 
+       group.notify(queue: DispatchQueue.main) {
+            print("换成图片OK")
             finished(list,nil)
         }
         
     }
     
-    init(dict : [String : AnyObject]) {
+    init(dict : [String : Any]) {
         super.init()
         
         setValuesForKeys(dict)
     }
     
-    func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         // 1、判断当前是否是在为user赋值
         if "user" == key {
             //解析用户信息
@@ -189,7 +191,7 @@ class PQStatusesModel: NSObject {
         super.setValue(value, forKey: key)
     }
     
-    func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        
     }
-    
 }

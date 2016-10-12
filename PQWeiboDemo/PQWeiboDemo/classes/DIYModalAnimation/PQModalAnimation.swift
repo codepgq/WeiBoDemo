@@ -58,14 +58,13 @@ class PQModalAnimation: NSObject, UIViewControllerTransitioningDelegate,UIViewCo
      
      - returns: 谁来负责
      */
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?{
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.presented = presented
         isPresent = true
         //发送将要显示通知
         NotificationCenter.default.post(name : NSNotification.Name(rawValue: PQModalAnimationWillShowKey), object: nil)
         
         return self
-        
     }
     
     /**
@@ -75,7 +74,7 @@ class PQModalAnimation: NSObject, UIViewControllerTransitioningDelegate,UIViewCo
      
      - returns: 谁来负责
      */
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?{
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresent = false
         //发送将要消失通知
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: PQModalAnimationWillCloseKey), object: nil)

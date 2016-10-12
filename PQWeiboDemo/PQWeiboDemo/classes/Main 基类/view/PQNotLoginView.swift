@@ -73,7 +73,7 @@ class PQNotLoginView: UIView {
         registerBtn.pq_AlignVertical(type: pq_AlignType.BottomRight, referView: messageLabel, size: CGSize(width : 100, height : 35),offset: CGPoint(x: 0, y: 10))
         
         //设置蒙版
-        smalliconMask.pq_fill(referView: self)
+        smalliconMask.pq_fill( referView: self)
         
         //开始动画
         startAnimation()

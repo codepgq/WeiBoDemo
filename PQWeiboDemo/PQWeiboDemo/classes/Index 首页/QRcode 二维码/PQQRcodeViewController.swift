@@ -124,7 +124,7 @@ class PQQRcodeViewController: UIViewController ,AVCaptureMetadataOutputObjectsDe
     
     
     @objc private func qrCodeLeftCloceClick(){
-        navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
     }
     
     @objc private func qrCodeRightPhotoClick(){
@@ -185,9 +185,10 @@ class PQQRcodeViewController: UIViewController ,AVCaptureMetadataOutputObjectsDe
 
 //代理
 extension PQQRcodeViewController{
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!){
+    
+    @objc(captureOutput:didOutputMetadataObjects:fromConnection:) func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         //输出数据
-        print(metadataObjects.last?.stringValue)
+        print((metadataObjects.last as AnyObject))
         
         lineShapeLayer.path = nil
         
@@ -199,6 +200,8 @@ extension PQQRcodeViewController{
             }
         }
     }
+    
+
     
     
     private func drawConners(codeObject: AVMetadataMachineReadableCodeObject){

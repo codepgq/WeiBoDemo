@@ -30,7 +30,7 @@ class PQPopverAnimation: NSObject ,UIViewControllerTransitioningDelegate,UIViewC
      
      - returns:
      */
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController?{
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let pc = PQPopverPresentationController(presentedViewController: presented, presenting: presenting)
         pc.presentFrame = presentFrame
         return pc
@@ -45,8 +45,7 @@ class PQPopverAnimation: NSObject ,UIViewControllerTransitioningDelegate,UIViewC
      
      - returns: 谁来负责
      */
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?{
-        
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresent = true
         //发送将要显示通知
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: popoverViewWillShow), object: nil)
@@ -61,8 +60,7 @@ class PQPopverAnimation: NSObject ,UIViewControllerTransitioningDelegate,UIViewC
      
      - returns: 谁来负责
      */
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?{
-        
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresent = false
         //发送将要消失通知
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: popoverViewWillShow), object: nil)

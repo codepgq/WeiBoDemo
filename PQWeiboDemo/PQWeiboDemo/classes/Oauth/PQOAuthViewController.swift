@@ -10,16 +10,17 @@ import UIKit
 import WebKit
 import SVProgressHUD
 
-class PQOAuthViewController: UIViewController,UIWebViewDelegate {
+class PQOAuthViewController: UIViewController{
     
-    private var webView : UIWebView = {
+    private lazy var webView : UIWebView = {
         let web = UIWebView(frame: UIScreen.main.bounds)
+        web.delegate = self
         return web
     }()
     
 //    private lazy var webView : WKWebView = {
 //        let web = WKWebView(frame: UIScreen.main.bounds)
-//        web.uiDelegate = self
+//        web.navigationDelegate = self
 //        return web
 //    }()
     
@@ -30,7 +31,6 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
     
     // 1、把当前的View替换成为webView
     override func loadView() {
-        webView.delegate = self
         view = webView
     }
     
@@ -58,10 +58,13 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
     }
     
     private func setUpWebView(){
-//        webView.delegate = self
         let url = NSURL.init(string: "https://api.weibo.com/oauth2/authorize?client_id=\(WB_App_ID)&redirect_uri=\(WB_redirect_uri)")
         let request = NSURLRequest(url: url! as URL)
+        
         webView.loadRequest(request as URLRequest)
+        
+        //WKWebView
+//        webView.load(request as URLRequest)
     }
     
     
@@ -75,22 +78,30 @@ class PQOAuthViewController: UIViewController,UIWebViewDelegate {
     }
 }
 
-extension PQOAuthViewController {
+
+// WKWebView delegate
+extension PQOAuthViewController : WKNavigationDelegate{
     
-    func webViewDidStartLoad(webView: UIWebView) {
+}
+
+
+// UIWebView
+extension PQOAuthViewController : UIWebViewDelegate{
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
         SVProgressHUD.show(withStatus: "正在加载……")
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         SVProgressHUD.dismiss()
     }
     
     // 加载失败
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         close()
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         // 这里做跳转处理
         print(request.url?.absoluteString)
         
@@ -104,11 +115,13 @@ extension PQOAuthViewController {
         //如果成功了表示点击了授权
         let codeStr = "code="
         if request.url!.query!.hasPrefix(codeStr) {
-            //这句就是先比较code=，然后从最后一个取出Qequest_Token
-            let code = request.url!.query?.substring(to: codeStr.endIndex)
+            //这句就是先比较code=，然后从最后一个取出request_Token
+//            print("...........\(request.url?.query?.substring(from: codeStr.endIndex))")
+            let code = request.url!.query?.substring(from: codeStr.endIndex)
             
             //利用以及授权的RequestToken 换区 AccessToken
             loadAccessToken(code: code!)
+            
         }
         else{//点击取消授权了
             close()
@@ -117,16 +130,24 @@ extension PQOAuthViewController {
     }
     
     
-    // 用以及授权的RequestToken换取AccessToken
+    // 用已经授权的RequestToken换取AccessToken
     private func loadAccessToken(code :String){
         // 1、定义路径
         let url = "oauth2/access_token"
         
         // 2、包装参数
-        let parames = ["client_id":WB_App_ID,"client_secret":WB_App_Secret,"grant_type":"authorization_code","code":code,"redirect_uri":WB_redirect_uri]
+        let parames = [
+            "client_id":WB_App_ID,
+            "client_secret":WB_App_Secret,
+            "grant_type":"authorization_code",
+            "code":code,
+            "redirect_uri":WB_redirect_uri
+        ]
 
         // 3、发送请求
-        PQNetWorkManager.shareNetWorkManager().post(url, parameters: parames, success: { (_, JSON) in
+        
+        PQNetWorkManager.shareNetWorkManager().post(url, parameters: parames, progress: nil, success: { (_, JSON) in
+            
             print(JSON)
             
             let account = PQOauthInfo(dict: JSON as! [String:AnyObject] as NSDictionary)
@@ -143,9 +164,9 @@ extension PQOAuthViewController {
                 }
             })
             
-        }) { (_, error) in
-                
-                print(error)
+            }) { (_, error) in
+                 print(error)
         }
+        
     }
 }
