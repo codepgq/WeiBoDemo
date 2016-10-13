@@ -11,11 +11,11 @@ import SDWebImage
 
 class PQIndexTableViewCell: UITableViewCell {
     /// 保存配图宽度约束
-    private var pictureViewWidthCons : NSLayoutConstraint?
+    var pictureViewWidthCons : NSLayoutConstraint?
     /// 保存配图高度约束
-    private var pictureViewHeightCons : NSLayoutConstraint?
+    var pictureViewHeightCons : NSLayoutConstraint?
     /// 保存配图顶部约束
-    private var pictureViewTopCons : NSLayoutConstraint?
+    var pictureViewTopCons : NSLayoutConstraint?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,7 +43,7 @@ class PQIndexTableViewCell: UITableViewCell {
         contentLabel.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: topView, size: nil, offset: CGPoint(x: 10, y: 10))
         
         // 配图
-        let cons = pictureView.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: contentLabel, size: nil, offset: CGPoint(x: 0, y: 10))
+        let cons = pictureView.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: contentLabel, size: CGSize.zero, offset: CGPoint(x: 0, y: 10))
         
         // 获取配图的宽度
         pictureViewWidthCons = pictureView.pq_Constraint(constraintsList: cons, attribute: NSLayoutAttribute.width)
@@ -71,8 +71,11 @@ class PQIndexTableViewCell: UITableViewCell {
             // 配图
             pictureView.statuses = statuses
             let size = pictureView.carculatePictSize(statu: statuses!)
-            pictureViewWidthCons?.constant = size.pictSize.width
-            pictureViewHeightCons?.constant = size.pictSize.height
+            pictureViewWidthCons?.constant = size.width
+            pictureViewHeightCons?.constant = size.height
+            layoutIfNeeded()
+            print(size,pictureView.frame)
+            
             
             
             // 更新👍 转发 工具栏
@@ -106,10 +109,10 @@ class PQIndexTableViewCell: UITableViewCell {
     }()
     
     /// 配图
-    private var pictureView : PQIndexCellPictureView = PQIndexCellPictureView()
+    private lazy var pictureView : PQIndexCellPictureView = PQIndexCellPictureView()
     
     // 底部按钮
-    private var bottomView : PQIndexCellBottomView = PQIndexCellBottomView()
+    private lazy var bottomView : PQIndexCellBottomView = PQIndexCellBottomView()
     
     
     required init?(coder aDecoder: NSCoder) {

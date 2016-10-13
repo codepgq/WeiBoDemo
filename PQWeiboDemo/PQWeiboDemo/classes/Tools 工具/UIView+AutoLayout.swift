@@ -116,8 +116,10 @@ extension UIView {
         
         var cons = [NSLayoutConstraint]()
         
-        cons += NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(insets.left)-[subView]-\(insets.right)-|", options: NSLayoutFormatOptions.alignAllLastBaseline, metrics: nil, views: ["subView" : self])
-        cons += NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(insets.top)-[subView]-\(insets.bottom)-|", options: NSLayoutFormatOptions.alignAllLastBaseline, metrics: nil, views: ["subView" : self])
+        cons += NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(insets.left)-[subView]-\(insets.right)-|", options: NSLayoutFormatOptions.alignAllFirstBaseline, metrics: nil, views: ["subView" : self])
+        cons += NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(insets.top)-[subView]-\(insets.bottom)-|", options: NSLayoutFormatOptions.alignAllFirstBaseline, metrics: nil, views: ["subView" : self])
+        
+//        NSLayoutFormatOptions.alignAllFirstBaseline
         
         superview?.addConstraints(cons)
         
@@ -246,7 +248,7 @@ extension UIView {
     
     :returns: 对应的约束
     */
-    @discardableResult public func pq_Constraint(constraintsList: [NSLayoutConstraint], attribute: NSLayoutAttribute) -> NSLayoutConstraint? {
+    public func pq_Constraint(constraintsList: [NSLayoutConstraint], attribute: NSLayoutAttribute) -> NSLayoutConstraint? {
         for constraint in constraintsList {
             if constraint.firstItem as! NSObject == self && constraint.firstAttribute == attribute {
                 return constraint

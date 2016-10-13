@@ -136,6 +136,12 @@ class PQIndexTableVC: PQBaseTableVC {
     
     //行高
     var cellRowHeight : [Int : Any] = Dictionary()
+    
+    //当发生内存警告时，删除所有的缓存行高
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        cellRowHeight.removeAll()
+    }
 }
 
 extension PQIndexTableVC{
@@ -168,7 +174,7 @@ extension PQIndexTableVC{
         
         // 先从字典里面获取 获取成功就返回
         if let rowHeight = cellRowHeight[statu.id] {
-            print("从里面拿的 - \(rowHeight)")
+//            print("从里面拿的 - \(rowHeight)")
             return rowHeight as! CGFloat
         }
         
@@ -176,7 +182,7 @@ extension PQIndexTableVC{
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! PQIndexTableViewCell
         let height = cell.rowHeight(statuses: statu)
         cellRowHeight[statu.id] = height
-        print("自己计算的的 - \(height)")
+//        print("自己计算的的 - \(height)")
         return height
         
     }

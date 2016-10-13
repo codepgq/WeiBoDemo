@@ -151,7 +151,7 @@ class PQStatusesModel: NSObject {
             // 2、缓存图片
             for url in urls {
                 // 2.1 把任务加入线程组中
-                print("开始换成")
+//                print("开始缓存")
                 group.enter()
                 // 2.2 开始下载
                 SDWebImageManager.shared().downloadImage(with: url as URL!, options: SDWebImageOptions(rawValue:0), progress: nil, completed: { (_, _, _, _, _) in
@@ -162,7 +162,7 @@ class PQStatusesModel: NSObject {
         }
         // 3、当组内所有图片缓存完成就会通知
        group.notify(queue: DispatchQueue.main) {
-            print("换成图片OK")
+//            print("缓存图片OK")
             finished(list,nil)
         }
         
