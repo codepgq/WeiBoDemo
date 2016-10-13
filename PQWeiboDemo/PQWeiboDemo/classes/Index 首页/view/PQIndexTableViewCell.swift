@@ -9,6 +9,15 @@
 import UIKit
 import SDWebImage
 
+public enum PQIndexCellIdentifier : String{
+    case normal = "IndexCellNormal"
+    case forward = "IndexCellforward"
+    
+    static func cellID(status : PQStatusesModel) -> String{
+        return status.retweeted_status != nil ? forward.rawValue : normal.rawValue
+    }
+}
+
 class PQIndexTableViewCell: UITableViewCell {
     /// 保存配图宽度约束
     var pictureViewWidthCons : NSLayoutConstraint?
@@ -23,7 +32,7 @@ class PQIndexTableViewCell: UITableViewCell {
         setUP()
     }
     
-    private func setUP(){
+    func setUP(){
         contentView.addSubview(backgroundImage)
         contentView.addSubview(topView)
         contentView.addSubview(contentLabel)
@@ -42,20 +51,8 @@ class PQIndexTableViewCell: UITableViewCell {
         //正文
         contentLabel.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: topView, size: nil, offset: CGPoint(x: 10, y: 10))
         
-        // 配图
-        let cons = pictureView.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: contentLabel, size: CGSize.zero, offset: CGPoint(x: 0, y: 10))
-        
-        // 获取配图的宽度
-        pictureViewWidthCons = pictureView.pq_Constraint(constraintsList: cons, attribute: NSLayoutAttribute.width)
-        // 获取配图的高度
-        pictureViewWidthCons = pictureView.pq_Constraint(constraintsList: cons, attribute: NSLayoutAttribute.height)
-        // 获取配图的顶部距离
-        pictureViewWidthCons = pictureView.pq_Constraint(constraintsList: cons, attribute: NSLayoutAttribute.top)
-        
 //        //底部按钮
         bottomView.pq_AlignVertical(type: pq_AlignType.BottomLeft, referView: pictureView, size: CGSize(width: UIScreen.main.bounds.width, height: 44), offset: CGPoint(x: -10, y: 10))
-        
-//        bottomView.pq_AlignInner(type: pq_AlignType.BottomRight, referView: contentView, size: nil, offset: CGPoint(x: -10, y: -10))
         
     }
     
@@ -69,14 +66,12 @@ class PQIndexTableViewCell: UITableViewCell {
             contentLabel.text = statuses?.text
             
             // 配图
-            pictureView.statuses = statuses
-            let size = pictureView.carculatePictSize(statu: statuses!)
+            pictureView.statuses = statuses?.retweeted_status != nil ? statuses?.retweeted_status : statuses
+            let size = pictureView.carculatePictSize()
             pictureViewWidthCons?.constant = size.width
             pictureViewHeightCons?.constant = size.height
-            layoutIfNeeded()
-            print(size,pictureView.frame)
             
-            
+            pictureViewTopCons?.constant = size.height == 0 ? 0 : 10
             
             // 更新👍 转发 工具栏
             bottomView.updateTitle(forward: statuses?.repostsString, comment: statuses?.commentsString, zan: statuses?.attitudesString)
@@ -101,7 +96,7 @@ class PQIndexTableViewCell: UITableViewCell {
     private lazy var topView : PQIndexCellTopView =  PQIndexCellTopView()
     
     // 正文
-    private lazy var contentLabel : UILabel = {
+    lazy var contentLabel : UILabel = {
        let label = UILabel.createLabelWithFontSize(fontSize: 14, textColor: UIColor.darkGray)
         label.numberOfLines = 0
         label.preferredMaxLayoutWidth = UIScreen.main.bounds.width - 20
@@ -109,20 +104,12 @@ class PQIndexTableViewCell: UITableViewCell {
     }()
     
     /// 配图
-    private lazy var pictureView : PQIndexCellPictureView = PQIndexCellPictureView()
+    lazy var pictureView : PQIndexCellPictureView = PQIndexCellPictureView()
     
     // 底部按钮
-    private lazy var bottomView : PQIndexCellBottomView = PQIndexCellBottomView()
-    
+    lazy var bottomView : PQIndexCellBottomView = PQIndexCellBottomView()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
-
-
-
-
-
-

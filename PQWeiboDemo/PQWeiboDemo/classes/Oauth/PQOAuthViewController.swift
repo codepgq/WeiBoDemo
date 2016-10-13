@@ -148,7 +148,7 @@ extension PQOAuthViewController : UIWebViewDelegate{
         
         PQNetWorkManager.shareNetWorkManager().post(url, parameters: parames, progress: nil, success: { (_, JSON) in
             
-            print(JSON)
+//            print(JSON)
             
             let account = PQOauthInfo(dict: JSON as! [String:AnyObject] as NSDictionary)
             print(account)

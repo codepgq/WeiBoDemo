@@ -70,17 +70,17 @@ class PQTabBarController: UITabBarController {
                     //添加controller
                     addViewControllerToTabBar(vc: controller,imageNamed: dict["imageNamed"]!,title: dict["title"]!)
                 }
-                print("create for Network")
+//                print("create for Network")
             }
             catch{
                 //如果解析json数据出错了，从本地创建controller
                 createLocalController()
-                print("create for Network")
+//                print("create for Network")
             }
         }
         else{//如果获取json数据失败了，从本地创建
             createLocalController()
-            print("create for Network")
+//            print("create for Network")
         }
     }
     

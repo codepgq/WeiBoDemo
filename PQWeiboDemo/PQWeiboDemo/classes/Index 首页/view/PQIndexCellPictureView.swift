@@ -19,7 +19,7 @@ class PQIndexCellPictureView: UICollectionView {
     
     let pictureReuseIdentifier = "pictureReuseIdentifier"
     
-    private var layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+   let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
     init(){
         super.init(frame: CGRect.zero, collectionViewLayout: layout)
@@ -39,45 +39,54 @@ class PQIndexCellPictureView: UICollectionView {
         //设置cell间隙
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-        
-        
+        contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
         //设置背景颜色
-        backgroundColor = UIColor.darkGray
+        backgroundColor = UIColor(white: 0, alpha: 0.2)
     }
     
     //计算大小的
-    func carculatePictSize(statu : PQStatusesModel) -> CGSize {
+    func carculatePictSize() -> CGSize {
         
-        // 1、判断是否有配图
-        if statu.pictureURLS == nil || statu.pictureURLS?.count == 0 {
+        // 1.取出配图个数
+        let count = statuses?.storedPicURLS?.count
+        // 2.如果没有配图zero
+        if count == 0 || count == nil
+        {
             return CGSize.zero
         }
-        
-        //设置每个item的size
-        layout.itemSize = CGSize(width: 90, height: 90)
-        
-        // 2、如果有一张配图 返回图片大小比例
-        if statu.pictureURLS?.count == 1 {
-            let key = statu.pictureURLS?.first?.absoluteString
+        // 3.如果只有一张配图, 返回图片的实际大小
+        if count == 1
+        {
+            // 3.1取出缓存的图片
+            let key = statuses?.storedPicURLS!.first?.absoluteString
             let image = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: key!)
-            let size = CGSize(width: (image?.size.width)!, height: (image?.size.height)!)
-            return size
+            
+            layout.itemSize = (image?.size)!
+            // 3.2返回缓存图片的尺寸
+            return image!.size
+        }
+        // 4.如果有4张配图, 计算田字格的大小
+        let width = 90
+        let margin = 15
+        layout.itemSize = CGSize(width: width, height: width)
+        
+        if count == 4
+        {
+            let viewWidth = width * 2 + margin
+            return CGSize(width: viewWidth, height: viewWidth)
         }
         
-        let width = 90.0
-        let spaceing = 10.0
-        // 3、如果有四张配图 返回田字风格大小
-        if statu.pictureURLS?.count == 4 {
-            let size = CGSize(width: (width + spaceing) * 2, height: (width + spaceing) * 2)
-            return size
-        }
-        
-        // 4、都按九宫格计算
+        // 5.如果是其它(多张), 计算九宫格的大小
+        // 5.1计算列数
         let colNumber = 3
-        let row = statu.pictureURLS!.count / colNumber
-        let size = CGSize(width: (width + spaceing) * 3, height: Double(row) * (width + spaceing))
-        return size
+        // 5.2计算行数
+        let rowNumber = (count! - 1) / 3 + 1
+        // 宽度 = 列数 * 图片的宽度 + (列数 - 1) * 间隙
+        let viewWidth = colNumber * width + (colNumber - 1) * margin
+        // 高度 = 行数 * 图片的高度 + (行数 - 1) * 间隙
+        let viewHeight = rowNumber * width + (rowNumber - 1) * margin
+        return CGSize(width: viewWidth, height: viewHeight)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -96,10 +105,8 @@ extension PQIndexCellPictureView : UICollectionViewDelegate,UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: pictureReuseIdentifier, for: indexPath) as! PQIndexCellPictureViewCell
         
-        
         cell.imageURL =  statuses!.pictureURLS![indexPath.item] as URL
         
-        print("image url - \(statuses!.pictureURLS![indexPath.item] )")
         return cell
     }
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044EC3801DAF380D00702F8D /* PQIndexTableViewNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EC37F1DAF380D00702F8D /* PQIndexTableViewNormalCell.swift */; };
+		044EC3821DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EC3811DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift */; };
 		04692C5F1DAE2A5A009AC361 /* PQIndexCellPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */; };
 		04692C611DAE2EC9009AC361 /* PQIndexCellTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */; };
 		04FAAAE61DACE85D00843E0B /* UIButton+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */; };
@@ -78,6 +80,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		044EC37F1DAF380D00702F8D /* PQIndexTableViewNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexTableViewNormalCell.swift; sourceTree = "<group>"; };
+		044EC3811DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexTableViewForwardCell.swift; sourceTree = "<group>"; };
 		04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexCellPictureView.swift; sourceTree = "<group>"; };
 		04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexCellTopView.swift; sourceTree = "<group>"; };
 		04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Category.swift"; sourceTree = "<group>"; };
@@ -413,6 +417,8 @@
 				8159711D1DA8C55B00D8C381 /* PQIndexCellBottomView.swift */,
 				04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */,
 				04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */,
+				044EC37F1DAF380D00702F8D /* PQIndexTableViewNormalCell.swift */,
+				044EC3811DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -771,6 +777,7 @@
 				81B91CED1D8FC329001CBA60 /* PQPopverAnimation.swift in Sources */,
 				81FC6E5F1D8690D20028F927 /* PQIndexTableVC.swift in Sources */,
 				81FC6E671D86919E0028F927 /* PQBaseTableVC.swift in Sources */,
+				044EC3821DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift in Sources */,
 				81FC6E6C1D86969C0028F927 /* PQNullTableVC.swift in Sources */,
 				04692C611DAE2EC9009AC361 /* PQIndexCellTopView.swift in Sources */,
 				816752D71D925EFC009A54F0 /* PQQRcodeViewController.swift in Sources */,
@@ -792,6 +799,7 @@
 				04FAAAE81DACE8E300843E0B /* UILabel+Category.swift in Sources */,
 				81F451161DAA622D007EF6F6 /* PQFromRightAnimation.swift in Sources */,
 				81F4511A1DAA6245007EF6F6 /* PQFromBottomAnimation.swift in Sources */,
+				044EC3801DAF380D00702F8D /* PQIndexTableViewNormalCell.swift in Sources */,
 				815971111DA8861100D8C381 /* PQIndexTableViewCell.swift in Sources */,
 				815971201DA8D44700D8C381 /* PQStatusesModel.swift in Sources */,
 				818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */,

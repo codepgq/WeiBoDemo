@@ -9,9 +9,10 @@
 
 import UIKit
 
+
 class PQIndexTableVC: PQBaseTableVC {
     
-    let cellIdentifier = "IndexTableVCCellKey"
+    
     
     var statuses : [PQStatusesModel]?{
         didSet{
@@ -20,22 +21,17 @@ class PQIndexTableVC: PQBaseTableVC {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // 1、监听通知
+        super.viewDidLoad()        // 1、监听通知
         listenNoti()
         
         // 2、提前注册cell
-        tableView.register(PQIndexTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-//        tableView.rowHeight = 200
-//        tableView.estimatedRowHeight = 200
-//        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(PQIndexTableViewNormalCell.self, forCellReuseIdentifier: PQIndexCellIdentifier.normal.rawValue)
+        tableView.register(PQIndexTableViewForwardCell.self, forCellReuseIdentifier: PQIndexCellIdentifier.forward.rawValue)
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         // 3、下载数据
         downloadData()
     }
-    
-    
     
     //通过通知来改变按钮图片
     @objc private func popMenuNotifaction(){
@@ -59,9 +55,6 @@ class PQIndexTableVC: PQBaseTableVC {
             navigationItem.titleView =  navigatorCenter
         }
     }
-    
-    // 创建一个数据源
-    private var dataSource : TBDataSource?
     
     /**
      下载数据
@@ -155,8 +148,11 @@ extension PQIndexTableVC{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath) as! PQIndexTableViewCell
-        cell.statuses = statuses![indexPath.row]
+        // model
+        let status = statuses![indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: PQIndexCellIdentifier.cellID(status: status), for: indexPath as IndexPath) as! PQIndexTableViewCell
+        cell.statuses = status
         cell.showMenu = { (cell : PQIndexCellTopView) -> Void in
             
             let vc = PQActionSheetVC.loadForStoryboard()
@@ -179,7 +175,7 @@ extension PQIndexTableVC{
         }
         
         // 获取失败 自己计算一次 在返回前先存入字典 在返回行高
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! PQIndexTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PQIndexCellIdentifier.cellID(status: statu)) as! PQIndexTableViewCell
         let height = cell.rowHeight(statuses: statu)
         cellRowHeight[statu.id] = height
 //        print("自己计算的的 - \(height)")

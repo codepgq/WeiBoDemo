@@ -44,8 +44,18 @@ class PQStatusesModel: NSObject {
     var pic_urls: [[String:AnyObject]]?{
         didSet{
             storedPicURLS = [NSURL]()
+            //大图
+            storedLargePicURLS = [NSURL]()
             for dict in pic_urls!{
-                storedPicURLS?.append(NSURL(string: dict["thumbnail_pic"] as! String)!)
+                
+                if let urlStr = dict["thumbnail_pic"] as? NSString{
+                    storedPicURLS?.append(NSURL(string: dict["thumbnail_pic"] as! String)!)
+                    
+                    // 2.处理大图
+                    let largeURLStr =  urlStr.replacingOccurrences(of: "thumbnail", with: "large")
+                    storedLargePicURLS!.append(NSURL(string: largeURLStr)!)
+                }
+                
             }
         }
     }
@@ -117,7 +127,7 @@ class PQStatusesModel: NSObject {
             
             // 取出statuses 对应的数组
             // 遍历数组，将字典转模型
-            let list = (JSON as! [String : Any] ) ["statuses"] as! [[String: AnyObject]]
+            let list = (JSON as! [String : Any] ) ["statuses"] as! [[String: Any]]
             var models = [PQStatusesModel]()
             for dict in list{
                 models.append(PQStatusesModel(dict: dict))
@@ -136,6 +146,11 @@ class PQStatusesModel: NSObject {
     class func loadAllImageCaches(list:[PQStatusesModel],finished : @escaping (_
         models : [PQStatusesModel]? , _ error : NSError?) -> Void){
         
+        if list.count == 0 {
+            finished(list,nil)
+            return
+        }
+        
         print("我要看地址".cacheDir())
         
         //创建一个组用于保证所有的图片下载完成之后通知界面
@@ -144,7 +159,7 @@ class PQStatusesModel: NSObject {
         // 1、缓存图片
         for statuses in list{
             //1.1  判断当前图片数组是否为空
-            guard let urls = statuses.storedPicURLS else {
+            guard let urls = statuses.pictureURLS else {
                 continue
             }
             
@@ -184,6 +199,8 @@ class PQStatusesModel: NSObject {
         
         // 2、判断是否是转发微博，如果是就自己处理
         if "retweeted_status" == key{
+            retweeted_status = PQStatusesModel(dict: value as! Dictionary)
+            
             return
         }
         
