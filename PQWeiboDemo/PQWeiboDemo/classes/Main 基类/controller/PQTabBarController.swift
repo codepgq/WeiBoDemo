@@ -36,8 +36,19 @@ class PQTabBarController: UITabBarController {
     }()
     
     @objc private func addBtnClick(btn:UIButton) {
-        print("btn click")
+        let vc = PQNullTableVC()
+        vc.transitioningDelegate = animation
+        vc.modalPresentationStyle = .custom
+        present(vc, animated: true, completion: nil)
     }
+    
+    private lazy var animation : PQModalAnimation = {
+        let anima = PQModalAnimation(direction: PQAnimationDirection.alpha)
+        anima.presentFrame = PQUtil.screenBounds()
+        anima.animaDuration = 0.5
+        return anima
+    }()
+    
     
     //添加加号按钮
     private func setUpButton(){
@@ -110,18 +121,18 @@ class PQTabBarController: UITabBarController {
     }
     
     ///把字符串转化为类
-    private func stringToController(controller : String , nameSpace : String) -> UITableViewController{
+    private func stringToController(controller : String , nameSpace : String) -> UIViewController{
         //动态创建类，一定要包括 "命名空间." 比如 "PQWeiboDemo."
         let cls : AnyClass =
             NSClassFromString(String(nameSpace + "." + controller))!
         //类型指定
-        let controller = cls as! UITableViewController.Type
+        let controller = cls as! UIViewController.Type
         //创建
         return controller.init()
     }
     
     ///添加controller到tabBarVC
-    private func addViewControllerToTabBar(vc : UITableViewController , imageNamed : String, title : String){
+    private func addViewControllerToTabBar(vc : UIViewController , imageNamed : String, title : String){
         //创建对应的controller
         //给controller包装一个NavigationController
         let base = UINavigationController()

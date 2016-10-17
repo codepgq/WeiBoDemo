@@ -29,7 +29,7 @@ class PQFromBottomAnimation: PQAnimation {
                 self.fromView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
                 self.fromView.layer.transform = CATransform3DMakeTranslation(0, 0, -10)
             }else{
-                self.fromView.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
+                self.fromView.transform = self.fromView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height)
             }
         }
     }

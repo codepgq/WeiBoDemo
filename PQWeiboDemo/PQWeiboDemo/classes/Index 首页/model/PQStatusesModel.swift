@@ -119,9 +119,19 @@ class PQStatusesModel: NSObject {
     
     var isHiddenBalloon : Bool = true
     
-    class func loadData(finished : @escaping (_ models : [PQStatusesModel]? , _ error : NSError?) -> Void){
+    class func loadData(since_id : Int , max_id : Int , finished : @escaping (_ models : [PQStatusesModel]? , _ error : NSError?) -> Void){
         let url = "2/statuses/home_timeline.json"
-        let params = ["access_token":PQOauthInfo.loadAccoutInfo()!.access_token!]        
+        var params = ["access_token":PQOauthInfo.loadAccoutInfo()!.access_token!]
+        if since_id > 0 {
+            params["since_id"] = "\(since_id)"
+        }
+        
+        if max_id > 0 {
+            params["max_id"] = "\(max_id - 1)"
+        }
+        
+        print("开始请求数据啦")
+        
         PQNetWorkManager.shareNetWorkManager().get(url, parameters: params, progress: nil, success: { (_, JSON) in
 //            print(JSON)
             
@@ -138,7 +148,7 @@ class PQStatusesModel: NSObject {
             
             //            finished(models: models, error: nil)
             }, failure: { (_, error) in
-            
+                print("网络出错啦！！！！呜啦啦啦")
         })
     }
     
@@ -151,11 +161,12 @@ class PQStatusesModel: NSObject {
             return
         }
         
-        print("我要看地址".cacheDir())
+        print("缓存地址".cacheDir())
+        print(PQOauthInfo.loadAccoutInfo())
         
         //创建一个组用于保证所有的图片下载完成之后通知界面
         let group = DispatchGroup()
-        
+        print("开始缓存图片")
         // 1、缓存图片
         for statuses in list{
             //1.1  判断当前图片数组是否为空
@@ -177,7 +188,7 @@ class PQStatusesModel: NSObject {
         }
         // 3、当组内所有图片缓存完成就会通知
        group.notify(queue: DispatchQueue.main) {
-//            print("缓存图片OK")
+            print("缓存图片OK")
             finished(list,nil)
         }
         

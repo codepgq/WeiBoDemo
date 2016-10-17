@@ -17,9 +17,17 @@ class PQActionSheetVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentOffset = CGPoint(x: 0, y: UIScreen.main.bounds.height - 316)
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+}
+
+extension PQActionSheetVC{
+   override  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        dismiss(animated: true, completion: nil)
     }
 }

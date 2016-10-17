@@ -9,6 +9,8 @@
 import UIKit
 import SDWebImage
 
+
+
 public enum PQIndexCellIdentifier : String{
     case normal = "IndexCellNormal"
     case forward = "IndexCellforward"
@@ -105,7 +107,7 @@ class PQIndexTableViewCell: UITableViewCell {
     
     /// 配图
     lazy var pictureView : PQIndexCellPictureView = PQIndexCellPictureView()
-    
+
     // 底部按钮
     lazy var bottomView : PQIndexCellBottomView = PQIndexCellBottomView()
     
@@ -113,3 +115,4 @@ class PQIndexTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

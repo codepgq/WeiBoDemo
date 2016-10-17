@@ -21,9 +21,9 @@ extension UIButton{
      
      - returns: 按钮
      */
-    class func createBtnWithTitle(title : String? , imageNamed : String,selector : Selector,target :AnyObject ) -> UIButton{
+    class func createBtnWithTitle(title : String? , imageNamed : String?,selector : Selector,target :AnyObject ) -> UIButton{
         let button = UIButton();
-        button.setImage(UIImage(named : imageNamed), for: UIControlState())
+        button.setImage(UIImage(named : (imageNamed == nil ? " ": imageNamed!)), for: UIControlState())
         button.setTitle(title, for: UIControlState())
         button.addTarget(target, action: selector, for: .touchUpInside)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)

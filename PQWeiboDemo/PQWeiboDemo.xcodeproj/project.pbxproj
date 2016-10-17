@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0401D4341DB0B51B0034714E /* PQNewStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401D4331DB0B51B0034714E /* PQNewStatusView.swift */; };
 		044EC3801DAF380D00702F8D /* PQIndexTableViewNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EC37F1DAF380D00702F8D /* PQIndexTableViewNormalCell.swift */; };
 		044EC3821DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EC3811DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift */; };
+		0458D5D31DB1DAAE00AF4301 /* PQImageBroserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458D5D21DB1DAAE00AF4301 /* PQImageBroserViewController.swift */; };
+		0468486C1DB469D0001777EA /* PQImageBrowserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468486B1DB469D0001777EA /* PQImageBrowserCollectionViewCell.swift */; };
+		0468486E1DB46E63001777EA /* PQUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468486D1DB46E63001777EA /* PQUtil.swift */; };
+		046848701DB4BD77001777EA /* PQAlphaAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468486F1DB4BD77001777EA /* PQAlphaAnimation.swift */; };
 		04692C5F1DAE2A5A009AC361 /* PQIndexCellPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */; };
 		04692C611DAE2EC9009AC361 /* PQIndexCellTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */; };
+		04716B611DB072EC007043F7 /* PQIndexRereshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04716B601DB072EC007043F7 /* PQIndexRereshControl.swift */; };
+		04716B631DB074A7007043F7 /* IndexRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04716B621DB074A7007043F7 /* IndexRefreshView.xib */; };
+		04CBBA791DB4CC78003C0F62 /* PQMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBBA781DB4CC78003C0F62 /* PQMenuView.swift */; };
 		04FAAAE61DACE85D00843E0B /* UIButton+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */; };
 		04FAAAE81DACE8E300843E0B /* UILabel+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */; };
 		04FAAAEA1DACEFAE00843E0B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FAAAE91DACEFAE00843E0B /* WebKit.framework */; };
@@ -80,10 +88,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0401D4331DB0B51B0034714E /* PQNewStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNewStatusView.swift; sourceTree = "<group>"; };
 		044EC37F1DAF380D00702F8D /* PQIndexTableViewNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexTableViewNormalCell.swift; sourceTree = "<group>"; };
 		044EC3811DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexTableViewForwardCell.swift; sourceTree = "<group>"; };
+		0458D5D21DB1DAAE00AF4301 /* PQImageBroserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQImageBroserViewController.swift; sourceTree = "<group>"; };
+		0468486B1DB469D0001777EA /* PQImageBrowserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQImageBrowserCollectionViewCell.swift; sourceTree = "<group>"; };
+		0468486D1DB46E63001777EA /* PQUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQUtil.swift; sourceTree = "<group>"; };
+		0468486F1DB4BD77001777EA /* PQAlphaAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQAlphaAnimation.swift; sourceTree = "<group>"; };
 		04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexCellPictureView.swift; sourceTree = "<group>"; };
 		04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexCellTopView.swift; sourceTree = "<group>"; };
+		04716B601DB072EC007043F7 /* PQIndexRereshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexRereshControl.swift; sourceTree = "<group>"; };
+		04716B621DB074A7007043F7 /* IndexRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexRefreshView.xib; sourceTree = "<group>"; };
+		04CBBA781DB4CC78003C0F62 /* PQMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQMenuView.swift; sourceTree = "<group>"; };
 		04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Category.swift"; sourceTree = "<group>"; };
 		04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Category.swift"; sourceTree = "<group>"; };
 		04FAAAE91DACEFAE00843E0B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -170,6 +186,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0458D5D11DB1DA8900AF4301 /* imageBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				0458D5D21DB1DAAE00AF4301 /* PQImageBroserViewController.swift */,
+				0468486B1DB469D0001777EA /* PQImageBrowserCollectionViewCell.swift */,
+			);
+			path = imageBrowser;
+			sourceTree = "<group>";
+		};
 		65FEF6ABF4325562BBD1AC5C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +253,7 @@
 				81F451151DAA622D007EF6F6 /* PQFromRightAnimation.swift */,
 				81F451171DAA6239007EF6F6 /* PQFromTopAnimation.swift */,
 				81F451191DAA6245007EF6F6 /* PQFromBottomAnimation.swift */,
+				0468486F1DB4BD77001777EA /* PQAlphaAnimation.swift */,
 			);
 			path = DIYModalAnimation;
 			sourceTree = "<group>";
@@ -337,6 +363,7 @@
 				810112831DA9EA7D00A1108F /* PQDIYButton.swift */,
 				04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */,
 				04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */,
+				0468486D1DB46E63001777EA /* PQUtil.swift */,
 			);
 			path = "Command 自定义View";
 			sourceTree = "<group>";
@@ -383,6 +410,7 @@
 		81FC6E491D8685CB0028F927 /* Index 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				0458D5D11DB1DA8900AF4301 /* imageBrowser */,
 				815971161DA89B1600D8C381 /* actionSheet */,
 				816752D21D925E74009A54F0 /* QRcode 二维码 */,
 				81B91CE71D8FC076001CBA60 /* popver */,
@@ -419,6 +447,9 @@
 				04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */,
 				044EC37F1DAF380D00702F8D /* PQIndexTableViewNormalCell.swift */,
 				044EC3811DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift */,
+				04716B601DB072EC007043F7 /* PQIndexRereshControl.swift */,
+				04716B621DB074A7007043F7 /* IndexRefreshView.xib */,
+				0401D4331DB0B51B0034714E /* PQNewStatusView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -568,6 +599,7 @@
 		81FC6E6A1D8696770028F927 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				04CBBA781DB4CC78003C0F62 /* PQMenuView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -698,6 +730,7 @@
 				816752D51D925E92009A54F0 /* QRCode.storyboard in Resources */,
 				81F451091DAA544A007EF6F6 /* ActionSheet.storyboard in Resources */,
 				81B91CE91D8FC076001CBA60 /* pop.storyboard in Resources */,
+				04716B631DB074A7007043F7 /* IndexRefreshView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,13 +813,17 @@
 				044EC3821DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift in Sources */,
 				81FC6E6C1D86969C0028F927 /* PQNullTableVC.swift in Sources */,
 				04692C611DAE2EC9009AC361 /* PQIndexCellTopView.swift in Sources */,
+				046848701DB4BD77001777EA /* PQAlphaAnimation.swift in Sources */,
 				816752D71D925EFC009A54F0 /* PQQRcodeViewController.swift in Sources */,
 				81F451101DAA5E09007EF6F6 /* PQModalShowSizeController.swift in Sources */,
 				81F6956F1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift in Sources */,
 				815971151DA891B400D8C381 /* TBDataSource.swift in Sources */,
 				81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */,
 				04FAAAE61DACE85D00843E0B /* UIButton+Category.swift in Sources */,
+				04CBBA791DB4CC78003C0F62 /* PQMenuView.swift in Sources */,
 				8188820B1D8E90BB00EF3FB1 /* PQLIRTButton.swift in Sources */,
+				04716B611DB072EC007043F7 /* PQIndexRereshControl.swift in Sources */,
+				0468486C1DB469D0001777EA /* PQImageBrowserCollectionViewCell.swift in Sources */,
 				8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */,
 				81F695761D9CBA7C003E267E /* PQWelComeViewController.swift in Sources */,
 				81FC6E5B1D868B0F0028F927 /* PQTabBarController.swift in Sources */,
@@ -805,6 +842,7 @@
 				818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */,
 				81332F7B1D990AB200D37AE5 /* String-DirCategory.swift in Sources */,
 				04692C5F1DAE2A5A009AC361 /* PQIndexCellPictureView.swift in Sources */,
+				0401D4341DB0B51B0034714E /* PQNewStatusView.swift in Sources */,
 				81F451141DAA61B2007EF6F6 /* PQFromLeftAnimation.swift in Sources */,
 				810112841DA9EA7D00A1108F /* PQDIYButton.swift in Sources */,
 				815971241DA8E68A00D8C381 /* NSDate+Category.swift in Sources */,
@@ -812,8 +850,10 @@
 				8159711E1DA8C55B00D8C381 /* PQIndexCellBottomView.swift in Sources */,
 				810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */,
 				81F4510E1DAA5DC4007EF6F6 /* PQModalAnimation.swift in Sources */,
+				0468486E1DB46E63001777EA /* PQUtil.swift in Sources */,
 				816752D91D928A3B009A54F0 /* PQMyQRCodeViewController.swift in Sources */,
 				81332F7D1D991D4000D37AE5 /* PQNetWorkManager.swift in Sources */,
+				0458D5D31DB1DAAE00AF4301 /* PQImageBroserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

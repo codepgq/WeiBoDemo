@@ -13,6 +13,7 @@ enum PQAnimationDirection {
     case right
     case top
     case bottom
+    case alpha
 }
 
 class PQAnimation: NSObject {
@@ -34,6 +35,8 @@ class PQAnimation: NSObject {
             return PQFromRightAnimation(isShow: isShow,fromView:  fromView, toView: toView,frame : frame)
         case .top:
             return PQFromTopAnimation(isShow: isShow,fromView:  fromView, toView: toView,frame : frame)
+        case .alpha:
+            return PQAlphaAnimation(isShow: isShow,fromView:  fromView, toView: toView,frame : frame)
         default:
             return PQFromBottomAnimation(isShow: isShow,fromView:  fromView, toView: toView,frame : frame)
         }

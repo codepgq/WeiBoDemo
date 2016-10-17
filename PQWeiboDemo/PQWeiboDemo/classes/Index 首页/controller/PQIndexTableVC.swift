@@ -11,9 +11,7 @@ import UIKit
 
 
 class PQIndexTableVC: PQBaseTableVC {
-    
-    
-    
+    // 数据源
     var statuses : [PQStatusesModel]?{
         didSet{
             tableView.reloadData()
@@ -28,19 +26,20 @@ class PQIndexTableVC: PQBaseTableVC {
         tableView.register(PQIndexTableViewNormalCell.self, forCellReuseIdentifier: PQIndexCellIdentifier.normal.rawValue)
         tableView.register(PQIndexTableViewForwardCell.self, forCellReuseIdentifier: PQIndexCellIdentifier.forward.rawValue)
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refresh
+        } else {
+            // Fallback on earlier versions
+            refreshControl = refresh
+        }
+        refresh.addTarget(self, action: #selector(downloadData), for: .valueChanged)
         
         // 3、下载数据
-        downloadData()
-    }
-    
-    //通过通知来改变按钮图片
-    @objc private func popMenuNotifaction(){
-        navigatorCenter.isSelected = !navigatorCenter.isSelected
-    }
-    
-    deinit{
-        //移除通知
-        NotificationCenter.default.removeObserver(self)
+        if isLogin{
+            downloadData()
+        }
+        navigationController?.navigationBar.isTranslucent = false
+        newStatusLabel.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,28 +55,80 @@ class PQIndexTableVC: PQBaseTableVC {
         }
     }
     
+    /// 定义上拉刷新标志位
+    var pullUpRefreshFlag = false
     /**
      下载数据
      */
-    private func downloadData(){
+    @objc  func downloadData(){
         
-        if isLogin  {
-            PQStatusesModel.loadData { (models, error) in
-                if models != nil{
-                    self.statuses = models
-                }
-            }
+        var since_id = statuses?.first?.id ?? 0
+        
+        var max_id = 0
+        
+        if pullUpRefreshFlag {
+            since_id = 0
+            max_id = statuses?.last?.id ?? 0
+            pullUpRefreshFlag = false //还原标志位
         }
         
+        
+        PQStatusesModel.loadData(since_id : since_id, max_id : max_id) { (models, error) in
+            //判断数据源是否存在
+            guard let list = models else { return }
+            //判断是否是下啦刷新加载的数据
+            if  since_id > 0  {
+                self.statuses = list + self.statuses!
+                self.newStatusLabel.updateWithCount(list.count)
+                self.newStatusLabel.showStatusLabel()
+            }else if max_id > 0{
+                //上拉刷新
+                self.statuses = self.statuses! + models!
+            } else{
+                // 赋值数据
+                self.statuses = list
+            }
+        }
     }
     
     /**
      监听通知
      */
     private func listenNoti(){
+        // 下拉菜单通知
         NotificationCenter.default.addObserver(self, selector: #selector(PQIndexTableVC.popMenuNotifaction), name: NSNotification.Name(rawValue: popoverViewWillShow), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(PQIndexTableVC.popMenuNotifaction), name: NSNotification.Name(rawValue: popoverViewWillClose), object: nil)
+        // 显示图片浏览器通知
+        NotificationCenter.default.addObserver(self, selector: #selector(PQIndexTableVC.showImageBroserNotifation(noti:)), name: Notification.Name(rawValue : ShowImageBrowserNotification.notiName.rawValue), object: nil)
     }
+    
+    //通过通知来改变按钮图片
+    @objc private func popMenuNotifaction(){
+        navigatorCenter.isSelected = !navigatorCenter.isSelected
+    }
+    
+    // 显示图片浏览器
+    @objc private func showImageBroserNotifation(noti : Notification){
+//        print(noti.userInfo)
+        
+        guard let index = noti.userInfo?[ShowImageBrowserNotification.userInfo_indexPath.rawValue]  as? IndexPath else {
+            print("index is nil")
+            return
+        }
+        guard let urls = noti.userInfo?[ShowImageBrowserNotification.userInfo_URLS.rawValue] as? Array<URL> else {
+            print("urls is nil")
+            return
+        }
+        let browser = PQImageBroserViewController(currenIndex: index, ulrs: urls)
+        present(browser, animated: true, completion: nil)
+        
+    }
+    
+    deinit{
+        //移除通知
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     
     /**
      左按钮点击事件
@@ -91,7 +142,6 @@ class PQIndexTableVC: PQBaseTableVC {
     @objc private func rightBtnClick(){
         let vc = UIStoryboard(name: "QRCode", bundle: nil).instantiateInitialViewController()
         navigationController?.pushViewController(vc!, animated: true)
-        
     }
     
     /**
@@ -126,6 +176,15 @@ class PQIndexTableVC: PQBaseTableVC {
         return modal
     }()
     
+    // 自定义下拉刷新菜单
+    lazy var refresh : PQIndexRereshControl = PQIndexRereshControl()
+    
+    private lazy var newStatusLabel  : PQNewStatusView = {
+        let view = PQNewStatusView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        self.navigationController?.navigationBar.insertSubview(view, at: 0)
+        self.navigationController?.navigationBar.insertSubview(view, at: 0)
+        return view
+    }()
     
     //行高
     var cellRowHeight : [Int : Any] = Dictionary()
@@ -137,10 +196,17 @@ class PQIndexTableVC: PQBaseTableVC {
     }
 }
 
+// -------  tableview datasource
 extension PQIndexTableVC{
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.refresh.endRefreshing()
+    }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if refresh.isRatationFlag && !refresh.loadingFlage {
+            refresh.beginRefreshing()
+            downloadData()
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -153,8 +219,16 @@ extension PQIndexTableVC{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: PQIndexCellIdentifier.cellID(status: status), for: indexPath as IndexPath) as! PQIndexTableViewCell
         cell.statuses = status
+        cell.selectionStyle = .none
+        
+        let count = statuses?.count ?? 0
+        if indexPath.row == count - 1 {
+            print("上拉加载")
+            pullUpRefreshFlag = true
+            downloadData()
+        }
+        
         cell.showMenu = { (cell : PQIndexCellTopView) -> Void in
-            
             let vc = PQActionSheetVC.loadForStoryboard()
             vc.transitioningDelegate = self.modalAnimation
             vc.modalPresentationStyle = UIModalPresentationStyle.custom
@@ -170,15 +244,12 @@ extension PQIndexTableVC{
         
         // 先从字典里面获取 获取成功就返回
         if let rowHeight = cellRowHeight[statu.id] {
-//            print("从里面拿的 - \(rowHeight)")
             return rowHeight as! CGFloat
         }
-        
         // 获取失败 自己计算一次 在返回前先存入字典 在返回行高
         let cell = tableView.dequeueReusableCell(withIdentifier: PQIndexCellIdentifier.cellID(status: statu)) as! PQIndexTableViewCell
         let height = cell.rowHeight(statuses: statu)
         cellRowHeight[statu.id] = height
-//        print("自己计算的的 - \(height)")
         return height
         
     }

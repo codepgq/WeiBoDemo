@@ -9,6 +9,12 @@
 import UIKit
 import SDWebImage
 
+enum ShowImageBrowserNotification : String {
+    case notiName = "ShowImageBrowserNoti" //通知名称
+    case userInfo_URLS = "urls" //字典key
+    case userInfo_indexPath = "indexPath" //字典key
+}
+
 class PQIndexCellPictureView: UICollectionView {
 
     var statuses : PQStatusesModel?{
@@ -17,9 +23,9 @@ class PQIndexCellPictureView: UICollectionView {
         }
     }
     
-    let pictureReuseIdentifier = "pictureReuseIdentifier"
+    let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
-   let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    let pictureReuseIdentifier = "pictureReuseIdentifier"
     
     init(){
         super.init(frame: CGRect.zero, collectionViewLayout: layout)
@@ -39,7 +45,6 @@ class PQIndexCellPictureView: UICollectionView {
         //设置cell间隙
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-        contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
         //设置背景颜色
         backgroundColor = UIColor(white: 0, alpha: 0.2)
@@ -92,21 +97,74 @@ class PQIndexCellPictureView: UICollectionView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // 内部类
+    class PQIndexCellPictureViewCell: UICollectionViewCell {
+        
+        var imageURL : URL? {
+            didSet{
+                imageView.sd_setImage(with: imageURL!)
+                
+                if imageURL?.pathExtension.lowercased() == "gif"{
+                    gifView.isHidden = false
+                }
+            }
+        }
+        
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            //初始化UI
+            setUp()
+        }
+        
+        // 初始化UI
+        private func setUp(){
+            //添加UI
+            contentView.addSubview(imageView)
+            contentView.addSubview(gifView)
+            //设置约束
+            imageView.pq_fill(referView: contentView)
+            gifView.pq_AlignInner(type: .BottomRight, referView: imageView, size: nil)
+            
+        }
+        
+        /// 懒加载
+        private lazy var imageView : UIImageView = UIImageView()
+        
+        private lazy var gifView :UIImageView = {
+            let iv = UIImageView(image: UIImage(named: "timeline_image_gif"))
+            iv.isHidden = true
+            return iv
+        }()
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+    }
 }
 
 
-extension PQIndexCellPictureView : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching,UICollectionViewDelegateFlowLayout{
-
+extension PQIndexCellPictureView :UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching,UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(statuses?.LargePictureURLS![indexPath.item])
+        
+        let params = [
+            ShowImageBrowserNotification.userInfo_URLS.rawValue : statuses!.LargePictureURLS!,
+            ShowImageBrowserNotification.userInfo_indexPath.rawValue : indexPath
+        ] as [String : Any]
+        //发送通知
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: ShowImageBrowserNotification.notiName.rawValue), object: nil, userInfo: params)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return statuses?.pictureURLS?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: pictureReuseIdentifier, for: indexPath) as! PQIndexCellPictureViewCell
-        
         cell.imageURL =  statuses!.pictureURLS![indexPath.item] as URL
-        
         return cell
     }
     
@@ -116,35 +174,4 @@ extension PQIndexCellPictureView : UICollectionViewDelegate,UICollectionViewData
     }
 }
 
-class PQIndexCellPictureViewCell: UICollectionViewCell {
-    
-    var imageURL : URL? {
-        didSet{
-            imageView.sd_setImage(with: imageURL!)
-        }
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        //初始化UI
-        setUp()
-    }
-    
-    // 初始化UI
-    private func setUp(){
-        //添加UI
-        addSubview(imageView)
-        //设置约束
-        imageView.pq_fill(referView: self)
-    }
-    
-    
-    
-    /// 懒加载
-    private lazy var imageView : UIImageView = UIImageView()
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
+
