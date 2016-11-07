@@ -107,6 +107,8 @@ class PQIndexCellPictureView: UICollectionView {
                 
                 if imageURL?.pathExtension.lowercased() == "gif"{
                     gifView.isHidden = false
+                }else{
+                    gifView.isHidden = true
                 }
             }
         }
@@ -129,7 +131,11 @@ class PQIndexCellPictureView: UICollectionView {
         }
         
         /// 懒加载
-        private lazy var imageView : UIImageView = UIImageView()
+        private lazy var imageView : UIImageView = {
+             let iv = UIImageView()
+            iv.contentMode = .scaleAspectFit
+            return iv
+        }()
         
         private lazy var gifView :UIImageView = {
             let iv = UIImageView(image: UIImage(named: "timeline_image_gif"))
@@ -148,7 +154,7 @@ class PQIndexCellPictureView: UICollectionView {
 extension PQIndexCellPictureView :UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(statuses?.LargePictureURLS![indexPath.item])
+        print((statuses?.LargePictureURLS![indexPath.item])! as NSURL)
         
         let params = [
             ShowImageBrowserNotification.userInfo_URLS.rawValue : statuses!.LargePictureURLS!,

@@ -30,4 +30,18 @@ extension UIBarButtonItem{
         //返回barbutton
         return UIBarButtonItem(customView: button)
     }
+    
+    convenience init(image : String, selected : String,target : AnyObject?,seletor:Selector?,tag : Int){
+        let btn = UIButton()
+        btn.setImage(UIImage(named: image), for: .normal)
+        btn.setImage(UIImage(named: selected), for: .highlighted)
+        if seletor != nil {
+            btn.addTarget(target, action: seletor!, for: .touchUpInside)
+        }
+        btn.sizeToFit()
+        btn.tag = tag
+        
+        self.init(customView : btn)
+    }
+    
 }

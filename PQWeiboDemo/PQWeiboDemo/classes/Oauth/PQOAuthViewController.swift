@@ -103,7 +103,7 @@ extension PQOAuthViewController : UIWebViewDelegate{
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         // 这里做跳转处理
-        print(request.url?.absoluteString)
+        print((request.url?.absoluteString)! as String)
         
         let absoluteString = request.url!.absoluteString
         //如果是回调页 并且授权成功就继续

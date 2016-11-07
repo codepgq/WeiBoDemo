@@ -267,6 +267,10 @@ extension UIView {
         return pq_Constraint(constraintsList: constraintsList, attribute: .top)
     }
     
+    public func pq_ConstraintBottom(constraintsList: [NSLayoutConstraint]) -> NSLayoutConstraint? {
+        return pq_Constraint(constraintsList: constraintsList, attribute: .bottom)
+    }
+    
     
     
     // MARK: - 私有函数

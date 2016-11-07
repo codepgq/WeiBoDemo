@@ -70,4 +70,60 @@ extension NSDate{
         return format.string(from: self as Date)
         
     }
+    
+    class func Day() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd"
+        return dateFormatter.string(from: Date())
+    }
+    
+    //返回日期
+    class func Month() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM"
+        return dateFormatter.string(from: Date())
+    }
+    class func Year() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        return dateFormatter.string(from: Date())
+    }
+    //返回星期几
+    class func weekDay() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return CaculateWeekDay(dateStr: formatter.string(from: Date()))
+    }
+    
+    class func CaculateWeekDay(dateStr:String) ->String
+    {
+        let dateArr = (dateStr as NSString).components(separatedBy: "-")
+        if dateArr.count == 3
+        {
+            var y = Int(dateArr[0])!
+            var m = Int(dateArr[1])!
+            let d = Int(dateArr[2])!
+            if m == 1 || m == 2
+            {
+                m += 12
+                y -= 1
+            }
+            let iWeek = (d+2*m+3*(m+1)/5+y+y/4-y/100+y/400)%7
+            switch iWeek
+            {
+            case 0: return "星期一"
+            case 1: return "星期二"
+            case 2: return "星期三"
+            case 3: return "星期四"
+            case 4: return "星期五"
+            case 5: return "星期六"
+            case 6: return "星期天"
+            default:
+                return ""
+            }
+        }else
+        {
+            return "星期未知"
+        }
+    }
 }

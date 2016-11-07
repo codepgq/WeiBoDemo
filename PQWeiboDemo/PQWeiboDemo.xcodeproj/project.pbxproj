@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0401D4341DB0B51B0034714E /* PQNewStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401D4331DB0B51B0034714E /* PQNewStatusView.swift */; };
+		040A5C7D1DC87D190096A70A /* PQWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A5C7C1DC87D190096A70A /* PQWeatherView.swift */; };
 		044EC3801DAF380D00702F8D /* PQIndexTableViewNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EC37F1DAF380D00702F8D /* PQIndexTableViewNormalCell.swift */; };
 		044EC3821DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EC3811DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift */; };
 		0458D5D31DB1DAAE00AF4301 /* PQImageBroserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458D5D21DB1DAAE00AF4301 /* PQImageBroserViewController.swift */; };
@@ -16,8 +17,17 @@
 		046848701DB4BD77001777EA /* PQAlphaAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468486F1DB4BD77001777EA /* PQAlphaAnimation.swift */; };
 		04692C5F1DAE2A5A009AC361 /* PQIndexCellPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */; };
 		04692C611DAE2EC9009AC361 /* PQIndexCellTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */; };
+		047169A21DD059F50025494E /* EmojiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471699C1DD059F50025494E /* EmojiController.swift */; };
+		047169A31DD059F50025494E /* Emoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471699D1DD059F50025494E /* Emoticon.swift */; };
+		047169A41DD059F50025494E /* EmoticonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471699E1DD059F50025494E /* EmoticonAttachment.swift */; };
+		047169A51DD059F50025494E /* EmoticonPackge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471699F1DD059F50025494E /* EmoticonPackge.swift */; };
+		047169A61DD059F50025494E /* Emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 047169A01DD059F50025494E /* Emoticons.bundle */; };
+		047169A71DD059F50025494E /* TextView+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047169A11DD059F50025494E /* TextView+Category.swift */; };
+		047169A91DD05F340025494E /* PQComposeToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047169A81DD05F340025494E /* PQComposeToolView.swift */; };
+		047169AB1DD060180025494E /* PQComposeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047169AA1DD060180025494E /* PQComposeTitleView.swift */; };
 		04716B611DB072EC007043F7 /* PQIndexRereshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04716B601DB072EC007043F7 /* PQIndexRereshControl.swift */; };
 		04716B631DB074A7007043F7 /* IndexRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04716B621DB074A7007043F7 /* IndexRefreshView.xib */; };
+		049E8C721DCD83B800048C5D /* PQComposeTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E8C711DCD83B800048C5D /* PQComposeTextViewController.swift */; };
 		04CBBA791DB4CC78003C0F62 /* PQMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBBA781DB4CC78003C0F62 /* PQMenuView.swift */; };
 		04FAAAE61DACE85D00843E0B /* UIButton+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */; };
 		04FAAAE81DACE8E300843E0B /* UILabel+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */; };
@@ -89,6 +99,7 @@
 
 /* Begin PBXFileReference section */
 		0401D4331DB0B51B0034714E /* PQNewStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNewStatusView.swift; sourceTree = "<group>"; };
+		040A5C7C1DC87D190096A70A /* PQWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQWeatherView.swift; sourceTree = "<group>"; };
 		044EC37F1DAF380D00702F8D /* PQIndexTableViewNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexTableViewNormalCell.swift; sourceTree = "<group>"; };
 		044EC3811DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexTableViewForwardCell.swift; sourceTree = "<group>"; };
 		0458D5D21DB1DAAE00AF4301 /* PQImageBroserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQImageBroserViewController.swift; sourceTree = "<group>"; };
@@ -97,8 +108,17 @@
 		0468486F1DB4BD77001777EA /* PQAlphaAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQAlphaAnimation.swift; sourceTree = "<group>"; };
 		04692C5E1DAE2A5A009AC361 /* PQIndexCellPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexCellPictureView.swift; sourceTree = "<group>"; };
 		04692C601DAE2EC9009AC361 /* PQIndexCellTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexCellTopView.swift; sourceTree = "<group>"; };
+		0471699C1DD059F50025494E /* EmojiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiController.swift; sourceTree = "<group>"; };
+		0471699D1DD059F50025494E /* Emoticon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoticon.swift; sourceTree = "<group>"; };
+		0471699E1DD059F50025494E /* EmoticonAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonAttachment.swift; sourceTree = "<group>"; };
+		0471699F1DD059F50025494E /* EmoticonPackge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonPackge.swift; sourceTree = "<group>"; };
+		047169A01DD059F50025494E /* Emoticons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emoticons.bundle; sourceTree = "<group>"; };
+		047169A11DD059F50025494E /* TextView+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextView+Category.swift"; sourceTree = "<group>"; };
+		047169A81DD05F340025494E /* PQComposeToolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQComposeToolView.swift; sourceTree = "<group>"; };
+		047169AA1DD060180025494E /* PQComposeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQComposeTitleView.swift; sourceTree = "<group>"; };
 		04716B601DB072EC007043F7 /* PQIndexRereshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQIndexRereshControl.swift; sourceTree = "<group>"; };
 		04716B621DB074A7007043F7 /* IndexRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexRefreshView.xib; sourceTree = "<group>"; };
+		049E8C711DCD83B800048C5D /* PQComposeTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQComposeTextViewController.swift; sourceTree = "<group>"; };
 		04CBBA781DB4CC78003C0F62 /* PQMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQMenuView.swift; sourceTree = "<group>"; };
 		04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Category.swift"; sourceTree = "<group>"; };
 		04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Category.swift"; sourceTree = "<group>"; };
@@ -193,6 +213,19 @@
 				0468486B1DB469D0001777EA /* PQImageBrowserCollectionViewCell.swift */,
 			);
 			path = imageBrowser;
+			sourceTree = "<group>";
+		};
+		0471699B1DD059F50025494E /* EmojiKeyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				0471699C1DD059F50025494E /* EmojiController.swift */,
+				0471699D1DD059F50025494E /* Emoticon.swift */,
+				0471699E1DD059F50025494E /* EmoticonAttachment.swift */,
+				0471699F1DD059F50025494E /* EmoticonPackge.swift */,
+				047169A01DD059F50025494E /* Emoticons.bundle */,
+				047169A11DD059F50025494E /* TextView+Category.swift */,
+			);
+			path = EmojiKeyBoard;
 			sourceTree = "<group>";
 		};
 		65FEF6ABF4325562BBD1AC5C /* Pods */ = {
@@ -348,6 +381,7 @@
 		81FC6E421D8685CB0028F927 /* CenterAdd 添加 */ = {
 			isa = PBXGroup;
 			children = (
+				0471699B1DD059F50025494E /* EmojiKeyBoard */,
 				81FC6E681D8696770028F927 /* controller */,
 				81FC6E691D8696770028F927 /* model */,
 				81FC6E6A1D8696770028F927 /* view */,
@@ -584,6 +618,7 @@
 		81FC6E681D8696770028F927 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				049E8C711DCD83B800048C5D /* PQComposeTextViewController.swift */,
 				81FC6E6B1D86969C0028F927 /* PQNullTableVC.swift */,
 			);
 			path = controller;
@@ -600,6 +635,9 @@
 			isa = PBXGroup;
 			children = (
 				04CBBA781DB4CC78003C0F62 /* PQMenuView.swift */,
+				040A5C7C1DC87D190096A70A /* PQWeatherView.swift */,
+				047169A81DD05F340025494E /* PQComposeToolView.swift */,
+				047169AA1DD060180025494E /* PQComposeTitleView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -731,6 +769,7 @@
 				81F451091DAA544A007EF6F6 /* ActionSheet.storyboard in Resources */,
 				81B91CE91D8FC076001CBA60 /* pop.storyboard in Resources */,
 				04716B631DB074A7007043F7 /* IndexRefreshView.xib in Resources */,
+				047169A61DD059F50025494E /* Emoticons.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,6 +848,8 @@
 				8159711A1DA8A40200D8C381 /* PQActionSheetVC.swift in Sources */,
 				81B91CED1D8FC329001CBA60 /* PQPopverAnimation.swift in Sources */,
 				81FC6E5F1D8690D20028F927 /* PQIndexTableVC.swift in Sources */,
+				047169A31DD059F50025494E /* Emoticon.swift in Sources */,
+				047169A91DD05F340025494E /* PQComposeToolView.swift in Sources */,
 				81FC6E671D86919E0028F927 /* PQBaseTableVC.swift in Sources */,
 				044EC3821DAF3AF400702F8D /* PQIndexTableViewForwardCell.swift in Sources */,
 				81FC6E6C1D86969C0028F927 /* PQNullTableVC.swift in Sources */,
@@ -817,6 +858,7 @@
 				816752D71D925EFC009A54F0 /* PQQRcodeViewController.swift in Sources */,
 				81F451101DAA5E09007EF6F6 /* PQModalShowSizeController.swift in Sources */,
 				81F6956F1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift in Sources */,
+				047169A21DD059F50025494E /* EmojiController.swift in Sources */,
 				815971151DA891B400D8C381 /* TBDataSource.swift in Sources */,
 				81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */,
 				04FAAAE61DACE85D00843E0B /* UIButton+Category.swift in Sources */,
@@ -824,15 +866,19 @@
 				8188820B1D8E90BB00EF3FB1 /* PQLIRTButton.swift in Sources */,
 				04716B611DB072EC007043F7 /* PQIndexRereshControl.swift in Sources */,
 				0468486C1DB469D0001777EA /* PQImageBrowserCollectionViewCell.swift in Sources */,
+				049E8C721DCD83B800048C5D /* PQComposeTextViewController.swift in Sources */,
 				8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */,
 				81F695761D9CBA7C003E267E /* PQWelComeViewController.swift in Sources */,
+				047169AB1DD060180025494E /* PQComposeTitleView.swift in Sources */,
 				81FC6E5B1D868B0F0028F927 /* PQTabBarController.swift in Sources */,
+				047169A71DD059F50025494E /* TextView+Category.swift in Sources */,
 				81B91CEF1D8FC39B001CBA60 /* PQPopverPresentationController.swift in Sources */,
 				81F451121DAA604D007EF6F6 /* PQAnimation.swift in Sources */,
 				81FC6E651D8690FE0028F927 /* PQMeTableVC.swift in Sources */,
 				81FC6E631D8690F10028F927 /* PQDiscoverTableVC.swift in Sources */,
 				81B91CEB1D8FC240001CBA60 /* PQPopverViewController.swift in Sources */,
 				815971221DA8D46600D8C381 /* PQUserInfoModel.swift in Sources */,
+				040A5C7D1DC87D190096A70A /* PQWeatherView.swift in Sources */,
 				04FAAAE81DACE8E300843E0B /* UILabel+Category.swift in Sources */,
 				81F451161DAA622D007EF6F6 /* PQFromRightAnimation.swift in Sources */,
 				81F4511A1DAA6245007EF6F6 /* PQFromBottomAnimation.swift in Sources */,
@@ -841,10 +887,12 @@
 				815971201DA8D44700D8C381 /* PQStatusesModel.swift in Sources */,
 				818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */,
 				81332F7B1D990AB200D37AE5 /* String-DirCategory.swift in Sources */,
+				047169A41DD059F50025494E /* EmoticonAttachment.swift in Sources */,
 				04692C5F1DAE2A5A009AC361 /* PQIndexCellPictureView.swift in Sources */,
 				0401D4341DB0B51B0034714E /* PQNewStatusView.swift in Sources */,
 				81F451141DAA61B2007EF6F6 /* PQFromLeftAnimation.swift in Sources */,
 				810112841DA9EA7D00A1108F /* PQDIYButton.swift in Sources */,
+				047169A51DD059F50025494E /* EmoticonPackge.swift in Sources */,
 				815971241DA8E68A00D8C381 /* NSDate+Category.swift in Sources */,
 				81332F771D9900BC00D37AE5 /* PQOauthInfo.swift in Sources */,
 				8159711E1DA8C55B00D8C381 /* PQIndexCellBottomView.swift in Sources */,
@@ -991,7 +1039,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pq.PQWeiboDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "219fe0dc-0239-4112-8cea-3079f9508d13";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1009,7 +1057,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pq.PQWeiboDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "219fe0dc-0239-4112-8cea-3079f9508d13";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -162,7 +162,7 @@ class PQStatusesModel: NSObject {
         }
         
         print("缓存地址".cacheDir())
-        print(PQOauthInfo.loadAccoutInfo())
+        print(PQOauthInfo.loadAccoutInfo() ?? "账户信息为空")
         
         //创建一个组用于保证所有的图片下载完成之后通知界面
         let group = DispatchGroup()

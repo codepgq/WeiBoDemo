@@ -8,6 +8,8 @@
 
 import UIKit
 
+let ComposeNotificationKey = "ComposeNotificationKey"
+
 class PQTabBarController: UITabBarController {
     
     override func viewDidLoad() {
@@ -16,12 +18,26 @@ class PQTabBarController: UITabBarController {
 //        tabBar.tintColor = UIColor.orangeColor()
         //添加controller
         addController()
+        
+        //监听通知 点击➕按钮之后点击的项
+        NotificationCenter.default.addObserver(self, selector: #selector(PQTabBarController.compseNoti(noti:)), name:  NSNotification.Name(rawValue: ComposeNotificationKey), object: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //创建一个button，并设置到中间的位置
         setUpButton()
+    }
+    
+    @objc private func compseNoti(noti : Notification){
+        let controller = PQComposeTextViewController()
+        let nav = UINavigationController(rootViewController: controller)
+        present(nav, animated: true, completion: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     lazy var addBtn :UIButton = {

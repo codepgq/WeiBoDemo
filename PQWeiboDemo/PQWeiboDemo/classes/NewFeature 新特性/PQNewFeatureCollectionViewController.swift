@@ -137,7 +137,7 @@ private class CollectionCell: UICollectionViewCell {
 
 
 private class NewFeatureLayout : UICollectionViewFlowLayout{
-    private override func prepare() {
+    fileprivate override func prepare() {
         //设置layout 大小、Item之间的间距、排列方向
         itemSize = UIScreen.main.bounds.size
         minimumLineSpacing = 0
