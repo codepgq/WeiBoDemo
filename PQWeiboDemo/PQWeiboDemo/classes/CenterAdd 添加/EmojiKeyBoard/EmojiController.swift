@@ -49,6 +49,8 @@ class EmojiController: UIViewController {
 
         view.addConstraints(cons)
         
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
