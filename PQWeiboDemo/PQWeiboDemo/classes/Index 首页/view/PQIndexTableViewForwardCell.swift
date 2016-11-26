@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KILabel
 
 class PQIndexTableViewForwardCell: PQIndexTableViewCell {
 
@@ -14,7 +15,8 @@ class PQIndexTableViewForwardCell: PQIndexTableViewCell {
         didSet{
             let name = statuses?.retweeted_status?.user?.name ?? ""
             let text = statuses?.retweeted_status?.text ?? ""
-            forwardLabel.text = "@" + name + " :" + text
+//            forwardLabel.text = "@" + name + " :" + text
+            forwardLabel.attributedText = EmoticonPackge.attributeWithStr(str: "@" + name + " :" + text)
         }
     }
     
@@ -52,9 +54,18 @@ class PQIndexTableViewForwardCell: PQIndexTableViewCell {
     
     /// 转发微博的内容
     private lazy var forwardLabel : UILabel = {
-        let label = UILabel.createLabelWithFontSize(fontSize: 13, textColor: UIColor.lightGray)
-        label.preferredMaxLayoutWidth = UIScreen.main.bounds.width - 20
+        
+        let label = KILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .lightGray
         label.numberOfLines = 0
+        label.preferredMaxLayoutWidth = UIScreen.main.bounds.width - 20
+        
+        label.urlLinkTapHandler = {
+            (label, string, range)
+            in
+            print(string)
+        }
         return label
     }()
 }
