@@ -41,6 +41,7 @@
 		600FFBE21E0426E2006E9CE9 /* FMDatabaseAdditionsVariadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBE01E0426E2006E9CE9 /* FMDatabaseAdditionsVariadic.swift */; };
 		600FFBE31E0426E2006E9CE9 /* FMDatabaseVariadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBE11E0426E2006E9CE9 /* FMDatabaseVariadic.swift */; };
 		600FFBE61E04272F006E9CE9 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 600FFBE51E04272F006E9CE9 /* libsqlite3.tbd */; };
+		600FFBE91E042911006E9CE9 /* PQSQLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBE81E042911006E9CE9 /* PQSQLManager.swift */; };
 		810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810043881D8940CA00908230 /* PQNotLoginView.swift */; };
 		8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100438A1D89439300908230 /* UIView+AutoLayout.swift */; };
 		810112841DA9EA7D00A1108F /* PQDIYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810112831DA9EA7D00A1108F /* PQDIYButton.swift */; };
@@ -148,6 +149,7 @@
 		600FFBE11E0426E2006E9CE9 /* FMDatabaseVariadic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDatabaseVariadic.swift; sourceTree = "<group>"; };
 		600FFBE51E04272F006E9CE9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		600FFBE71E042807006E9CE9 /* Weibo-Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Weibo-Bridge.h"; path = "PQWeiboDemo/Weibo-Bridge.h"; sourceTree = SOURCE_ROOT; };
+		600FFBE81E042911006E9CE9 /* PQSQLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQSQLManager.swift; sourceTree = "<group>"; };
 		810043881D8940CA00908230 /* PQNotLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNotLoginView.swift; sourceTree = "<group>"; };
 		8100438A1D89439300908230 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		810112831DA9EA7D00A1108F /* PQDIYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQDIYButton.swift; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 				81332F7A1D990AB200D37AE5 /* String-DirCategory.swift */,
 				81332F7C1D991D4000D37AE5 /* PQNetWorkManager.swift */,
 				815971231DA8E68A00D8C381 /* NSDate+Category.swift */,
+				600FFBE81E042911006E9CE9 /* PQSQLManager.swift */,
 			);
 			path = "Tools 工具";
 			sourceTree = "<group>";
@@ -954,6 +957,7 @@
 				818882091D8E908E00EF3FB1 /* UIBarButtomItem+Category.swift in Sources */,
 				81332F7B1D990AB200D37AE5 /* String-DirCategory.swift in Sources */,
 				047169A41DD059F50025494E /* EmoticonAttachment.swift in Sources */,
+				600FFBE91E042911006E9CE9 /* PQSQLManager.swift in Sources */,
 				04692C5F1DAE2A5A009AC361 /* PQIndexCellPictureView.swift in Sources */,
 				0401D4341DB0B51B0034714E /* PQNewStatusView.swift in Sources */,
 				81F451141DAA61B2007EF6F6 /* PQFromLeftAnimation.swift in Sources */,

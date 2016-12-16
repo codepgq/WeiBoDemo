@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.orange
         
         
+        //程序启动加载数据库
+        
+        PQSQLManager.shareManager().open(PQSQLTableName.status.rawValue)
+        
         //添加通知
         // 谁来监听 监听到调用的方法 监听啥名字的 谁发送的
         
