@@ -32,6 +32,15 @@
 		04FAAAE61DACE85D00843E0B /* UIButton+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */; };
 		04FAAAE81DACE8E300843E0B /* UILabel+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */; };
 		04FAAAEA1DACEFAE00843E0B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FAAAE91DACEFAE00843E0B /* WebKit.framework */; };
+		600FFBD91E0426D3006E9CE9 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBCE1E0426D3006E9CE9 /* FMDatabase.m */; };
+		600FFBDA1E0426D3006E9CE9 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBD01E0426D3006E9CE9 /* FMDatabaseAdditions.m */; };
+		600FFBDB1E0426D3006E9CE9 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBD21E0426D3006E9CE9 /* FMDatabasePool.m */; };
+		600FFBDC1E0426D3006E9CE9 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBD41E0426D3006E9CE9 /* FMDatabaseQueue.m */; };
+		600FFBDD1E0426D3006E9CE9 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBD71E0426D3006E9CE9 /* FMResultSet.m */; };
+		600FFBDE1E0426D3006E9CE9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 600FFBD81E0426D3006E9CE9 /* Info.plist */; };
+		600FFBE21E0426E2006E9CE9 /* FMDatabaseAdditionsVariadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBE01E0426E2006E9CE9 /* FMDatabaseAdditionsVariadic.swift */; };
+		600FFBE31E0426E2006E9CE9 /* FMDatabaseVariadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600FFBE11E0426E2006E9CE9 /* FMDatabaseVariadic.swift */; };
+		600FFBE61E04272F006E9CE9 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 600FFBE51E04272F006E9CE9 /* libsqlite3.tbd */; };
 		810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810043881D8940CA00908230 /* PQNotLoginView.swift */; };
 		8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100438A1D89439300908230 /* UIView+AutoLayout.swift */; };
 		810112841DA9EA7D00A1108F /* PQDIYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810112831DA9EA7D00A1108F /* PQDIYButton.swift */; };
@@ -123,6 +132,22 @@
 		04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Category.swift"; sourceTree = "<group>"; };
 		04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Category.swift"; sourceTree = "<group>"; };
 		04FAAAE91DACEFAE00843E0B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		600FFBCD1E0426D3006E9CE9 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		600FFBCE1E0426D3006E9CE9 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		600FFBCF1E0426D3006E9CE9 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		600FFBD01E0426D3006E9CE9 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		600FFBD11E0426D3006E9CE9 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		600FFBD21E0426D3006E9CE9 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		600FFBD31E0426D3006E9CE9 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		600FFBD41E0426D3006E9CE9 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		600FFBD51E0426D3006E9CE9 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		600FFBD61E0426D3006E9CE9 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		600FFBD71E0426D3006E9CE9 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		600FFBD81E0426D3006E9CE9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		600FFBE01E0426E2006E9CE9 /* FMDatabaseAdditionsVariadic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDatabaseAdditionsVariadic.swift; sourceTree = "<group>"; };
+		600FFBE11E0426E2006E9CE9 /* FMDatabaseVariadic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDatabaseVariadic.swift; sourceTree = "<group>"; };
+		600FFBE51E04272F006E9CE9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		600FFBE71E042807006E9CE9 /* Weibo-Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Weibo-Bridge.h"; path = "PQWeiboDemo/Weibo-Bridge.h"; sourceTree = SOURCE_ROOT; };
 		810043881D8940CA00908230 /* PQNotLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNotLoginView.swift; sourceTree = "<group>"; };
 		8100438A1D89439300908230 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		810112831DA9EA7D00A1108F /* PQDIYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQDIYButton.swift; sourceTree = "<group>"; };
@@ -184,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				600FFBE61E04272F006E9CE9 /* libsqlite3.tbd in Frameworks */,
 				04FAAAEA1DACEFAE00843E0B /* WebKit.framework in Frameworks */,
 				B5940BF50AE09AFF0C96D942 /* Pods_PQWeiboDemo.framework in Frameworks */,
 			);
@@ -226,6 +252,35 @@
 				047169A11DD059F50025494E /* TextView+Category.swift */,
 			);
 			path = EmojiKeyBoard;
+			sourceTree = "<group>";
+		};
+		600FFBCC1E0426D3006E9CE9 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				600FFBDF1E0426E2006E9CE9 /* Swift extensions */,
+				600FFBCD1E0426D3006E9CE9 /* FMDatabase.h */,
+				600FFBCE1E0426D3006E9CE9 /* FMDatabase.m */,
+				600FFBCF1E0426D3006E9CE9 /* FMDatabaseAdditions.h */,
+				600FFBD01E0426D3006E9CE9 /* FMDatabaseAdditions.m */,
+				600FFBD11E0426D3006E9CE9 /* FMDatabasePool.h */,
+				600FFBD21E0426D3006E9CE9 /* FMDatabasePool.m */,
+				600FFBD31E0426D3006E9CE9 /* FMDatabaseQueue.h */,
+				600FFBD41E0426D3006E9CE9 /* FMDatabaseQueue.m */,
+				600FFBD51E0426D3006E9CE9 /* FMDB.h */,
+				600FFBD61E0426D3006E9CE9 /* FMResultSet.h */,
+				600FFBD71E0426D3006E9CE9 /* FMResultSet.m */,
+				600FFBD81E0426D3006E9CE9 /* Info.plist */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		600FFBDF1E0426E2006E9CE9 /* Swift extensions */ = {
+			isa = PBXGroup;
+			children = (
+				600FFBE01E0426E2006E9CE9 /* FMDatabaseAdditionsVariadic.swift */,
+				600FFBE11E0426E2006E9CE9 /* FMDatabaseVariadic.swift */,
+			);
+			path = "Swift extensions";
 			sourceTree = "<group>";
 		};
 		65FEF6ABF4325562BBD1AC5C /* Pods */ = {
@@ -589,6 +644,8 @@
 		81FC6E591D8685CB0028F927 /* Tools 工具 */ = {
 			isa = PBXGroup;
 			children = (
+				600FFBE71E042807006E9CE9 /* Weibo-Bridge.h */,
+				600FFBCC1E0426D3006E9CE9 /* fmdb */,
 				815971141DA891B400D8C381 /* TBDataSource.swift */,
 				8100438A1D89439300908230 /* UIView+AutoLayout.swift */,
 				81332F7A1D990AB200D37AE5 /* String-DirCategory.swift */,
@@ -645,6 +702,7 @@
 		AF295537D1EDCC7BFCE9DA72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				600FFBE51E04272F006E9CE9 /* libsqlite3.tbd */,
 				04FAAAE91DACEFAE00843E0B /* WebKit.framework */,
 				CF51A959E8CFFA4FFE0CD17A /* Pods_PQWeiboDemo.framework */,
 			);
@@ -763,6 +821,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				600FFBDE1E0426D3006E9CE9 /* Info.plist in Resources */,
 				81FC6E1B1D8684880028F927 /* Assets.xcassets in Resources */,
 				81FC6E6E1D86978B0028F927 /* JsonData.json in Resources */,
 				816752D51D925E92009A54F0 /* QRCode.storyboard in Resources */,
@@ -846,7 +905,9 @@
 				81332F751D98FE1900D37AE5 /* PQOAuthViewController.swift in Sources */,
 				81F451181DAA6239007EF6F6 /* PQFromTopAnimation.swift in Sources */,
 				8159711A1DA8A40200D8C381 /* PQActionSheetVC.swift in Sources */,
+				600FFBDB1E0426D3006E9CE9 /* FMDatabasePool.m in Sources */,
 				81B91CED1D8FC329001CBA60 /* PQPopverAnimation.swift in Sources */,
+				600FFBDA1E0426D3006E9CE9 /* FMDatabaseAdditions.m in Sources */,
 				81FC6E5F1D8690D20028F927 /* PQIndexTableVC.swift in Sources */,
 				047169A31DD059F50025494E /* Emoticon.swift in Sources */,
 				047169A91DD05F340025494E /* PQComposeToolView.swift in Sources */,
@@ -859,16 +920,21 @@
 				81F451101DAA5E09007EF6F6 /* PQModalShowSizeController.swift in Sources */,
 				81F6956F1D9CAD5D003E267E /* PQNewFeatureCollectionViewController.swift in Sources */,
 				047169A21DD059F50025494E /* EmojiController.swift in Sources */,
+				600FFBDD1E0426D3006E9CE9 /* FMResultSet.m in Sources */,
+				600FFBE31E0426E2006E9CE9 /* FMDatabaseVariadic.swift in Sources */,
 				815971151DA891B400D8C381 /* TBDataSource.swift in Sources */,
 				81FC6E141D8684880028F927 /* AppDelegate.swift in Sources */,
 				04FAAAE61DACE85D00843E0B /* UIButton+Category.swift in Sources */,
 				04CBBA791DB4CC78003C0F62 /* PQMenuView.swift in Sources */,
+				600FFBD91E0426D3006E9CE9 /* FMDatabase.m in Sources */,
 				8188820B1D8E90BB00EF3FB1 /* PQLIRTButton.swift in Sources */,
+				600FFBDC1E0426D3006E9CE9 /* FMDatabaseQueue.m in Sources */,
 				04716B611DB072EC007043F7 /* PQIndexRereshControl.swift in Sources */,
 				0468486C1DB469D0001777EA /* PQImageBrowserCollectionViewCell.swift in Sources */,
 				049E8C721DCD83B800048C5D /* PQComposeTextViewController.swift in Sources */,
 				8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */,
 				81F695761D9CBA7C003E267E /* PQWelComeViewController.swift in Sources */,
+				600FFBE21E0426E2006E9CE9 /* FMDatabaseAdditionsVariadic.swift in Sources */,
 				047169AB1DD060180025494E /* PQComposeTitleView.swift in Sources */,
 				81FC6E5B1D868B0F0028F927 /* PQTabBarController.swift in Sources */,
 				047169A71DD059F50025494E /* TextView+Category.swift in Sources */,
@@ -1040,6 +1106,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pq.PQWeiboDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "219fe0dc-0239-4112-8cea-3079f9508d13";
+				SWIFT_OBJC_BRIDGING_HEADER = "PQWeiboDemo/Weibo-Bridge.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1058,6 +1125,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pq.PQWeiboDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "219fe0dc-0239-4112-8cea-3079f9508d13";
+				SWIFT_OBJC_BRIDGING_HEADER = "PQWeiboDemo/Weibo-Bridge.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
