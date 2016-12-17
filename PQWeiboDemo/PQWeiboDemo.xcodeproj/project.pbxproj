@@ -32,6 +32,7 @@
 		04FAAAE61DACE85D00843E0B /* UIButton+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */; };
 		04FAAAE81DACE8E300843E0B /* UILabel+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */; };
 		04FAAAEA1DACEFAE00843E0B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FAAAE91DACEFAE00843E0B /* WebKit.framework */; };
+		04FCCC6E1DFFCD850081E1AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FCCC6D1DFFCD850081E1AA /* CoreGraphics.framework */; };
 		810043891D8940CA00908230 /* PQNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810043881D8940CA00908230 /* PQNotLoginView.swift */; };
 		8100438B1D89439300908230 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100438A1D89439300908230 /* UIView+AutoLayout.swift */; };
 		810112841DA9EA7D00A1108F /* PQDIYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810112831DA9EA7D00A1108F /* PQDIYButton.swift */; };
@@ -123,6 +124,8 @@
 		04FAAAE51DACE85D00843E0B /* UIButton+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Category.swift"; sourceTree = "<group>"; };
 		04FAAAE71DACE8E300843E0B /* UILabel+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Category.swift"; sourceTree = "<group>"; };
 		04FAAAE91DACEFAE00843E0B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		04FCCC6D1DFFCD850081E1AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		04FCCC8E1DFFE61D0081E1AA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		810043881D8940CA00908230 /* PQNotLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQNotLoginView.swift; sourceTree = "<group>"; };
 		8100438A1D89439300908230 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		810112831DA9EA7D00A1108F /* PQDIYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PQDIYButton.swift; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04FCCC6E1DFFCD850081E1AA /* CoreGraphics.framework in Frameworks */,
 				04FAAAEA1DACEFAE00843E0B /* WebKit.framework in Frameworks */,
 				B5940BF50AE09AFF0C96D942 /* Pods_PQWeiboDemo.framework in Frameworks */,
 			);
@@ -645,6 +649,8 @@
 		AF295537D1EDCC7BFCE9DA72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04FCCC8E1DFFE61D0081E1AA /* libsqlite3.tbd */,
+				04FCCC6D1DFFCD850081E1AA /* CoreGraphics.framework */,
 				04FAAAE91DACEFAE00843E0B /* WebKit.framework */,
 				CF51A959E8CFFA4FFE0CD17A /* Pods_PQWeiboDemo.framework */,
 			);
@@ -1040,6 +1046,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pq.PQWeiboDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "219fe0dc-0239-4112-8cea-3079f9508d13";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1058,6 +1065,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pq.PQWeiboDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "219fe0dc-0239-4112-8cea-3079f9508d13";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

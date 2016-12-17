@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 class PQMyQRCodeViewController: UIViewController {
     @IBOutlet weak var myQRCode: UIImageView!
@@ -34,7 +35,8 @@ class PQMyQRCodeViewController: UIViewController {
         // 3、设置需要生成二维码的数据
         filter?.setValue("纸巾艺术".data(using: String.Encoding.utf8), forKey: "inputMessage")
         // 4、从滤镜中取出生成好的图片 到这里就能获取到生成好的二维码了，但是非常模糊，需要生成高清的
-//        let bgImage = createNonInterpolatedUIImageFormCIImage(image: (filter?.outputImage)!, size: 500)
+        
+        let bgImage = myQrcodeImage(500, nil, nil)
         
         
        
@@ -42,18 +44,19 @@ class PQMyQRCodeViewController: UIViewController {
         // 5、创建头像
         let icon = UIImage(named: "iconhead")
         
-         return mergeImageWith(bgImage: UIImage(cgImage: (filter?.outputImage)! as! CGImage), foreImage: icon!)
+//         return mergeImageWith(bgImage: UIImage(cgImage: (filter?.outputImage)! as! CGImage), foreImage: icon!)
         
-        /*
-         高清图我就生成不鸟啦！！！
+        
+         //高清图我就生成不鸟啦！！！
         // 6、合并图片 
         return mergeImageWith(bgImage: bgImage, foreImage: icon!)
         //PS：在二维码中如果遮挡一部分的二维码是不会造成识别不了的情况的，但是一定要注意
         //不能把三个小正方形给遮挡住，因为那是二维码的入口，通过三个小正方形才能开始
         //获取二维码的数据
-         */
+        
     }
     
+    //合并图片
     private func mergeImageWith(bgImage:UIImage,foreImage:UIImage) -> UIImage{
         
         //1、开启上下文
@@ -81,30 +84,79 @@ class PQMyQRCodeViewController: UIViewController {
      :param: size    指定大小
      :returns: 生成好的图片
      */
-    private func createNonInterpolatedUIImageFormCIImage(image: CIImage, size: CGFloat) -> UIImage {
-        
-        let extent: CGRect = image.extent.integral
-        let scale: CGFloat = min(size/extent.width, size/extent.height)
-        
-        // 1.创建bitmap;
-        let width = extent.width * scale
-        let height = extent.height * scale
-        let cs: CGColorSpace = CGColorSpaceCreateDeviceGray()
-        let bitmapRef = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: cs, bitmapInfo: 0)!
-        
+//    private func createNonInterpolatedUIImageFormCIImage(image: CIImage, size: CGFloat) -> UIImage {
+//        
+//        let extent: CGRect = image.extent.integral
+//        let scale: CGFloat = min(size/extent.width, size/extent.height)
+//        
+//        // 1.创建bitmap;
+//        let width = extent.width * scale
+//        let height = extent.height * scale
+//        let cs: CGColorSpace = CGColorSpaceCreateDeviceGray()
+//        let bitmapRef = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: cs, bitmapInfo: 0)!
+//        
 //        let context = CIContext(options: nil)
 //        let bitmapImage: CGImage = context.createCGImage(image, from: extent)!
+//        
+//        bitmapRef.interpolationQuality = CGInterpolationQuality.none
+//        bitmapRef.scaleBy(x: scale, y: scale);
+//        
+//        let ctx = UIGraphicsGetCurrentContext()
+//        
+////        ctx?.draw(bitmapImage, in: extent, byTiling: true)
+//        
+////        CGContextDrawImage(bitmapRef, extent, bitmapImage);
+//        
+//        
+//        UIGraphicsGetImageFromCurrentImageContext()
+//        
+//        // 2.保存bitmap到图片
+//        let scaledImage: CGImage = bitmapRef.makeImage()!
+//        
+//        return UIImage(cgImage: scaledImage)
+//    }
+    
+    func myQrcodeImage(_ size : CGFloat? ,_ color : UIColor?, _ bgColor :UIColor?) -> UIImage{
         
-        bitmapRef.interpolationQuality = CGInterpolationQuality.none
-        bitmapRef.scaleBy(x: scale, y: scale);
+        //1、设置缺省值
+        var QRCodeSize : CGFloat = 300
+        var QRCodeColor : UIColor = UIColor.black
+        var QRCodeBgColor : UIColor = UIColor.white
         
-        //CGContextDrawImage(bitmapRef, extent, bitmapImage);
+        //2、更新缺省值，如果传入了值
+        if let size = size { QRCodeSize = size }
+        if let color = color { QRCodeColor = color }
+        if let bgColor = bgColor { QRCodeBgColor = bgColor }
         
-        UIGraphicsGetImageFromCurrentImageContext()
+        //3、创建二维码滤镜
+        let contentData = "纸巾艺术".data(using: .utf8)
+        let fileter = CIFilter(name: "CIQRCodeGenerator")
         
-        // 2.保存bitmap到图片
-        let scaledImage: CGImage = bitmapRef.makeImage()!
+        //4、设置输入信息
+        fileter?.setValue(contentData, forKey: "inputMessage")
+        fileter?.setValue("H", forKey: "inputCorrectionLevel")
         
-        return UIImage(cgImage: scaledImage)
+        //5、得到输出二维码
+        let ciImage = fileter?.outputImage
+        
+        //6、设置颜色滤镜
+        let colorFilter = CIFilter(name: "CIFalseColor")
+        colorFilter?.setValue(ciImage, forKey: "inputImage")
+        //二维码颜色
+        colorFilter?.setValue(CIColor(cgColor : QRCodeColor.cgColor), forKey: "inputColor0")
+        //背景色
+        colorFilter?.setValue(CIColor(cgColor : QRCodeBgColor.cgColor), forKey: "inputColor1")
+        
+        //7、生成二维码
+        let outImage = colorFilter!.outputImage!
+        let scale = QRCodeSize / outImage.extent.size.width
+        
+        let transfrom = CGAffineTransform(scaleX: scale, y: scale)
+        
+        let transfromImage = colorFilter!.outputImage!.applying(transfrom)
+        
+        let newImage = UIImage(ciImage: transfromImage)
+        
+        return newImage
     }
 }

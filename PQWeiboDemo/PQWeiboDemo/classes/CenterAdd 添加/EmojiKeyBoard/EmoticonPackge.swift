@@ -87,7 +87,7 @@ class EmoticonPackge: NSObject {
         
         emoticons = result
         
-        print(emoticons?.count)
+        print(emoticons?.count ?? "表情为 - 0")
     }
     
     //填充表情
