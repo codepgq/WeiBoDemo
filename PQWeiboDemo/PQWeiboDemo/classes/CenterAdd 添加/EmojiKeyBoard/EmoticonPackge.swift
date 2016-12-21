@@ -86,8 +86,7 @@ class EmoticonPackge: NSObject {
         }
         
         emoticons = result
-        
-        print(emoticons?.count ?? "表情为 - 0")
+        print(emoticons?.count ?? "表情为空")
     }
     
     //填充表情
@@ -121,6 +120,78 @@ class EmoticonPackge: NSObject {
             index += 1
         }
     }
+    
+    /// 根据表情文字找到对应的表情模型
+    ///
+    /// - Parameter str: 字符串
+    /// - Returns: 表情模型
+    class func emoticonWithStr(str : String) -> Emoticon? {
+        var emoticon : Emoticon?
+        
+        for packge in EmoticonPackge.loadPackges(){
+            
+            emoticon = packge.emoticons?.filter({ (e) -> Bool in
+                if e.chs == nil{
+                    return e.emojiStr == str
+                }
+                return e.chs == str
+            }).last
+            
+            if emoticon != nil {
+                break
+            }
+        }
+        return emoticon
+    }
+    
+    
+    /// 查找表情字符串
+    ///
+    /// - Parameter str: 字符串
+    /// - Returns: 属性字符串
+    class func attributeWithStr(str : String) -> NSMutableAttributedString? {
+        
+        let mAttstr = NSMutableAttributedString(string: str)
+        
+        do {
+            
+            //1 创建规则
+            let pattern = "\\[.*?\\]"
+            //2 创建正则对象
+            let regex = try NSRegularExpression(pattern: pattern, options:.caseInsensitive)
+            //3 开始匹配
+            let res =  regex.matches(in: str, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSRange(location: 0, length: str.characters.count))
+            //4 遍历对象 从后往前遍历
+            //4.1 找到最后一个的下标
+            var count = res.count
+            
+            while count > 0 {
+                count -= 1
+                // 4.2 拿到对象
+                let checking : NSTextCheckingResult = res[count]
+                
+                //4.3 拿到字符串
+                let temStr = (str as NSString).substring(with: checking.range)
+                
+                //4.4 从模型去查找字符串
+                if let emoticon = emoticonWithStr(str: temStr){
+                    
+                    //4.5 根据模型生存表情字符串
+                    let att = EmoticonAttachment.imageText(emoticon: emoticon, font: UIFont.italicSystemFont(ofSize: 18))
+                    
+                    //4.6 生成属性表情字符串
+                    mAttstr.replaceCharacters(in: checking.range, with: att)
+                }
+            }
+            
+        } catch{
+            print(error)
+        }
+        
+        //5返回属性字符串
+        return mAttstr
+    }
+
     
     //返回每个文件夹的plist文件
    private func infoPath() -> String{

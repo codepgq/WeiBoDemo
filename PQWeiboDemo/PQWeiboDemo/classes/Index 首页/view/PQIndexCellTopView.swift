@@ -26,7 +26,7 @@ class PQIndexCellTopView: UIView {
             // 显示气球
             balloonView.isHidden =  statuses!.isHiddenBalloon
             //显示钻石
-            diamondView.isHidden = (statuses?.user?.isHiddenDiamond)!
+            diamondView.isHidden = (statuses?.user?.isHiddenDiamond) ?? true
             
             //时间
             timeLabel.text = statuses?.created_at

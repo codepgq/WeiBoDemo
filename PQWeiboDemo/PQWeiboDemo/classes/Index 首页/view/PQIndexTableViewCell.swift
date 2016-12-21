@@ -8,7 +8,7 @@
 
 import UIKit
 import SDWebImage
-
+import KILabel
 
 
 public enum PQIndexCellIdentifier : String{
@@ -65,7 +65,7 @@ class PQIndexTableViewCell: UITableViewCell {
             topView.statuses = statuses
             
             //用户微博信息 正文
-            contentLabel.text = statuses?.text
+            contentLabel.attributedText = EmoticonPackge.attributeWithStr(str: statuses!.text!)
             
             // 配图
             pictureView.statuses = statuses?.retweeted_status != nil ? statuses?.retweeted_status : statuses
@@ -99,9 +99,18 @@ class PQIndexTableViewCell: UITableViewCell {
     
     // 正文
     lazy var contentLabel : UILabel = {
-       let label = UILabel.createLabelWithFontSize(fontSize: 14, textColor: UIColor.darkGray)
+       let label = KILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .darkGray
         label.numberOfLines = 0
         label.preferredMaxLayoutWidth = UIScreen.main.bounds.width - 20
+        
+        label.urlLinkTapHandler = {
+            (label, string, range)
+            in
+            print(string)
+        }
+        
         return label
     }()
     

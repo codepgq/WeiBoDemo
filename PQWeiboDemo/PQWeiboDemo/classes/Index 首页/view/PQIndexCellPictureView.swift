@@ -67,6 +67,9 @@ class PQIndexCellPictureView: UICollectionView {
             let key = statuses?.storedPicURLS!.first?.absoluteString
             let image = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: key!)
             
+            if image == nil {
+                return CGSize(width: 0, height: 0)
+            }
             layout.itemSize = (image?.size)!
             // 3.2返回缓存图片的尺寸
             return image!.size

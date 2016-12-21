@@ -27,7 +27,7 @@ class PQStatusesModel: NSObject {
     var text : String?
     /// 微博来源
     var source : String?
-    {
+        {
         didSet{
             //range(of searchString: String, options mask: NSString.CompareOptions = []
             //NSString.range(option)
@@ -120,36 +120,20 @@ class PQStatusesModel: NSObject {
     var isHiddenBalloon : Bool = true
     
     class func loadData(since_id : Int , max_id : Int , finished : @escaping (_ models : [PQStatusesModel]? , _ error : NSError?) -> Void){
-        let url = "2/statuses/home_timeline.json"
-        var params = ["access_token":PQOauthInfo.loadAccoutInfo()!.access_token!]
-        if since_id > 0 {
-            params["since_id"] = "\(since_id)"
-        }
         
-        if max_id > 0 {
-            params["max_id"] = "\(max_id - 1)"
-        }
-        
-        print("开始请求数据啦")
-        
-        PQNetWorkManager.shareNetWorkManager().get(url, parameters: params, progress: nil, success: { (_, JSON) in
-//            print(JSON)
+        PQStatuesDao.loadData(since_id: since_id, max_id: max_id) { (array, error) in
             
-            // 取出statuses 对应的数组
-            // 遍历数组，将字典转模型
-            let list = (JSON as! [String : Any] ) ["statuses"] as! [[String: Any]]
-            var models = [PQStatusesModel]()
-            for dict in list{
-                models.append(PQStatusesModel(dict: dict))
+            if error == nil{
+                var models = [PQStatusesModel]()
+                for dict in array!{
+                    models.append(PQStatusesModel(dict: dict))
+                }
+                
+                //缓存所有配图
+                loadAllImageCaches(list: models, finished: finished)
             }
-            
-            //缓存所有配图
-            loadAllImageCaches(list: models, finished: finished)
-            
-            //            finished(models: models, error: nil)
-            }, failure: { (_, error) in
-                print("网络出错啦！！！！呜啦啦啦")
-        })
+        }
+        
     }
     
     
@@ -177,7 +161,7 @@ class PQStatusesModel: NSObject {
             // 2、缓存图片
             for url in urls {
                 // 2.1 把任务加入线程组中
-//                print("开始缓存")
+                //                print("开始缓存")
                 group.enter()
                 // 2.2 开始下载
                 SDWebImageManager.shared().downloadImage(with: url as URL!, options: SDWebImageOptions(rawValue:0), progress: nil, completed: { (_, _, _, _, _) in
@@ -187,7 +171,7 @@ class PQStatusesModel: NSObject {
             }
         }
         // 3、当组内所有图片缓存完成就会通知
-       group.notify(queue: DispatchQueue.main) {
+        group.notify(queue: DispatchQueue.main) {
             print("缓存图片OK")
             finished(list,nil)
         }
