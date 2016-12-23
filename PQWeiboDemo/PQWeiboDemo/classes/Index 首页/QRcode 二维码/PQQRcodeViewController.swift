@@ -127,10 +127,13 @@ class PQQRcodeViewController: UIViewController ,AVCaptureMetadataOutputObjectsDe
         let _ = navigationController?.popViewController(animated: true)
     }
     
+    //相册
     @objc private func qrCodeRightPhotoClick(){
-        print("点击了相册")
+        
+        picController.delegate = self;
+        self.present(picController, animated: true, completion: nil)
+        
     }
-    
     
     // ************************     所有的懒加载     **********************
     //会话层
@@ -178,13 +181,17 @@ class PQQRcodeViewController: UIViewController ,AVCaptureMetadataOutputObjectsDe
         return layer
     }()
     
+    //相册
+    fileprivate let picController = UIImagePickerController()
+    //选中的相片
+    var selectedImage : UIImage?
 }
 
 
 
 
 //代理
-extension PQQRcodeViewController{
+extension PQQRcodeViewController:UINavigationControllerDelegate,UIImagePickerControllerDelegate{
     
     @objc(captureOutput:didOutputMetadataObjects:fromConnection:) func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         //输出数据
@@ -239,4 +246,30 @@ extension PQQRcodeViewController{
         //4.2、回执路径
         lineShapeLayer.path = path.cgPath
     }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+        print(info)
+        selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage?
+        scanQRCode(selectedImage!)
+        picker .dismiss(animated: true, completion: nil)
+    }
+    
+    /// 读取图片中的二维码
+    func scanQRCode(_ image : UIImage){
+        let qrcodeImg =  image
+        let ciImage:CIImage = CIImage(image:qrcodeImg)!
+        
+        let context = CIContext(options: nil)
+        let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode,
+                                             context: context, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])!
+        
+        let features=detector.features(in: ciImage)
+        
+        //遍历所有的二维码，并框出
+        for feature in features as! [CIQRCodeFeature] {
+            print(feature.messageString ?? "输错错误")
+        }
+    }
+    
 }

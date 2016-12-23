@@ -17,17 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-
         
         // 设置导航条和工具条的外观
         // 因为外观一旦设置全局有效, 所以应该在程序一进来就设置
         UINavigationBar.appearance().tintColor = UIColor.orange
         UITabBar.appearance().tintColor = UIColor.orange
-        
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.S"
-//        print(formatter.string(from: Date()))
+
         
         //程序启动加载数据库
         
